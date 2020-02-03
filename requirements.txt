@@ -1,0 +1,4 @@
+django
+djangorestframework
+mysqlclient
+django-webpack-loader
