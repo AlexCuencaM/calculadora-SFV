@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BotonCalcularDispositivo</title>
+	<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../resources/css/estilos.css">
+</head>
+<body>
+		<div class="row col-12">
+
+			<div class="row col-md-4 jumbotron">
+			<form>
+				<fieldset>
+					 <legend>LISTA DE ELECTRODOMESTICO</legend>
+					 <h2>Anadirlo</h2>
+					 <div class="div_texbox">
+					 	<a href="#" id="televisor" onclick="document.getElementById('txtaparato').value='Televisor'; document.getElementById('txtenergia').value=70; document.getElementById('txthoras').value=3; agregarFila(document.getElementById('cant_campos'));return false;">Televisor<br>70 W. 100 %</a>
+					 </div>
+				  </fieldset>
+			</form>
+			</div>
+			<div class="class=row col-md-8 jumbotron">
+			<form>
+				<fieldset>
+					 <legend>TABLA DE CONSUMO</legend>
+					<table id=tablaconsumo>   	
+						<thead>
+							<tr>
+								<th > Nombre Producto</th>
+								<th> Tiempo</th>
+								<th> Cantidad</th>
+								<th> Energía</th>
+							</tr>
+						</thead>
+						<tbody id="lista">
+							<tr>
+								<td>Producto 1 <input type="hidden" name="Producto" value="Producto"></td>
+								<td><input type="text" value="0min" name="tiempo" id="idTiempo"></td>
+								<td><input type="text" value="0" name="cantidad" id=idCantidad></td>
+								<td><input type="button" value="Eliminar"></td>
+							</tr>
+
+						</tbody>		
+
+
+
+				</table>
+				  </fieldset>
+			</form>
+			</div>
+
+		</div>
+
+	<script type="text/javascript" src="../JS/interfazCalcular.js"></script>
+	<script type="text/javascript" src="../resources/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>
