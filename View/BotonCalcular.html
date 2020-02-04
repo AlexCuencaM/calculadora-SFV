@@ -6,20 +6,22 @@
 	<link rel="stylesheet" type="text/css" href="../resources/css/estilos.css">
 </head>
 <body>
+	<div class="container-fluid">
 		<div class="row col-12">
 
-			<div class="row col-md-4 jumbotron">
+			<div id="tablae" class="row col-md-6">
 			<form>
 				<fieldset>
 					 <legend>LISTA DE ELECTRODOMESTICO</legend>
-					 <h2>Anadirlo</h2>
+					 <h2>Añadirlo</h2>
+					 <hr>
 					 <div class="div_texbox">
-					 	<a href="#" id="televisor" onclick="document.getElementById('txtaparato').value='Televisor'; document.getElementById('txtenergia').value=70; document.getElementById('txthoras').value=3; agregarFila(document.getElementById('cant_campos'));return false;">Televisor<br>70 W. 100 %</a>
+					 	<a href="#" id="televisor">Televisor 70 W. 100 %</a>
 					 </div>
 				  </fieldset>
 			</form>
 			</div>
-			<div class="class=row col-md-8 jumbotron">
+			<div id="tabla" class="class=row col-md-6" >
 			<form>
 				<fieldset>
 					 <legend>TABLA DE CONSUMO</legend>
@@ -46,10 +48,14 @@
 
 				</table>
 				  </fieldset>
+
 			</form>
 			</div>
-
+							  
 		</div>
+		<hr>
+		<input type="button" name="guardarCerrar" value="Guardar y Cerrar">
+	</div>
 
 	<script type="text/javascript" src="../JS/interfazCalcular.js"></script>
 	<script type="text/javascript" src="../resources/js/jquery.min.js"></script>
