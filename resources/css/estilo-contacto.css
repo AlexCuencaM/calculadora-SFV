@@ -1,0 +1,108 @@
+#banner img{
+	width: 100%;
+	height: 200px;
+}
+
+.izq{
+	background: white;
+	border: 2px solid white;
+	width: 100%;
+	height: 300px;	
+
+}
+
+.der{
+	background: #202079;
+	border: 2px solid white;
+	width: 100%;
+	height: 300px;	
+}
+
+
+.cont-detalle{
+	color: black;
+	font-family: roboto slab;
+	margin: 5px auto;
+	padding: 5px;
+
+}
+
+.cont-detalle span{
+	
+	width: 100%;
+	height: 50%;
+}
+
+.cont-detalle h1{
+	width: 100%;
+	height: 25%;
+	margin-top: 15px;
+}
+
+
+.cont-detalle p{
+	margin-top: 30px;
+	height: 25%;
+	width: 100%;
+}
+
+.ubicacion img{
+	
+	width: 25%;
+	height: 25%;
+	margin: 20px auto;
+
+	
+}
+.ubicacion h2{
+	text-align: center;
+	color: white;
+	margin-top: 20px;
+	width: 100%;
+}
+.ubicacion p{
+	text-align: center;
+	color: white;
+	margin-top: px;
+	font-size: 15px;
+}
+
+.telefono img{
+	
+	width: 25%;
+	height: 25%;
+	margin: 20px auto;
+	
+}
+.telefono h3{
+	text-align: center;
+	color: white;
+	margin-top: 20px;
+	width: 100%;
+
+}
+.telefono p{
+	text-align: center;
+	color: white;
+	margin-top: 20px;
+	font-size: 15px;
+}
+
+.correo img{
+	width: 25%;
+	height: 25%;
+	margin: 20px auto;
+
+}
+.correo h4{
+	text-align: center;
+	color: white;
+	margin-top: 20px;
+	width: 100%;
+}
+.correo p{
+	text-align: center;
+	color: white;
+	margin-top: 20px;
+	font-size: 15px;
+}

@@ -1,0 +1,9 @@
+footer{
+	background: #10222d;
+	color: #c1c6c9;
+	height: 50px;
+}
+
+footer p{margin-bottom: 0}
+
+footer p span{color: #2586e0}

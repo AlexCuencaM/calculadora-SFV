@@ -1,0 +1,84 @@
+*{box-sizing: border-box;}
+
+html{font-size: 14px}
+
+div#background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.3);
+    z-index: 2;
+    display: none;
+}
+
+div.datepicker{
+    color: #fff;
+    border:none;
+    box-shadow: none;
+    border-radius: 0;
+    padding:0px;
+    font-size: 0.9rem;
+    position: absolute !important;
+    top:50% !important;
+    left: 50% !important;
+    margin-left: -150px;
+    margin-top: -12%;
+    box-shadow: 0px 0px 20px rgba(0,0,0,.5);
+    border-radius: 0px !important;
+    overflow: hidden;
+}
+
+input.datepicker{
+    color: #000;
+}
+
+th.next, th.prev{
+    font-size: 1.5rem;
+}
+
+
+div.datepicker table{
+    width: 300px;
+}
+
+table thead{
+    background: #2586e0;
+}
+
+table tbody{
+    background: #fff;
+    color: #595959;
+}
+
+table th,table td,table span{
+    border-radius: 0 !important;
+}
+
+table thead tr:nth-child(2){
+    height: 60px;
+}
+
+table thead tr:nth-child(2) th:hover{
+    background: #2378C7 !important;
+}
+
+table thead tr:nth-child(3){
+    background: #fff;
+    color: #999999;
+    height: 50px;
+}
+
+table tbody tr td.day{
+    padding: 10px;
+}
+
+div.datepicker-months th.prev, div.datepicker-months th.next{
+    width: 40px;
+}
+
+div.datepicker-years th.prev, div.datepicker-months th.next{
+    width: 40px;
+}
+
