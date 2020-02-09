@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calcular para implementacion SFV</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="../resources/css/estilos.css">
+</head>
+<body>
+		<h1 class="my-5 text-center text-primary"> Calcular para implementación SFV </h1>
+		<hr>
+		<form>
+			<div class="container">
+				<div class="row col-md-12">					
+						<label class="col-md-3"> Ingresar dispositivos</label>    
+            <input type="button" id="consumo" value="Calcular Consumo" onclick="calcular()">         
+						<a class="col-md-6" id="paginaweb" href="#">Pagina Web que calcula la radiación solar </a>
+    		</div> 
+    			<hr>   			
+    			<div class="row col-md-12">
+    					<label class="col-md-3"> Consumo mensual</label>
+      					<label class="col-md-3"> <!--valor retorno--></label>
+      					<label class="col-md-3"> Radiación Solar HSP</label>
+      					<input class="col-md-3"type="text" class="form-control" id="radiacion">
+    			</div>
+    			<hr>
+    			<div class="row col-md-12">
+					<label class="col-md-3"> Potencia paneles</label>
+      				<input class="col-md-3" type="text" class="form-control" id="potencia">
+      				<label class="col-md-3"> AUTONOMÍA (DÍAS)</label>
+      				<input class="col-md-3" type="text" class="form-control" id="autonomia">
+    			</div>
+    			<hr>
+    			<div class="row col-md-12">
+					<label class="col-md-3"> Capacidad Baterias</label>
+      				<input class="col-md-3" type="text" class="form-control">
+    			</div>
+    			<hr>
+    			<div class="row col-md-12">
+    				<label class="col-md-3"> Voltaje Baterias </label>
+    				<select class="col-md-3" id="voltaje" name="voltaje"></select>
+    			</div>
+    			<hr>
+    			<div>
+    				<button type="button" class="btn btn-primary">Calcular</button>
+    			</div>
+	</form>
+				
+	</div>
+  
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
