@@ -1,3 +1,15 @@
+//eliminar los margenes que trae por defecto los navegadores
+*{
+	margin:0px;
+	padding: 0px;
+}
+
+// el cuerpo en color negro
+div{
+  background-color: #14B76E;
+}
+
+
 table{
 	width:"100%";
 }
@@ -5,6 +17,10 @@ table{
 th{
 
 	widh:"40%";
+}
+
+#paginaweb{
+	padding:10px;
 }
 
 #televisor { 
