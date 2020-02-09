@@ -1,0 +1,56 @@
+//eliminar los margenes que trae por defecto los navegadores
+*{
+	margin:0px;
+	padding: 0px;
+}
+
+// el cuerpo en color negro
+div{
+  background-color: #14B76E;
+}
+
+
+table{
+	width:"100%";
+}
+
+th{
+
+	widh:"40%";
+}
+
+#paginaweb{
+	padding:10px;
+}
+
+#televisor { 
+
+color: #ffffff; 
+font-size: 18px; 
+font-weight: 400; 
+background: #889ccf; 
+margin: 0 0 25px; 
+padding: 20px; 
+
+}
+
+#tabla{ 
+
+color: #ffffff; 
+font-size: 18px; 
+font-weight: 400; 
+background: #889ccf; 
+margin: 0 0 25px; 
+padding: 20px; 
+
+}
+
+#tablae{ 
+color: #ffffff; 
+font-size: 18px; 
+font-weight: 400; 
+background: orange; 
+margin: 0 0 25px; 
+padding: 20px; 
+
+}

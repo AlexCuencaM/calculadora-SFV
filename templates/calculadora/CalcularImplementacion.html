@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calcular para implementacion SFV</title>
+  <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../resources/css/estilos.css">
+</head>
+<body>
+		<h1 class="my-5 text-center text-primary"> Calcular para implementación SFV </h1>
+		<hr>
+		<form>
+			<div class="container">
+				<div class="row col-md-12">					
+						<label class="col-md-3"> Ingresar dispositivos</label>    
+            <input type="button" id="consumo" value="Calcular Consumo" onclick="calcular()">         
+						<a class="col-md-6" id="paginaweb" href="#">Pagina Web que calcula la radiación solar </a>
+    		</div> 
+    			<hr>   			
+    			<div class="row col-md-12">
+    					<label class="col-md-3"> Consumo mensual</label>
+      					<label class="col-md-3"> <!--valor retorno--></label>
+      					<label class="col-md-3"> Radiación Solar HSP</label>
+      					<input class="col-md-3"type="text" class="form-control" id="radiacion">
+    			</div>
+    			<hr>
+    			<div class="row col-md-12">
+					<label class="col-md-3"> Potencia paneles</label>
+      				<input class="col-md-3" type="text" class="form-control" id="potencia">
+      				<label class="col-md-3"> AUTONOMÍA (DÍAS)</label>
+      				<input class="col-md-3" type="text" class="form-control" id="autonomia">
+    			</div>
+    			<hr>
+    			<div class="row col-md-12">
+					<label class="col-md-3"> Capacidad Baterias</label>
+      				<input class="col-md-3" type="text" class="form-control">
+    			</div>
+    			<hr>
+    			<div class="row col-md-12">
+    				<label class="col-md-3"> Voltaje Baterias </label>
+    				<select class="col-md-3" id="voltaje" name="voltaje"></select>
+    			</div>
+    			<hr>
+    			<div>
+    				<button type="button" class="btn btn-primary">Calcular</button>
+    			</div>
+	</form>
+				
+	</div>
+  
+  <script type="text/javascript" src="../resources/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>
