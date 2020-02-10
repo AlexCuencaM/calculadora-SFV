@@ -1,6 +1,7 @@
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow
 __pypackages__/
-
+#pycache
+__pycache__
 # Celery stuff
 celerybeat-schedule
 celerybeat.pid
@@ -38,3 +39,5 @@ dmypy.json
 .idea
 #VS Code settings
 .vscode
+#SQLite
+db.sqlite3
