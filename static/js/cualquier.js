@@ -18,7 +18,8 @@ document.getElementById("pestana4").addEventListener("click",function(){
 
 	function pestanasTodas(id){
 		var xhr=new XMLHttpRequest();
-		const url=["../View/ViewInformation.html","../View/CalcularImplementacion.html","../View/Imagenes.html","../View/Contactar.html"];
+		const url=["../View/ViewInformation.html","../../../templates/calculadora/CalcularImplementacion.html",
+		"../../../templates/calculadora/Imagenes.html","../../../templates/calculadora/Contactar.html"];
 		xhr.onreadystatechange=function(){			//mapear el estado de la solicitud
 			if(this.readyState==4 && this.status==200)//4.respuesta a finalizado y response is ready 200ok(XMLHttpRequestObject)
 			{
