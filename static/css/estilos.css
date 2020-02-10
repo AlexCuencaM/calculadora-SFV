@@ -1,10 +1,10 @@
-//eliminar los margenes que trae por defecto los navegadores
+/* eliminar los margenes que trae por defecto los navegadores */
 *{
 	margin:0px;
 	padding: 0px;
 }
 
-// el cuerpo en color negro
+/* el cuerpo en color negro */
 div{
   background-color: #14B76E;
 }
