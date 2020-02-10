@@ -17,9 +17,10 @@ document.getElementById("pestana4").addEventListener("click",function(){
 });
 
 	function pestanasTodas(id){
+		const base= "/calculadora";
 		var xhr=new XMLHttpRequest();
-		const url=["../View/ViewInformation.html","../../../templates/calculadora/CalcularImplementacion.html",
-		"../../../templates/calculadora/Imagenes.html","../../../templates/calculadora/Contactar.html"];
+		const url=[base + "/info",base + "/implementacion",
+		base + "/imagenes",base + "/contact"];
 		xhr.onreadystatechange=function(){			//mapear el estado de la solicitud
 			if(this.readyState==4 && this.status==200)//4.respuesta a finalizado y response is ready 200ok(XMLHttpRequestObject)
 			{
