@@ -101,21 +101,38 @@
 	function obtenerAllDateTable(){
 		var array_electrodomestico=document.getElementsByName("producto[]");
 		var array_tiempo=document.getElementsByName("tiempo[]");
-		var array_cantidad=document.getElementsByName("cantidad[]");
-
-		
-
-		/*for(int i=0;i<array_electrodomestico.length;i++){
-			aelectrodomestico[i]=array_electrodomestico[i].value;
-		}*/
+		var array_cantidad=document.getElementsByName("cantidad[]");	
 		
 		var json={	electrodomestico:array_electrodomestico,
 				 	tiempo:array_tiempo,
 				  	cantidad:array_cantidad
 				  }
 
-		console.log(json.tiempo[0].value);
-		//cerrarFormularioCalcular();
+		enviarDatosPost(json.cantidad[0].value);
+		cerrarFormularioCalcular();
+		
+		
+	}
+
+
+	/*Funcion mostrar el html*/
+	function enviarDatosPost(json){
+		var xhr=new XMLHttpRequest();
+		const url="CalcularImplementacion.html";
+
+		xhr.onreadystatechange=function(){			//mapear el estado de la solicitud
+		
+			if(this.readyState==4 && this.status==200)//4.respuesta a finalizado y response is ready 200ok(XMLHttpRequestObject)
+			{
+					document.getElementById("valor_consumo").innerHTML=json;
+				
+			}
+
+		};
+		
+		// Open especifica la solicitud		
+					xhr.open("POST",url,true);
+					xhr.send();
 	}
 
 
