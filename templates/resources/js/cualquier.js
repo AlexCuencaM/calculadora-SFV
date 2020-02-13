@@ -18,7 +18,7 @@ document.getElementById("pestana4").addEventListener("click",function(){
 
 	function pestanasTodas(id){
 		var xhr=new XMLHttpRequest();
-		const url=["../View/ViewInformation.html","../View/CalcularImplementacion.html","../View/Imagenes.html","../View/Contactar.html"];
+		const url=["ViewInformation.html","CalcularImplementacion.html","Imagenes.html","Contactar.html"];
 		xhr.onreadystatechange=function(){			//mapear el estado de la solicitud
 			if(this.readyState==4 && this.status==200)//4.respuesta a finalizado y response is ready 200ok(XMLHttpRequestObject)
 			{

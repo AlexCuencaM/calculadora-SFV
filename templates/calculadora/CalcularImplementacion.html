@@ -12,7 +12,7 @@
 			<div class="container">
 				<div class="row col-md-12">					
 						<label class="col-md-3"> Ingresar dispositivos</label>    
-            <input type="button" id="consumo" value="Calcular Consumo" onclick="calcular()">         
+            <input type="button" id="consumo" value="Calcular Consumo" onclick="mostrarFormularioCalcular()">         
 						<a class="col-md-6" id="paginaweb" href="#">Pagina Web que calcula la radiación solar </a>
     		</div> 
     			<hr>   			
@@ -39,16 +39,30 @@
     				<label class="col-md-3"> Voltaje Baterias </label>
     				<select class="col-md-3" id="voltaje" name="voltaje"></select>
     			</div>
+
     			<hr>
+
     			<div>
     				<button type="button" class="btn btn-primary">Calcular</button>
     			</div>
 	</form>
+          <div class="gallery-lightbox">
+            <div class="gallery-lightbox_modal">
+              <button onclick="cerrarFormularioCalcular()" type="button" class="close" aria-label="Close" >
+              <span aria-hidden="true">&times;</span>
+              </button>
+              <div id="mostrar">
+                
+              </div>
+
+            </div>
+          </div>  
 				
 	</div>
   
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="../resources/js/interfazCalcular.js"></script>
 
 
 </body>
