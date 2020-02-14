@@ -17,7 +17,7 @@ document.getElementById("pestana4").addEventListener("click",function(){
 });
 
 	function pestanasTodas(id){
-		const base= "/calculadora";
+		const base= "/home";
 		var xhr=new XMLHttpRequest();
 		const url=[base + "/info",base + "/implementacion",
 		base + "/imagenes",base + "/contact"];

@@ -1,6 +1,9 @@
 # my.cnf
+#Remover el .example
 [client]
 database = NAME
 user = USER
 password = PASSWORD
+host: localhost,
+port: 3306,
 default-character-set = utf8

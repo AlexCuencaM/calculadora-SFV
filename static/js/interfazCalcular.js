@@ -3,7 +3,7 @@ document.getElementById("consumo").addEventListener("click",function(){
 
 	function calcular(){
 		var xhr=new XMLHttpRequest();
-		const url="/calculadora/calcular";
+		const url="/calcular";
 		xhr.onreadystatechange=function(){			//mapear el estado de la solicitud
 			if(this.readyState==4 && this.status==200)//4.respuesta a finalizado y response is ready 200ok(XMLHttpRequestObject)
 			{
