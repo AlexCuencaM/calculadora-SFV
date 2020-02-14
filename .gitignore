@@ -41,3 +41,5 @@ dmypy.json
 .vscode
 #SQLite
 db.sqlite3
+#conf
+my.cnf
