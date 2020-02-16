@@ -1,14 +1,58 @@
-/* eliminar los margenes que trae por defecto los navegadores */
+/*eliminar los margenes que trae por defecto los navegadores*/
 *{
 	margin:0px;
 	padding: 0px;
 }
 
-/* el cuerpo en color negro */
-div{
-  background-color: #14B76E;
+.root{
+	padding:15px;
 }
 
+/*el cuerpo en color negro*/
+.gallery-lightbox{
+	/*posesione con respecto al tamaño del navegador*/
+	position:fixed;
+	/*expanda todo lo ancho posible*/
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	background-color:rgba(0,0,0,.8);
+	font-size: 16px;
+	padding:0 15px;
+	display:none;
+	/*pone las figuras en el centro*/
+	justify-content: center;
+	align-items: center;
+  
+}
+
+.gallery-lightbox.show{
+	display:flex;  
+}
+
+
+.gallery-lightbox_modal{
+	position: relative;
+	background-color: white;
+	padding: 5px;
+	max-width: 700px;
+	/*para quitar las esquinas filosas*/
+	border-radius:5px;
+
+}
+
+.gallery-lightbox_img{
+	width:100%;
+}
+
+#button_lightbox{
+	/*background-color: gray;*/
+}
+
+div .button_gallery{
+	background-color: gray;
+}
 
 table{
 	width:"100%";
@@ -16,10 +60,10 @@ table{
 
 th{
 
-	widh:"40%";
+	width:"40%";
 }
 
-#paginaweb{
+/*#paginaweb{
 	padding:10px;
 }
 
@@ -33,24 +77,4 @@ margin: 0 0 25px;
 padding: 20px; 
 
 }
-
-#tabla{ 
-
-color: #ffffff; 
-font-size: 18px; 
-font-weight: 400; 
-background: #889ccf; 
-margin: 0 0 25px; 
-padding: 20px; 
-
-}
-
-#tablae{ 
-color: #ffffff; 
-font-size: 18px; 
-font-weight: 400; 
-background: orange; 
-margin: 0 0 25px; 
-padding: 20px; 
-
-}
+*/

@@ -1,46 +1,57 @@
 {% extends '../layout/base.html' %}
 {% block content %}
-	<h1 class="my-5 text-center text-primary"> Calcular para implementación SFV </h1>
-	<hr>
-	
-	
-		<div class="container">
-			<div class="row col-md-12">					
-					<label class="col-md-3"> Ingresar dispositivos</label>    
-					<input type="button" value= "Calcular Consumo" id="consumo" onclick="calcular()">
-					<a class="col-md-6" id="paginaweb" href="#">Pagina Web que calcula la radiación solar </a>
-			</div> 
-			{% csrf_token %}
-			<form>
-				<hr>   			
-				<div class="row col-md-12">
-						<label class="col-md-3"> Consumo mensual</label>
-						<label class="col-md-3"> <!--valor retorno--></label>
-						<label class="col-md-3"> Radiación Solar HSP</label>
-						<input class="col-md-3"type="text" class="form-control" id="radiacion">
-				</div>
-				<hr>
-				<div class="row col-md-12">
+		<h1 class="my-5 text-center text-primary"> Calcular para implementación SFV </h1>
+		<hr>
+		{% csrf_token %}
+		<form>
+			<div class="container">
+				<div class="row col-md-12">					
+						<label class="col-md-3"> Ingresar dispositivos</label>    
+            <input type="button" id="consumo" value="Calcular Consumo" onclick="mostrarFormularioCalcular()">         
+						
+    		</div> 
+    			<hr>   			
+    			<div class="row col-md-12">
+    					<label class="col-md-3"> Consumo mensual</label>
+      					<label class="col-md-3" id="valor_consumo"> <!--valor retorno--></label>
+      					<label class="col-md-3"> Radiación Solar HSP</label>
+      					<input class="col-md-3"type="text" class="form-control" id="radiacion">
+    			</div>
+    			<hr>
+    			<div class="row col-md-12">
 					<label class="col-md-3"> Potencia paneles</label>
-					<input class="col-md-3" type="text" class="form-control" id="potencia">
-					<label class="col-md-3"> AUTONOMÍA (DÍAS)</label>
-					<input class="col-md-3" type="text" class="form-control" id="autonomia">
-				</div>
-				<hr>
-				<div class="row col-md-12">
+      				<input class="col-md-3" type="text" class="form-control" id="potencia">
+      				<label class="col-md-3"> AUTONOMÍA (DÍAS)</label>
+      				<input class="col-md-3" type="text" class="form-control" id="autonomia">
+    			</div>
+    			<hr>
+    			<div class="row col-md-12">
 					<label class="col-md-3"> Capacidad Baterias</label>
-					<input class="col-md-3" type="text" class="form-control">
-				</div>
-				<hr>
-				<div class="row col-md-12">
-					<label class="col-md-3"> Voltaje Baterias </label>
-					<select class="col-md-3" id="voltaje" name="voltaje"></select>
-				</div>
-				<hr>
-				<div>
-					<button type="button" class="btn btn-primary">Calcular</button>
-				</div>
-			</form>
-		</div>	
+      				<input class="col-md-3" type="text" class="form-control">
+    			</div>
+    			<hr>
+    			<div class="row col-md-12">
+    				<label class="col-md-3"> Voltaje Baterias </label>
+    				<select class="col-md-3" id="voltaje" name="voltaje"></select>
+    			</div>
 
+    			<hr>
+
+    			<div>
+    				<button type="button" class="btn btn-primary">Calcular</button>
+    			</div>
+		</form>
+          <div class="gallery-lightbox">
+            <div class="gallery-lightbox_modal">
+              <button onclick="cerrarFormularioCalcular()" type="button" class="close" aria-label="Close" >
+              <span aria-hidden="true">&times;</span>
+              </button>
+              <div id="mostrar">
+                
+              </div>
+
+            </div>
+          </div>  
+				
+	</div>
 {% endblock content %}
