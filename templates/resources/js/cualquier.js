@@ -1,7 +1,3 @@
-/*$('nav a').click(function(){	
-	var b=$(this).attr('href');
-	console.log(b);
-});*/
 
 document.getElementById("pestana1").addEventListener("click",function(){
 	pestanasTodas("0");
@@ -15,10 +11,14 @@ document.getElementById("pestana3").addEventListener("click",function(){
 document.getElementById("pestana4").addEventListener("click",function(){
 	pestanasTodas("3");
 });
+document.getElementById("pestana5").addEventListener("click",function(){
+	pestanasTodas("4");
+});
+
 
 	function pestanasTodas(id){
 		var xhr=new XMLHttpRequest();
-		const url=["ViewInformation.html","CalcularImplementacion.html","Imagenes.html","Contactar.html"];
+		var url=["inicio.html","ViewInformation.html","CalcularImplementacion.html","Imagenes.html","Contactar.html"];
 		xhr.onreadystatechange=function(){			//mapear el estado de la solicitud
 			if(this.readyState==4 && this.status==200)//4.respuesta a finalizado y response is ready 200ok(XMLHttpRequestObject)
 			{
@@ -32,7 +32,9 @@ document.getElementById("pestana4").addEventListener("click",function(){
 	}
 
 
-	
+/*ejecuta la primer pestana desde el first*/
+
+pestanasTodas("0");
 
 
 

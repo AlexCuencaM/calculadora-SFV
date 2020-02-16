@@ -63,18 +63,20 @@ th{
 	widh:"40%";
 }
 
-/*#paginaweb{
-	padding:10px;
+
+
+
+/*Mi estilo de Carousel*/
+div .carousel-item{
+	height:90vh;
 }
 
-#televisor { 
-
-color: #ffffff; 
-font-size: 18px; 
-font-weight: 400; 
-background: #889ccf; 
-margin: 0 0 25px; 
-padding: 20px; 
-
+div #carouselExampleIndicators{
+	top:10px;
 }
-*/
+
+.d-block.w-100{
+	height:90vh;
+}
+
+
