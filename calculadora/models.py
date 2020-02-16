@@ -4,9 +4,9 @@ from django.db import models
 # Create your models here.
 #API GET, PUT, PATCH
 class EquipoDeComputoModel(models.Model):
-    descripcion = models.CharField(max_length=255, null=False)
-    watts = models.IntegerField(null=False)
-    horas = models.DecimalField(null=False, max_digits=10, decimal_places=2)
+    descripcion = models.CharField(max_length=255, null=False,default="NA")
+    watts = models.IntegerField(null=False,default=300)
+    horas = models.DecimalField(null=False, max_digits=10, decimal_places=2,default=8)
 
 #API GET, POST
 class ConsumoDeDispositivo(models.Model):
