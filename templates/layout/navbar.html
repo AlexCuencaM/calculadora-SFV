@@ -1,5 +1,5 @@
 {% load static %}
-{% block navbar %}
+{% block 'navbar' %}
 <header>
 		<div>	
 			<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
@@ -8,7 +8,7 @@
     		</button>
 			
 			<!--Marca-->
-			<a class="navbar-brand" href="#">
+			<a class="navbar-brand" href="#" id ="pestana1">
    				 <img src="#" width="30" height="30" class="d-inline-block align-top" alt="logo">
     			 Home
  			 </a>
@@ -17,13 +17,13 @@
 				<!--Centra los items de la barra de navegacion-->
 				<div class="navbar-nav text-center">
 				<!--<div class="collapse navbar-collapse" id="navbarTogglerDemo01" >-->
- 					<a class="nav-item nav-link active" href="#" id="pestana1">Info solar fotovoltaica</a>
- 					<a class="nav-item nav-link " href="#" id="pestana2">Calcular</a>
- 					<a class="nav-item nav-link" href="#" id="pestana3">Imagenes</a>
- 					<a class="nav-item nav-link" href="#" id="pestana4">Contactar</a> 				
+ 					<a class="nav-item nav-link active" href="#" id="pestana2">Info solar fotovoltaica</a>
+ 					<a class="nav-item nav-link " href="#" id="pestana3">Calcular</a>
+ 					<a class="nav-item nav-link" href="#" id="pestana4">Imagenes</a>
+ 					<a class="nav-item nav-link" href="#" id="pestana5">Contactar</a> 				
 				</div>
 			</div>
 			</nav>
 		</div>
 	</header>
-{% endblock navbar %}
+{% endblock 'navbar' %}
