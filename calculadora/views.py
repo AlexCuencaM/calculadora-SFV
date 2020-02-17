@@ -2,10 +2,14 @@ from django.shortcuts import render
 from django.forms import ModelForm
 from django.http import HttpResponse,HttpResponseRedirect
 from calculadora.models import EquipoDeComputoModel
+from rest_framework import views, generics,response
+from django.http import JsonResponse
+from calculadora.serializers import EquipoDeComputoSerializer
+
 class EquipoDeComputoForm(ModelForm):
     class Meta:
         model= EquipoDeComputoModel
-        fields=['descripcion', 'watts', 'horas']
+        fields=['descripcion',]
 
 # Create your views here.
 def home(request,ventana=""):
@@ -28,7 +32,13 @@ def addEquipo(request):
     if request.method =="POST":
         form = EquipoDeComputoForm(request.POST)
         if(form.is_valid()):
-            return HttpResponseRedirect('calculadora/home.html')
+            form.save()
+            return HttpResponseRedirect('/home')
     else:
         form = EquipoDeComputoForm()                
         return render(request,'calculadora/equipoForm.html',{'form': form})
+
+class ListEquipoDeComputoView(generics.ListAPIView):
+    queryset = EquipoDeComputoModel.objects.all()
+    serializer_class = EquipoDeComputoSerializer    
+    
