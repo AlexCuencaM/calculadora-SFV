@@ -6,7 +6,7 @@ from rest_framework import views, generics
 
 from calculadora.models import(EquipoDeComputoModel,
     DetalleEquipoDeComputoModel,ConsumoDeDispositivo,
-    BateriaModel,CalculoPanelModel,CalculoBateriaModel
+    BateriaModel,CalculoPanelModel,CalculoBateriaModel,ReporteModel
 ) 
 from calculadora.serializers import EquipoDeComputoSerializer
 from uuid import uuid4
@@ -52,8 +52,8 @@ class ListEquipoDeComputoView(generics.ListAPIView):
 def getDetalle(calculos,equipo):
     return DetalleEquipoDeComputoModel(
         equipo=equipo,
-        watts=calculos["watts"],
-        horas=calculos["horas"]        
+        watts=int(calculos["watts"]),
+        horas=float(calculos["horas"])  
     )
 
 def getCalculo(detalle,token):
@@ -77,7 +77,7 @@ def calcularConsumoDispositivo(request):
 
         obj = ConsumoDeDispositivo.objects.filter(token=UUID(request.session['token'])
         total = sum([ obj.totalConsumoDiario for i in obj])              
-        
+
     return render(request, 'calculadora/CalcularImplementacion.html',
     { 'respuesta': total,})
     
@@ -91,5 +91,13 @@ def calcularConsumoDispositivo(request):
 #         })
 
 def calcularPanelYbateria(request):
-    if(request.methdo=="POST"):
-        bateria = BateriaModel(request.POST["voltaje"])
+    if(request.methdod=="POST"):
+        calculo = ReporteModel(consumoDiario= float(request.POST["consumo-diario"]) )
+        bateria = BateriaModel(voltaje=int(request.POST["voltaje"]),capacidad=int(request.POST["capacidad"]))
+        calcularBateria = CalculoBateriaModel(bateria=bateria, report=calculo,
+            corrienteNecesaria=bateria.capacidad/bateria.voltaje, autonomiaDias=int(request.POST["autonomia-dias"]),)
+        panel=CalculoPanelModel(hsp=float(request.POST["hsp"]), report=calculo,
+            potenciaDePanel=request.POST["potencia-de-panel"])
+        calculo.save()
+        calcularBateria.save()
+        panel.save()

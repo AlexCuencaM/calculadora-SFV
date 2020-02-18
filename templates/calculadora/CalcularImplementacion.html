@@ -2,11 +2,12 @@
 	<h1 class="my-5 text-center text-primary"> Calcular para implementación SFV </h1>
 	<hr>
 	
-	<form>
+	<form action="{% url 'calculadora:panel-y-bateria' %}" method="post">
+		{% csrf_token %}
 		<div class="container">
 			<div class="row col-md-12">					
 					<label class="col-md-3"> Ingresar dispositivos</label>    
-		<input type="button" id="consumo" value="Calcular Consumo" onclick="mostrarFormularioCalcular()">         						
+		<input type="button" name ="consumo-diario" id="consumo-diario" value="Calcular Consumo" onclick="mostrarFormularioCalcular()">         						
 		</div> 
 			<hr>   			
 			<div class="row col-md-12">
@@ -14,7 +15,7 @@
 					<label class="col-md-3" id="valor_consumo">
 						{% if respuesta %}
 						{{respuesta}}
-							<input class="col-md-3"type="hidden" class="form-control" id="consumoDiario" name="consumoDiario" value={{respuesta}}>
+							<input class="col-md-3"type="hidden" class="form-control" id="consumoDiario" name="consumoDiario" value="{{respuesta}}">
 						{% endif %}
 					</label>
 					
@@ -24,9 +25,9 @@
 			<hr>
 			<div class="row col-md-12">
 				<label class="col-md-3"> Potencia paneles</label>
-				<input class="col-md-3" type="text" class="form-control" name="potenciadepanel" id="potenciadepanel">
+				<input class="col-md-3" type="text" class="form-control" name="potencia-de-panel" id="potenciadepanel">
 				<label class="col-md-3"> AUTONOMÍA (DÍAS)</label>
-				<input class="col-md-3" type="text" class="form-control" name="autonomiaDias" id="autonomiaDias">
+				<input class="col-md-3" type="text" class="form-control" name="autonomia-dias" id="autonomiaDias">
 			</div>
 			<hr>
 			<div class="row col-md-12">
