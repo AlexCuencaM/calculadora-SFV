@@ -10,6 +10,7 @@ from calculadora.models import(EquipoDeComputoModel,
 ) 
 from calculadora.serializers import EquipoDeComputoSerializer
 from uuid import uuid4
+from django.views.decorators.csrf import csrf_exempt
 class EquipoDeComputoForm(ModelForm):
     class Meta:
         model= EquipoDeComputoModel
@@ -61,24 +62,27 @@ def getCalculo(detalle,token):
         totalConsumoDiario = detalle.watts*detalle.horas,
         token=token
     )
-
+@csrf_exempt
 def calcularConsumoDispositivo(request):        
     if(request.method == "POST"):
         token = uuid4()
-        request.session['token'] = token
+        request.session['token'] = str(token)
+        print("hola")
         calculos = json.loads(request.body)
-        for data in calculos.results:
-            equipo = EquipoDeComputoModel.objects.get(pk=int(data["id"]))
-            detalles = self.getDetalle(data,equipo)
-            result = self.getCalculo(detalles,token)
-            result.save(force_insert=True)
-
-    return HttpResponseRedirect(reverse('calculadora:result'))
+        print(calculos["result"])
+        # for data in calculos["calculos"]:
+        #     equipo = EquipoDeComputoModel.objects.get(pk=int(data["id"]))
+        #     detalles = self.getDetalle(data,equipo)
+        #     result = self.getCalculo(detalles,token)
+        #     result.save(force_insert=True)
+    return HttpResponseRedirect(reverse("calculadora:result"))
     
 def resultCalcs(request):
-    if(request.method == "GET"):
-        obj = ConsumoDeDispositivo.objects.filter(token=request.session['token'])
-        total = sum([ obj.totalConsumoDiario for i in obj])            
+    if(request.method == "GET"):        
+        print(request.session['token'])
+        total=2
+        # obj = ConsumoDeDispositivo.objects.filter(token=UUID(request.session['token']))
+        # total = sum([ obj.totalConsumoDiario for i in obj])            
         return render(request, 'calculadora/CalcularImplementacion.html', { 'respuesta': total,            
         })
 

@@ -31,7 +31,7 @@ function cerrarFormularioCalcular(){
 /*Funcion mostrar el html*/
 function mostrarCalcular(){
 	var xhr=new XMLHttpRequest();
-	const url="/calcular";
+	const url="/calcular/";
 	xhr.onreadystatechange=function(){			//mapear el estado de la solicitud
 		if(this.readyState==4 && this.status==200)//4.respuesta a finalizado y response is ready 200ok(XMLHttpRequestObject)
 		{
@@ -99,12 +99,7 @@ function eliminarFila(r){
 function obtenerAllDateTable(){
 	var array_id=document.getElementsByName("producto[]");
 	var array_tiempo=document.getElementsByName("tiempo[]");
-	var array_cantidad=document.getElementsByName("cantidad[]");	
-	
-	// var json={	electrodomestico:array_electrodomestico,
-	// 			 tiempo:array_tiempo,
-	// 			  cantidad:array_cantidad
-	// 		  }
+	var array_cantidad=document.getElementsByName("cantidad[]");			
 	var json ={
 		result:[			
 		]
@@ -118,7 +113,7 @@ function obtenerAllDateTable(){
 		})
 	}	
 
-	console.log(json.result[0].horas)
+	console.log(json)
 	enviarDatosPost(json);
 	cerrarFormularioCalcular();
 	
@@ -141,16 +136,20 @@ function getCookie(name) {
 
 /*Funcion mostrar el html*/
 function enviarDatosPost(json){
-	var csrftoken = getCookie('csrftoken');
+	var csrftoken = getCookie('csrftoken');	
+	var xsrfHeaderName = getCookie("X-CSRFToken")
 	var xhr=new XMLHttpRequest();
-	const url="/calcular";
-	xhr.onreadystatechange=function(){//mapear el estado de la solicitud		
-		if(this.readyState==4 && this.status==301)//4.respuesta a finalizado y response is ready 200ok(XMLHttpRequestObject)		
-				document.getElementById("valor_consumo").innerHTML=json;
-		else
-			console.log("Error ?");
-	};		
-	// Open especifica la solicitud		
-				xhr.open("POST",url,true);
-				xhr.send(csrftoken);
+	const url="/consumo/";
+	xhr.open("POST",url,true);
+	xhr.setRequestHeader("Content-Type", "application/json");
+
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState === 4 && xhr.status === 200) {
+			var sendJson = JSON.parse(xhr.responseText);			
+		}
+	};	
+	
+	xhr.send(JSON.stringify(json));
+
+				
 }
