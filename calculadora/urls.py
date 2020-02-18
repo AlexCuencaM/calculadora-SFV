@@ -8,5 +8,5 @@ urlpatterns = [
     path('create/equipo/',views.addEquipo, name="addEquipo"),
     path("equipos/",views.ListEquipoDeComputoView.as_view(), name="equipos"),    
     path("consumo/",views.calcularConsumoDispositivo,name="consumo"),#POST
-    path("result/",views.resultCalcs,name="result"),#GET
+    path("panel-y-bateria/",views.calcularPanelYbateria,name="panel-y-bateria"),
 ]

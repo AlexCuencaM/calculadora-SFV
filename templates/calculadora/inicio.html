@@ -1,6 +1,5 @@
-{% extends '../layout/base.html' %}
+
 {% load static %}
-{% block 'content' %}
 <div class="container">
         <!--Imagenes con carousel-->        
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
@@ -17,7 +16,7 @@
               <img class="d-block w-100" src="{% static 'img/image2.png' %}" alt="Second slide" >
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="{% static 'img/image3.png' %}"alt="Third slide">
+              <img class="d-block w-100" src="{% static 'img/image3.png' %}" alt="Third slide">
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -31,4 +30,3 @@
         </div>
       <!--Termina el bloque de imagenes con carousek-->
       </div>
-{% endblock 'content' %}

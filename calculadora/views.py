@@ -67,24 +67,28 @@ def calcularConsumoDispositivo(request):
     if(request.method == "POST"):
         token = uuid4()
         request.session['token'] = str(token)
-        print("hola")
-        calculos = json.loads(request.body)
-        print(calculos["result"])
-        # for data in calculos["calculos"]:
-        #     equipo = EquipoDeComputoModel.objects.get(pk=int(data["id"]))
-        #     detalles = self.getDetalle(data,equipo)
-        #     result = self.getCalculo(detalles,token)
-        #     result.save(force_insert=True)
-    return HttpResponseRedirect(reverse("calculadora:result"))
+        print("POST", request.session['token'])
+        calculos = json.loads(request.body)        
+        for data in calculos["result"]:
+            equipo = EquipoDeComputoModel.objects.get(pk=int(data["id"]))
+            detalles = self.getDetalle(data,equipo)
+            result = self.getCalculo(detalles,token)
+            result.save(force_insert=True)
+
+        obj = ConsumoDeDispositivo.objects.filter(token=UUID(request.session['token'])
+        total = sum([ obj.totalConsumoDiario for i in obj])              
+        
+    return render(request, 'calculadora/CalcularImplementacion.html',
+    { 'respuesta': total,})
     
-def resultCalcs(request):
-    if(request.method == "GET"):        
-        print(request.session['token'])
-        total=2
-        # obj = ConsumoDeDispositivo.objects.filter(token=UUID(request.session['token']))
-        # total = sum([ obj.totalConsumoDiario for i in obj])            
-        return render(request, 'calculadora/CalcularImplementacion.html', { 'respuesta': total,            
-        })
+# def resultCalcs(request):
+#     if(request.method == "GET"):
+#         print("GET ", request.session['token'])
+#         total=2
+#         # )
+#         # total = sum([ obj.totalConsumoDiario for i in obj])            
+#         return render(request, 'calculadora/CalcularImplementacion.html', { 'respuesta': total,            
+#         })
 
 def calcularPanelYbateria(request):
     if(request.methdo=="POST"):
