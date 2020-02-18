@@ -47,9 +47,9 @@ function mostrarCalcular(){
 
 
 //Método que llama a la función datos tabla para su posterior  inserción
-function anadir(){
+function anadir(id,device){
 	//electrodomestico de prueba
-	var electrodomestico={tipo:"televisor",tiempo:"70 W",cantidad:"100"}; 
+	var electrodomestico={id:id, tipo:device,tiempo:"70 W",cantidad:"100"}; 
 
 	//nombre de la tabla html
 	var nombreTabla=document.getElementById("tablaConsumo");
@@ -59,7 +59,6 @@ function anadir(){
 
 }
 
-
 //Método que inserta los datos en la tabla
 function datosTabla(electrodomestico,nombreTabla){		
 
@@ -67,13 +66,12 @@ function datosTabla(electrodomestico,nombreTabla){
 	var fila=nombreTabla.insertRow(0+1);
 	var array_electrodomestico=document.getElementsByName("producto[]");
 	// le asigna al objeto cell 3
-	var cell=[fila.insertCell(0),fila.insertCell(1),fila.insertCell(2),fila.insertCell(3)];
-
+	var cell=[fila.insertCell(0),fila.insertCell(1),fila.insertCell(2),fila.insertCell(3)];	
 	console.log(array_electrodomestico.length);
 	/*registro de practica*/
 	if(array_electrodomestico.length%2==0){
 	//inserta en cada celda los atributos del objeto
-	cell[0].innerHTML='<td><label> '+electrodomestico.tipo+'<input type="hidden" name="producto[]" value="'+electrodomestico.tipo+'" id="tv"></label></td>';
+	cell[0].innerHTML='<td><label> '+electrodomestico.tipo+'<input type="hidden" name="producto[]" value="'+electrodomestico.id+'" id="tv"></label></td>';
 	cell[1].innerHTML='<td><input type="text" value="'+electrodomestico.tiempo+'" name="tiempo[]"></td>';
 	cell[2].innerHTML='<td><input type="text" value="'+electrodomestico.cantidad+'" name="cantidad[]"></td>';
 	cell[3].innerHTML='<td><input type="button" value="Eliminar" name="eliminar[]"  id="eliminar" onclick="eliminarFila(this)"></td>';
@@ -99,18 +97,30 @@ function eliminarFila(r){
 
 
 function obtenerAllDateTable(){
-	var array_electrodomestico=document.getElementsByName("producto[]");
+	var array_id=document.getElementsByName("producto[]");
 	var array_tiempo=document.getElementsByName("tiempo[]");
 	var array_cantidad=document.getElementsByName("cantidad[]");	
 	
-	var json={	electrodomestico:array_electrodomestico,
-				 tiempo:array_tiempo,
-				  cantidad:array_cantidad
-			  }
+	// var json={	electrodomestico:array_electrodomestico,
+	// 			 tiempo:array_tiempo,
+	// 			  cantidad:array_cantidad
+	// 		  }
+	var json ={
+		result:[			
+		]
+	}
+	for(var i = 0; i<array_tiempo.length; i++)
+	{
+		json.result.push({
+			id:array_id[i].value,//Suministrado
+			horas:array_tiempo[i].value,
+			watts:array_cantidad[i].value
+		})
+	}	
 
-	enviarDatosPost(json.cantidad[0].value);
+	console.log(json.result[0].horas)
+	enviarDatosPost(json);
 	cerrarFormularioCalcular();
-	
 	
 }
 function getCookie(name) {
@@ -133,14 +143,14 @@ function getCookie(name) {
 function enviarDatosPost(json){
 	var csrftoken = getCookie('csrftoken');
 	var xhr=new XMLHttpRequest();
-	const url="/home/implementacion";
+	const url="/calcular";
 	xhr.onreadystatechange=function(){//mapear el estado de la solicitud		
-		if(this.readyState==4 && this.status==200)//4.respuesta a finalizado y response is ready 200ok(XMLHttpRequestObject)		
+		if(this.readyState==4 && this.status==301)//4.respuesta a finalizado y response is ready 200ok(XMLHttpRequestObject)		
 				document.getElementById("valor_consumo").innerHTML=json;
 		else
 			console.log("Error ?");
 	};		
 	// Open especifica la solicitud		
-				xhr.open("GET",url,true);
+				xhr.open("POST",url,true);
 				xhr.send(csrftoken);
 }

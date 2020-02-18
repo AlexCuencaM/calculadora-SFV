@@ -1,5 +1,5 @@
 from django.db import models
-#from uuid import uuid4 default=uuid4()
+# default=
 
 # Create your models here.
 #API GET, POST

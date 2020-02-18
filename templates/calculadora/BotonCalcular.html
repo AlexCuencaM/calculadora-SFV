@@ -8,9 +8,13 @@
 					 <legend>LISTA DE ELECTRODOMÉSTICO</legend>
 					 <h2>Añadirlo</h2>
 					 <hr>
-					 <div class="div_texbox">
-					 	<a href="#" id="televisor" onclick="anadir()">Televisor 70 W. 100 %</a>
-					 </div>
+					 {% for device in computoDevice %}					 
+						<div class="div_textbox">
+					 		<a href="#" id="televisor" onclick="anadir({{device.id}},'{{device.descripcion}}')">{{device.descripcion}}</a>					 
+					 	</div>
+						
+					 {% endfor %}
+					 
 				  </fieldset>
 			</form>
 			</div>

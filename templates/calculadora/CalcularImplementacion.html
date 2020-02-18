@@ -7,27 +7,32 @@
 			<div class="container">
 				<div class="row col-md-12">					
 						<label class="col-md-3"> Ingresar dispositivos</label>    
-            <input type="button" id="consumo" value="Calcular Consumo" onclick="mostrarFormularioCalcular()">         
-						
+            <input type="button" id="consumo" value="Calcular Consumo" onclick="mostrarFormularioCalcular()">         						
     		</div> 
     			<hr>   			
     			<div class="row col-md-12">
-    					<label class="col-md-3"> Consumo mensual</label>
-      					<label class="col-md-3" id="valor_consumo"> <!--valor retorno--></label>
+    					<label class="col-md-3"> Consumo mensual</label>						
+      					<label class="col-md-3" id="valor_consumo">
+						  {% if respuesta %}
+						  	{{respuesta}}
+							  <input class="col-md-3"type="hidden" class="form-control" id="consumoDiario" name="consumoDiario" value={{respuesta}}>
+						  {% endif %}
+						</label>
+						
       					<label class="col-md-3"> Radiación Solar HSP</label>
-      					<input class="col-md-3"type="text" class="form-control" id="radiacion">
+      					<input class="col-md-3"type="text" class="form-control" id="hsp" name="hsp">
     			</div>
     			<hr>
     			<div class="row col-md-12">
 					<label class="col-md-3"> Potencia paneles</label>
-      				<input class="col-md-3" type="text" class="form-control" id="potencia">
+      				<input class="col-md-3" type="text" class="form-control" name="potenciadepanel" id="potenciadepanel">
       				<label class="col-md-3"> AUTONOMÍA (DÍAS)</label>
-      				<input class="col-md-3" type="text" class="form-control" id="autonomia">
+      				<input class="col-md-3" type="text" class="form-control" name="autonomiaDias" id="autonomiaDias">
     			</div>
     			<hr>
     			<div class="row col-md-12">
 					<label class="col-md-3"> Capacidad Baterias</label>
-      				<input class="col-md-3" type="text" class="form-control">
+      				<input class="col-md-3" type="text" id="capacidad" name="capacidad" class="form-control">
     			</div>
     			<hr>
     			<div class="row col-md-12">
