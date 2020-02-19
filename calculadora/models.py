@@ -1,16 +1,22 @@
 from django.db import models
-#from uuid import uuid4 default=uuid4()
+# default=
 
 # Create your models here.
-#API GET, PUT, PATCH
+#API GET, POST
 class EquipoDeComputoModel(models.Model):
     descripcion = models.CharField(max_length=255, null=False,default="NA")
+    class Meta:
+        ordering = ['descripcion']
+
+#API POST
+class DetalleEquipoDeComputoModel(models.Model):
+    equipo = models.ForeignKey(EquipoDeComputoModel,on_delete=models.DO_NOTHING)
     watts = models.IntegerField(null=False,default=300)
     horas = models.DecimalField(null=False, max_digits=10, decimal_places=2,default=8)
 
 #API GET, POST
 class ConsumoDeDispositivo(models.Model):
-    equipo = models.OneToOneField(EquipoDeComputoModel, on_delete=models.CASCADE)
+    equipo = models.OneToOneField(DetalleEquipoDeComputoModel, on_delete=models.CASCADE)
     totalConsumoDiario = models.DecimalField(null=False, max_digits=10, decimal_places=2)
     token = models.UUIDField(null=False)
 

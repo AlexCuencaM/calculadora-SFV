@@ -1,0 +1,19 @@
+{
+    "results": [
+        {
+            "id": 1,
+            "horas":2,
+            "watts":2
+        },
+        {
+            "id": 1,
+            "horas":2,
+            "watts":2
+        },
+        {
+            "id": 1,
+            "horas":2,
+            "watts":2
+        }
+    ]
+}

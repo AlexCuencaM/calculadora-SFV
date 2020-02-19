@@ -1,27 +1,28 @@
-{% extends '../layout/base.html' %}
-{% block 'content' %}
+
 <div class="container-fluid">
 		<div class="row col-12">
 			<div id="tablae" class="row col-md-6">
 			<form>
 				<fieldset>
-					 <legend>LISTA DE ELECTRODOMÉSTICO</legend>
+					 <legend>Lista de equipo de computo</legend>
 					 <h2>Añadirlo</h2>
 					 <hr>
-					 <div class="div_texbox">
-					 	<a href="#" id="televisor" onclick="anadir()">Televisor 70 W. 100 %</a>
-					 </div>
-				  </fieldset>
-			</form>
+					 {% for device in computoDevice %}					 
+						<div class="div_textbox">
+					 		<a href="#" id="televisor" onclick="anadir({{device.id}},'{{device.descripcion}}')">{{device.descripcion}}</a>					 
+					 	</div>
+						
+					 {% endfor %}
+					 
+				  </fieldset>			
 			</div>
-			<div id="tabla" class="class=row col-md-6" >
-			<form>
+			<div id="tabla" class="class=row col-md-6" >			
 				<fieldset>
 					 <legend>TABLA DE CONSUMO</legend>
 					<table id="tablaConsumo">   	
 						<thead>
 							<tr>
-								<th > Nombre Producto hpta</th>
+								<th > Nombre Producto</th>
 								<th> Tiempo</th>
 								<th> Cantidad</th>
 								<th> Energía</th>
@@ -44,9 +45,7 @@
 			</form>
 			</div>							  
 		</div>
-		<hr>
-		{% comment %} Falta la logica de regresar a la pantalla anterior, como URL usa el href de abajo :) {% endcomment %}
+		<hr>		
 		<input type="button" id="guardar_cerrar" value="Guardar y Cerrar" onclick="obtenerAllDateTable()"> 
 	</div>
-{% endblock 'content' %}
 	
