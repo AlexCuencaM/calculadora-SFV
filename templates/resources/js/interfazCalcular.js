@@ -103,7 +103,7 @@
 		var array_tiempo=document.getElementsByName("tiempo[]");
 		var array_cantidad=document.getElementsByName("cantidad[]");	
 		
-		var json={	electrodomestico:array_electrodomestico,
+		var json={electrodomestico:array_electrodomestico,
 				 	tiempo:array_tiempo,
 				  	cantidad:array_cantidad
 				  }
