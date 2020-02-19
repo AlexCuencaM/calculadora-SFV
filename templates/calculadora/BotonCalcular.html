@@ -3,6 +3,7 @@
 <head>
 	<title>BotonCalcularDispositivo</title>
 	<link rel="stylesheet" type="text/css" href="../resources/css/estilos.css">
+	<link rel="stylesheet" type="text/css" href="../resources/css/tablas.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 	
@@ -15,11 +16,12 @@
 						
 						<form>
 							<fieldset>
-								<legend>LISTA DE ELECTRODOMÉSTICO</legend>
+									<legend class="text-primary">LISTA DE ELECTRODOMÉSTICO</legend>								
 								<h2>Añadirlo</h2>
 					 			<hr>
 								<div class="div_texbox">
 					 				<a href="#" id="televisor" onclick="anadir()">Televisor 70 W. 100 %</a>
+	
 					 			</div>
 				  			</fieldset>
 						</form>
@@ -27,11 +29,11 @@
 					<div id="tabla" class="class=row col-md-6" >
 						<form>
 							<fieldset>
-					 			<legend>TABLA DE CONSUMO</legend>
+					 			<legend class="text-primary">TABLA DE CONSUMO</legend>
 								<table id=tablaConsumo>   	
 									<thead>
 										<tr>
-											<th > Nombre Producto</th>
+											<th> Nombre Producto</th>
 											<th> Tiempo</th>
 											<th> Cantidad</th>
 											<th> Energía</th>
@@ -39,10 +41,10 @@
 									</thead>
 									<tbody id="lista">
 										<tr>
+											<!--<th></th>
 											<th></th>
 											<th></th>
-											<th></th>
-											<th></th>
+											<th></th>-->
 										</tr>
 										<tr>
 

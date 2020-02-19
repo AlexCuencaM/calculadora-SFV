@@ -32,7 +32,7 @@
 }
 
 
-.gallery-lightbox_modal{
+.gallery-lightbox_modal{	
 	position: relative;
 	background-color: white;
 	padding: 100px;
@@ -54,17 +54,6 @@ div .button_gallery{
 	background-color: gray;
 }
 
-table{
-	width:"100%";
-}
-
-th{
-
-	widh:"40%";
-}
-
-
-
 
 /*Mi estilo de Carousel*/
 div .carousel-item{
@@ -80,25 +69,21 @@ div #carouselExampleIndicators{
 }
 
 
-
+p{
+	text-align: left;
+}
 /*estilo de caja*/
 
 #televisor{
 	width:10px;
 	height:10px;
-	background-color:yellow;
+	background-color:#007bff;
+	color:#ffffff;
 	margin:10px;
 	padding: 10px;
 	border-radius:5px ;
-	border:solid#000;
+	border:3px solid#000;
 }
-
-legend{
-	background-color:#74F91A;
-	border-radius:5px ;
-	border:solid#000;
-}
-
 
 
 
