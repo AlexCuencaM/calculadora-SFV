@@ -4,7 +4,7 @@
 			<div id="tablae" class="row col-md-6">
 			<form>
 				<fieldset>
-					 <legend>LISTA DE ELECTRODOMÉSTICO</legend>
+					 <legend>Lista de equipo de computo</legend>
 					 <h2>Añadirlo</h2>
 					 <hr>
 					 {% for device in computoDevice %}					 
@@ -22,7 +22,7 @@
 					<table id="tablaConsumo">   	
 						<thead>
 							<tr>
-								<th > Nombre Producto hpta</th>
+								<th > Nombre Producto</th>
 								<th> Tiempo</th>
 								<th> Cantidad</th>
 								<th> Energía</th>
@@ -45,8 +45,7 @@
 			</form>
 			</div>							  
 		</div>
-		<hr>
-		{% comment %} Falta la logica de regresar a la pantalla anterior, como URL usa el href de abajo :) {% endcomment %}
+		<hr>		
 		<input type="button" id="guardar_cerrar" value="Guardar y Cerrar" onclick="obtenerAllDateTable()"> 
 	</div>
 	

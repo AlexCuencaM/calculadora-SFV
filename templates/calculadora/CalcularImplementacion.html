@@ -13,11 +13,8 @@
 			<div class="row col-md-12">
 					<label class="col-md-3"> Consumo mensual</label>						
 					<label class="col-md-3" id="valor_consumo">
-						{% if respuesta %}
-						{{respuesta}}
-							<input class="col-md-3"type="hidden" class="form-control" id="consumoDiario" name="consumoDiario" value="{{respuesta}}">
-						{% endif %}
 					</label>
+					<input class="col-md-3"type="hidden" class="form-control" id="consumoDiario" name="consumoDiario" value="">
 					
 					<label class="col-md-3"> Radiación Solar HSP</label>
 					<input class="col-md-3"type="text" class="form-control" id="hsp" name="hsp">
@@ -35,15 +32,17 @@
 				<input class="col-md-3" type="text" id="capacidad" name="capacidad" class="form-control">
 			</div>
 			<hr>
-			<div class="row col-md-12">
+			<div class="row col-md-12">		
 				<label class="col-md-3"> Voltaje Baterias </label>
-				<select class="col-md-3" id="voltaje" name="voltaje"></select>
+				<select class="col-md-3" name="voltaje">
+				{% for v in category %}
+					 <option value="{{v}}">{{v}} V</option>
+				{% endfor %}
+				</select>								
 			</div>
-
 			<hr>
-
 			<div>
-				<button type="button" class="btn btn-primary">Calcular</button>
+				<button type="submit" class="btn btn-primary">Calcular</button>
 			</div>
 	</form>
 		<div class="gallery-lightbox">

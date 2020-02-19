@@ -49,7 +49,7 @@ function mostrarCalcular(){
 //Método que llama a la función datos tabla para su posterior  inserción
 function anadir(id,device){
 	//electrodomestico de prueba
-	var electrodomestico={id:id, tipo:device,tiempo:"70 W",cantidad:"100"}; 
+	var electrodomestico={id:id, tipo:device,tiempo:"70",cantidad:"100"}; 
 
 	//nombre de la tabla html
 	var nombreTabla=document.getElementById("tablaConsumo");
@@ -77,7 +77,7 @@ function datosTabla(electrodomestico,nombreTabla){
 	cell[3].innerHTML='<td><input type="button" value="Eliminar" name="eliminar[]"  id="eliminar" onclick="eliminarFila(this)"></td>';
 	}
 	else{
-	cell[0].innerHTML='<td><label> '+electrodomestico.tipo+'<input type="hidden" name="producto[]" value="'+"hola"+'" id="tv"></label></td>';
+		cell[0].innerHTML='<td><label> '+electrodomestico.tipo+'<input type="hidden" name="producto[]" value="'+electrodomestico.id+'" id="tv"></label></td>';
 	cell[1].innerHTML='<td><input type="text" value="'+'20'+'" name="tiempo[]"></td>';
 	cell[2].innerHTML='<td><input type="text" value="'+'30'+'" name="cantidad[]"></td>';
 	cell[3].innerHTML='<td><input type="button" value="Eliminar" name="eliminar[]"  id="eliminar" onclick="eliminarFila(this)"></td>';
@@ -145,7 +145,10 @@ function enviarDatosPost(json){
 
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState === 4 && xhr.status === 200) {
-			var sendJson = JSON.parse(xhr.responseText);			
+			var sendJson = JSON.parse(xhr.responseText);	
+			document.getElementById("valor_consumo").innerHTML=sendJson.total;
+			document.getElementById("consumoDiario").value=sendJson.total;
+			console.log(document.getElementById("consumoDiario").value);
 		}
 	};	
 	

@@ -9,8 +9,11 @@ from calculadora.models import(EquipoDeComputoModel,
     BateriaModel,CalculoPanelModel,CalculoBateriaModel,ReporteModel
 ) 
 from calculadora.serializers import EquipoDeComputoSerializer
-from uuid import uuid4
+from uuid import uuid4,UUID
 from django.views.decorators.csrf import csrf_exempt
+
+from django import forms
+
 class EquipoDeComputoForm(ModelForm):
     class Meta:
         model= EquipoDeComputoModel
@@ -23,7 +26,8 @@ def home(request,ventana=""):
     elif(ventana=="info"):
         return render(request,'calculadora/ViewInformation.html')
     elif(ventana=="implementacion"):
-        return render(request,'calculadora/CalcularImplementacion.html')
+        category = BateriaModel.VOLTAJE        
+        return render(request,'calculadora/CalcularImplementacion.html',{"category":[i[0] for i in category]})
     elif(ventana=="contact"):
         return render(request,'calculadora/Contactar.html')
     elif(ventana=="imagenes"):
@@ -66,20 +70,17 @@ def getCalculo(detalle,token):
 def calcularConsumoDispositivo(request):        
     if(request.method == "POST"):
         token = uuid4()
-        request.session['token'] = str(token)
-        print("POST", request.session['token'])
+        request.session['token'] = str(token)        
         calculos = json.loads(request.body)        
         for data in calculos["result"]:
             equipo = EquipoDeComputoModel.objects.get(pk=int(data["id"]))
-            detalles = self.getDetalle(data,equipo)
-            result = self.getCalculo(detalles,token)
+            detalles = getDetalle(data,equipo)
+            result = getCalculo(detalles,token)
+            result.equipo.save()
             result.save(force_insert=True)
-
-        obj = ConsumoDeDispositivo.objects.filter(token=UUID(request.session['token'])
-        total = sum([ obj.totalConsumoDiario for i in obj])              
-
-    return render(request, 'calculadora/CalcularImplementacion.html',
-    { 'respuesta': total,})
+        obj = ConsumoDeDispositivo.objects.filter(token=UUID(request.session['token'],version=4))        
+        total = {"total":sum([i.totalConsumoDiario for i in obj])}        
+    return JsonResponse(total,safe=False)
     
 # def resultCalcs(request):
 #     if(request.method == "GET"):
@@ -95,9 +96,17 @@ def calcularPanelYbateria(request):
         calculo = ReporteModel(consumoDiario= float(request.POST["consumo-diario"]) )
         bateria = BateriaModel(voltaje=int(request.POST["voltaje"]),capacidad=int(request.POST["capacidad"]))
         calcularBateria = CalculoBateriaModel(bateria=bateria, report=calculo,
-            corrienteNecesaria=bateria.capacidad/bateria.voltaje, autonomiaDias=int(request.POST["autonomia-dias"]),)
+            corrienteNecesaria=float(bateria.capacidad/bateria.voltaje), autonomiaDias=int(request.POST["autonomia-dias"]),)
         panel=CalculoPanelModel(hsp=float(request.POST["hsp"]), report=calculo,
             potenciaDePanel=request.POST["potencia-de-panel"])
-        calculo.save()
-        calcularBateria.save()
-        panel.save()
+        # calculo.save()
+        # calcularBateria.save()
+        panel.save(force_insert=True)
+        obj = ConsumoDeDispositivo.objects.filter(token=UUID(request.session['token']))
+        return render(request,"calculadora/reporte.html",
+        {
+            "devices": obj,
+            "resultadosDevices": sum([obj.totalConsumoDiario for i in obj]),
+            "TotalBateria":float((calcularBateria.autonomiaDias*calcularBateria.corrienteNecesaria)/calcularBateria.constanteDeDescarga)  ,
+            "TotalPanel":float((panel.report.consumoDiario*panel.tolerancia)/(panel.hsp*panel.potenciaDePanel) ),
+        })
