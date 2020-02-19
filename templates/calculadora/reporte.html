@@ -1,60 +1,59 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="../resources/css/tablas.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
-<body>
-	<div class="container-fluid">
-		<h1 class="my-5 text-center text-primary">Reporte</h1>
-		<hr>
-	</div>
-	<div class="container">
-		<label class="col-md-6"> Potencia en Wh/ día: </label>
-		<label class="col-md-offset-6" id="potencia"> hola<!--Aqui va el valor de potencia--> </label>
-	</div>
-	<div class="container">
-		<label class="col-md-6"> La cantidad de paneles a utilizar: </label>
-		<label class="col-md-offset-6" id="cantidad_paneles"> df <!--Aquí va la cantidad de paneles--></label>
-	</div>
-	<div class="container">
-		<label class="col-md-6"> La cantidad de baterias a utilizar: </label>
-		<label class="col-md-offset-6" id="cantidad_baterias">fs <!--Aquí va la cantidad de paneles--></label>
-	</div>
-	<div class="container">
-	<fieldset>
-		<legend class="my-5 text-center text-primary">Tabla de consumo </legend>
-		<div>
-		<table id=t_consumo_reporte>
-			<thead>
-				<tr>
-					<th>Nombre de producto</th>
-					<th>Tiempo</th>
-					<th>Cantidad</th>
-					<th>Energía</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th>fsdfkdsk</th>
-					<th>adsda</th>
-					<th>aadasd</th>
-					<th>sadsaddas</th>
+	<head>
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../resources/css/tablas.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="container-fluid">
+			<h1 class="my-5 text-center text-primary">Reporte</h1>
+			<hr>
+		</div>
+		<div class="container">
+			<label class="col-sm-6 col-md-6 col-lg-6"> Potencia en Wh/ día: </label>
+			<label class="col-md-offset-6" id="potencia"> hola<!--Aqui va el valor de potencia--> </label>
+		</div>
+		<div class="container">
+			<label class="col-sm-6 col-md-6 col-lg-6"> La cantidad de paneles a utilizar: </label>
+			<label class="col-md-offset-6" id="cantidad_paneles"> df <!--Aquí va la cantidad de paneles--></label>
+		</div>
+		<div class="container">
+			<label class="col-sm-6 col-md-6 col-lg-6"> La cantidad de baterias a utilizar: </label>
+			<label class="col-md-offset-6" id="cantidad_baterias">fs <!--Aquí va la cantidad de paneles--></label>
+		</div>
+		<div class="container">
+			<fieldset>
+				<legend class="my-5 text-center text-primary">Tabla de consumo </legend>
+				<div class="col-sm-12 col-md-12 col-lg-12">
+					<!--Crea la tabla-->
+					<table id="t_consumo_reporte">
+						<thead> <!--Encabezado de la tabla-->
+							<tr>
+								<th>Nombre de producto</th>
+								<th>Tiempo</th>
+								<th>Cantidad</th>
+								<th>Energía</th>
+							</tr>
+						</thead>
+						<tbody><!--Cuerpo de la tabla-->
+							<tr>
+								<!--Datos de ejemplo-->
+								<th>fsdfkdsk</th>
+								<th>adsda</th>
+								<th>aadasd</th>
+								<th>1</th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</fieldset>
+			<hr>
+			<input type="button" name="pdf" value="Generar PDF">
+		</div>
 
-				</tr>
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-			</tbody>
-		</table>
-	</fieldset>
-	<hr>
-	<input type="button" name="pdf" value="Generar PDF">
-	</div>
-	
-
-
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-</body>
+	</body>
 </html>
