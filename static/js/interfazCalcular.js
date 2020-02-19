@@ -146,7 +146,7 @@ function enviarDatosPost(json){
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState === 4 && xhr.status === 200) {
 			var sendJson = JSON.parse(xhr.responseText);	
-			document.getElementById("valor_consumo").innerHTML=sendJson.total;
+			document.getElementById("valor_consumo").innerHTML=sendJson.total + " W";
 			document.getElementById("consumoDiario").value=sendJson.total;
 			console.log(document.getElementById("consumoDiario").value);
 		}

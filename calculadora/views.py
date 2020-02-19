@@ -1,7 +1,7 @@
 from django.shortcuts import render,reverse
 from django.forms import ModelForm
 from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
-import json
+import json, decimal
 from rest_framework import views, generics
 
 from calculadora.models import(EquipoDeComputoModel,
@@ -26,8 +26,13 @@ def home(request,ventana=""):
     elif(ventana=="info"):
         return render(request,'calculadora/ViewInformation.html')
     elif(ventana=="implementacion"):
-        category = BateriaModel.VOLTAJE        
-        return render(request,'calculadora/CalcularImplementacion.html',{"category":[i[0] for i in category]})
+        category = BateriaModel.VOLTAJE     
+        print(CalculoPanelModel.PROMEDIO)   
+        return render(request,'calculadora/CalcularImplementacion.html',
+        {
+            "category":[i[0] for i in category],
+            "hsp": CalculoPanelModel.PROMEDIO,          
+        })
     elif(ventana=="contact"):
         return render(request,'calculadora/Contactar.html')
     elif(ventana=="imagenes"):
@@ -57,7 +62,7 @@ def getDetalle(calculos,equipo):
     return DetalleEquipoDeComputoModel(
         equipo=equipo,
         watts=int(calculos["watts"]),
-        horas=float(calculos["horas"])  
+        horas=decimal.Decimal(calculos["horas"])  
     )
 
 def getCalculo(detalle,token):
@@ -92,21 +97,29 @@ def calcularConsumoDispositivo(request):
 #         })
 
 def calcularPanelYbateria(request):
-    if(request.methdod=="POST"):
-        calculo = ReporteModel(consumoDiario= float(request.POST["consumo-diario"]) )
+    if(request.method=="POST"):
+        calculo = ReporteModel(consumoDiario= decimal.Decimal(request.POST["consumoDiario"]) )
         bateria = BateriaModel(voltaje=int(request.POST["voltaje"]),capacidad=int(request.POST["capacidad"]))
+
         calcularBateria = CalculoBateriaModel(bateria=bateria, report=calculo,
-            corrienteNecesaria=float(bateria.capacidad/bateria.voltaje), autonomiaDias=int(request.POST["autonomia-dias"]),)
-        panel=CalculoPanelModel(hsp=float(request.POST["hsp"]), report=calculo,
-            potenciaDePanel=request.POST["potencia-de-panel"])
-        # calculo.save()
-        # calcularBateria.save()
-        panel.save(force_insert=True)
+            corrienteNecesaria=decimal.Decimal(bateria.capacidad/bateria.voltaje), autonomiaDias=int(request.POST["autonomia-dias"]),)
+        if(request.POST["hsp"] == ""):
+            panel=CalculoPanelModel(report=calculo,potenciaDePanel=decimal.Decimal(request.POST["potencia-de-panel"]))
+
+        else:
+            panel=CalculoPanelModel(hsp=decimal.Decimal(request.POST["hsp"]), report=calculo,
+            potenciaDePanel=decimal.Decimal(request.POST["potencia-de-panel"]))
+
+        calcularBateria.report.save()   
+        calcularBateria.bateria.save()     
+        calcularBateria.save()
+        panel.report.save()
+        panel.save()
         obj = ConsumoDeDispositivo.objects.filter(token=UUID(request.session['token']))
         return render(request,"calculadora/reporte.html",
         {
             "devices": obj,
-            "resultadosDevices": sum([obj.totalConsumoDiario for i in obj]),
-            "TotalBateria":float((calcularBateria.autonomiaDias*calcularBateria.corrienteNecesaria)/calcularBateria.constanteDeDescarga)  ,
-            "TotalPanel":float((panel.report.consumoDiario*panel.tolerancia)/(panel.hsp*panel.potenciaDePanel) ),
+            "resultadosDevices": sum([i.totalConsumoDiario for i in obj]),
+            "TotalBateria":decimal.Decimal(calcularBateria.autonomiaDias * calcularBateria.corrienteNecesaria)/ decimal.Decimal(calcularBateria.constanteDeDescarga),
+            "TotalPanel":decimal.Decimal(panel.report.consumoDiario *  decimal.Decimal(panel.tolerancia)) / decimal.Decimal(panel.hsp * panel.potenciaDePanel)
         })
