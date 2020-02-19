@@ -1,31 +1,28 @@
-
 <div class="container-fluid">
-		<div class="row col-12">
+		<div class="row col-md-12">
 			<div id="tablae" class="row col-md-6">
 			<form>
 				<fieldset>
-					 <legend>Lista de equipo de computo</legend>
+					 <legend class="text-primary">Lista de equipo de computo</legend>
 					 <h2>Añadirlo</h2>
 					 <hr>
 					 {% for device in computoDevice %}					 
 						<div class="div_textbox">
 					 		<a href="#" id="televisor" onclick="anadir({{device.id}},'{{device.descripcion}}')">{{device.descripcion}}</a>					 
-					 	</div>
-						
+					 	</div>						
 					 {% endfor %}
 					 
 				  </fieldset>			
 			</div>
-			<div id="tabla" class="class=row col-md-6" >			
-				<fieldset>
-					 <legend>TABLA DE CONSUMO</legend>
-					<table id="tablaConsumo">   	
+			<div >							
+					 <legend class="text-primary">TABLA DE CONSUMO</legend>
+					<table class="" id="tablaConsumo">   	
 						<thead>
 							<tr>
-								<th > Nombre Producto</th>
-								<th> Tiempo</th>
-								<th> Cantidad</th>
-								<th> Energía</th>
+								<th > Nombre Equipo</th>
+								<th> Horas</th>
+								<th> Watts</th>
+								<th> Eliminar Equipo </th>
 							</tr>
 						</thead>
 						<tbody id="lista">
@@ -41,7 +38,7 @@
 
 						</tbody>		
 				</table>
-				</fieldset>
+				
 			</form>
 			</div>							  
 		</div>

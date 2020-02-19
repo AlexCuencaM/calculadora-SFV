@@ -87,22 +87,13 @@ def calcularConsumoDispositivo(request):
         total = {"total":sum([i.totalConsumoDiario for i in obj])}        
     return JsonResponse(total,safe=False)
     
-# def resultCalcs(request):
-#     if(request.method == "GET"):
-#         print("GET ", request.session['token'])
-#         total=2
-#         # )
-#         # total = sum([ obj.totalConsumoDiario for i in obj])            
-#         return render(request, 'calculadora/CalcularImplementacion.html', { 'respuesta': total,            
-#         })
-
 def calcularPanelYbateria(request):
     if(request.method=="POST"):
         calculo = ReporteModel(consumoDiario= decimal.Decimal(request.POST["consumoDiario"]) )
         bateria = BateriaModel(voltaje=int(request.POST["voltaje"]),capacidad=int(request.POST["capacidad"]))
 
         calcularBateria = CalculoBateriaModel(bateria=bateria, report=calculo,
-            corrienteNecesaria=decimal.Decimal(bateria.capacidad/bateria.voltaje), autonomiaDias=int(request.POST["autonomia-dias"]),)
+            corrienteNecesaria=decimal.Decimal(calculo.consumoDiario/bateria.voltaje), autonomiaDias=int(request.POST["autonomia-dias"]),)
         if(request.POST["hsp"] == ""):
             panel=CalculoPanelModel(report=calculo,potenciaDePanel=decimal.Decimal(request.POST["potencia-de-panel"]))
 
@@ -115,11 +106,16 @@ def calcularPanelYbateria(request):
         calcularBateria.save()
         panel.report.save()
         panel.save()
-        obj = ConsumoDeDispositivo.objects.filter(token=UUID(request.session['token']))
+
+        devices = ConsumoDeDispositivo.objects.filter(token=UUID(request.session['token'],version=4))
+        
+        BA = decimal.Decimal(calcularBateria.autonomiaDias * calcularBateria.corrienteNecesaria)/ decimal.Decimal(calcularBateria.constanteDeDescarga)
+        denominador = decimal.Decimal(panel.report.consumoDiario * decimal.Decimal(panel.tolerancia))
+        CP = denominador / decimal.Decimal(decimal.Decimal(panel.hsp) * panel.potenciaDePanel)
         return render(request,"calculadora/reporte.html",
         {
-            "devices": obj,
-            "resultadosDevices": sum([i.totalConsumoDiario for i in obj]),
-            "TotalBateria":decimal.Decimal(calcularBateria.autonomiaDias * calcularBateria.corrienteNecesaria)/ decimal.Decimal(calcularBateria.constanteDeDescarga),
-            "TotalPanel":decimal.Decimal(panel.report.consumoDiario *  decimal.Decimal(panel.tolerancia)) / decimal.Decimal(panel.hsp * panel.potenciaDePanel)
+            "devices": devices,
+            "resultadosDevices": sum([i.totalConsumoDiario for i in devices]),
+            "TotalBateria":round(float(BA/calcularBateria.bateria.capacidad)) ,#TB
+            "TotalPanel":round(float( CP))
         })

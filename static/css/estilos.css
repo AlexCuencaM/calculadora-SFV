@@ -1,7 +1,7 @@
 /*eliminar los margenes que trae por defecto los navegadores*/
 html{
 	margin:0px;
-	
+	padding: 0px;
 }
 
 .root{
@@ -32,12 +32,11 @@ html{
 }
 
 
-.gallery-lightbox_modal{
+.gallery-lightbox_modal{	
 	position: relative;
 	background-color: white;
-	padding: 5px;
-	max-width: 1000px;
-	height: 600px;
+	padding: 100px;
+	max-width: 1200px;
 	/*para quitar las esquinas filosas*/
 	border-radius:5px;
 
@@ -51,14 +50,6 @@ div .button_gallery{
 	background-color: gray;
 }
 
-table{
-	width:"100%";
-}
-
-th{
-
-	width:"40%";
-}
 /*Mi estilo de Carousel*/
 div .carousel-item{
 	height:90vh;
@@ -71,24 +62,56 @@ div #carouselExampleIndicators{
 .d-block.w-100{
 	height:90vh;
 }
-
+p{
+	text-align: justify;
+}
 /*estilo de caja*/
 
 #televisor{	
-
-	background-color:#74F91A;
+	/* width:10px;
+	height:10px; */
+	background-color:#007bff;
+	color:#ffffff;
 	margin:10px;
 	padding: 10px;
 	border-radius:5px ;
-	border:solid#000;
+	border:3px solid#000;
 }
 
-legend{
+/* legend{
 	background-color:#74F91A;
 	border-radius:5px ;
 	border:solid#000;
-}
+} */
+
 
 .div_textbox{	
 	padding: 15px;
+}
+
+table{
+	width:100%;
+	text-align: left;
+	border-collapse: collapse;
+}
+
+th, td{
+	border:solid 1px;
+	padding:10px;
+}
+
+thead{
+
+	background-color: #007bff;
+	color:white;
+	border-bottom: solid 5px #0f362d;
+}
+
+tr:nth-child(even){
+	background-color: #ddd;
+}
+
+tr:hover td{
+	background-color: #007bff;
+	color:white;
 }
