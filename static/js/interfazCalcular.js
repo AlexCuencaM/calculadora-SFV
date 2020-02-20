@@ -31,7 +31,7 @@ function cerrarFormularioCalcular(){
 /*Funcion mostrar el html*/
 function mostrarCalcular(){
 	var xhr=new XMLHttpRequest();
-	const url="/calcular/";
+	const url="/calcular";
 	xhr.onreadystatechange=function(){			//mapear el estado de la solicitud
 		if(this.readyState==4 && this.status==200)//4.respuesta a finalizado y response is ready 200ok(XMLHttpRequestObject)
 		{
@@ -136,8 +136,7 @@ function getCookie(name) {
 
 /*Funcion mostrar el html*/
 function enviarDatosPost(json){
-	var csrftoken = getCookie('csrftoken');	
-	var xsrfHeaderName = getCookie("X-CSRFToken")
+	var csrftoken = getCookie('csrftoken');		
 	var xhr=new XMLHttpRequest();
 	const url="/consumo/";
 	xhr.open("POST",url,true);
