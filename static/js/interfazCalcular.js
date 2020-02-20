@@ -63,7 +63,7 @@ function anadir(id,device){
 function datosTabla(electrodomestico,nombreTabla){		
 
 	//se añade una fila a la tabla
-	var fila=nombreTabla.insertRow(0+1);
+	var fila=nombreTabla.insertRow(1);
 	var array_electrodomestico=document.getElementsByName("producto[]");
 	// le asigna al objeto cell 3
 	var cell=[fila.insertCell(0),fila.insertCell(1),fila.insertCell(2),fila.insertCell(3)];	

@@ -1,0 +1,45 @@
+{% extends '../layout/base.html' %}
+{% block 'title' %}Home page{% endblock 'title' %}
+
+{% block 'content' %}
+	<div class="container-fluid">
+		<h1 class="my-5 text-center text-primary">Reporte</h1>
+		<hr>
+	</div>
+	<div class="container">
+		<label class="col-md-6"> Potencia en Wh/ día: </label>
+		<label class="col-md-offset-6" id="potencia"> {{resultadosDevices}} W<!--Aqui va el valor de potencia--> </label>
+	</div>
+	<div class="container">
+		<label class="col-md-6"> La cantidad de paneles a utilizar: </label>
+		<label class="col-md-offset-6" id="cantidad_paneles"> {{TotalPanel}} paneles<!--Aquí va la cantidad de paneles--></label>
+	</div>
+	<div class="container">
+		<label class="col-md-6"> La cantidad de baterias a utilizar: </label>
+		<label class="col-md-offset-6" id="cantidad_baterias">{{TotalBateria}} baterías <!--Aquí va la cantidad de paneles--></label>
+	</div>
+	<div class="container">	
+		<legend class="my-5 text-center text-primary">Tabla de consumo </legend>
+		<div>
+		<table id="t_consumo_reporte">
+			<thead>
+				<tr>
+					<th>Nombre del equipo</th>
+					<th>Horas</th>
+					<th>Watts</th>					
+				</tr>
+			</thead>
+			<tbody>
+            {% for device in devices %}
+				<tr>
+					<th>{{device.equipo.equipo.descripcion}}</th>
+					<th>{{device.equipo.horas}}</th>
+					<th>{{device.equipo.watts}}</th>					
+				</tr>
+            {% endfor %}
+			</tbody>
+		</table>	
+	<hr>
+	<input type="button" name="pdf" value="Generar PDF">
+	</div>
+{% endblock 'content' %}
