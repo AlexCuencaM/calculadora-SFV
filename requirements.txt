@@ -1,5 +1,12 @@
 django
 djangorestframework
 mysqlclient
+psycopg2
 django-webpack-loader
 django-cors-headers
+
+gunicorn
+django-heroku
+whitenoise
+dj-database-url
+python-decouple
