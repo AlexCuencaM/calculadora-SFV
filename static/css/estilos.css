@@ -115,3 +115,20 @@ tr:hover td{
 	background-color: #007bff;
 	color:white;
 }
+
+
+/*scroll*/
+.scroll{
+	height:500px;
+	max-height: 100%;
+	overflow:auto;
+}
+
+/*Cabecera de la tabla fija*/
+.scroll #cabecera{
+	position:sticky;
+	top:0;
+	background-color: #007bff;
+	color:white;
+	border-bottom: solid 5px #0f362d;
+}
