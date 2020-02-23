@@ -135,8 +135,7 @@ function getCookie(name) {
 }
 
 /*Funcion mostrar el html*/
-function enviarDatosPost(json){
-	var csrftoken = getCookie('csrftoken');		
+function enviarDatosPost(json){	
 	var xhr=new XMLHttpRequest();
 	const url="/consumo/";
 	xhr.open("POST",url,true);
@@ -151,7 +150,5 @@ function enviarDatosPost(json){
 		}
 	};	
 	
-	xhr.send(JSON.stringify(json));
-
-				
+	xhr.send(JSON.stringify(json));				
 }

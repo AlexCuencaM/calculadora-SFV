@@ -1,3 +1,4 @@
+from django import forms
 from django.shortcuts import render,reverse
 from django.forms import ModelForm
 from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
@@ -11,8 +12,6 @@ from calculadora.models import(EquipoDeComputoModel,
 from calculadora.serializers import EquipoDeComputoSerializer
 from uuid import uuid4,UUID
 from django.views.decorators.csrf import csrf_exempt
-
-from django import forms
 
 class EquipoDeComputoForm(ModelForm):
     class Meta:
@@ -117,5 +116,6 @@ def calcularPanelYbateria(request):
             "devices": devices,
             "resultadosDevices": sum([i.totalConsumoDiario for i in devices]),
             "TotalBateria":round(float(BA/calcularBateria.bateria.capacidad)) ,#TB
-            "TotalPanel":round(float( CP))
+            "TotalPanel":round(float(CP))
+            
         })
