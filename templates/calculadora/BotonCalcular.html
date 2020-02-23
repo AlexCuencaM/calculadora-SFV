@@ -4,19 +4,21 @@
 				<fieldset>
 					 <legend class="text-primary">Lista de equipo de computo</legend>
 					 <h2>Añadirlo</h2>
-					 <hr>
-					 {% for device in computoDevice %}					 
-						<div class="div_textbox">
-					 		<a href="#" id="televisor" onclick="anadir({{device.id}},'{{device.descripcion}}')">{{device.descripcion}}</a>					 
-					 	</div>						
-					 {% endfor %}
+					 <div class="scroll">
+					 	<hr>
+						 {% for device in computoDevice %}					 
+							<div class="div_textbox">
+						 		<a href="#" id="televisor" onclick="anadir({{device.id}},'{{device.descripcion}}')">{{device.descripcion}}</a>					 
+						 	</div>						
+						 {% endfor %}
+					 </div>
 					 
 				  </fieldset>		
 			</div>
 			<div id="tabla" class="col-sm-12 col-md-12 col-lg-6">
 				<fieldset>					
 					<legend class="text-primary">TABLA DE CONSUMO</legend>
-					<table class="" id="tablaConsumo">   	
+					<table class="" id="tablaConsumo" class="scroll">   	
 						<thead>
 							<tr>
 								<th id="cabecera"> Nombre Equipo</th>
