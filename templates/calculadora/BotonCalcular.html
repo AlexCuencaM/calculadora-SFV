@@ -1,7 +1,6 @@
 <div class="container-fluid">
-		<div class="row col-md-12">
-			<div id="tablae" class="row col-md-6">
-			<form>
+		<div class="row">
+			<div class="col-sm-12 col-md-12 col-lg-6">
 				<fieldset>
 					 <legend class="text-primary">Lista de equipo de computo</legend>
 					 <h2>Añadirlo</h2>
@@ -12,10 +11,11 @@
 					 	</div>						
 					 {% endfor %}
 					 
-				  </fieldset>			
+				  </fieldset>		
 			</div>
-			<div >							
-					 <legend class="text-primary">TABLA DE CONSUMO</legend>
+			<div id="tabla" class="col-sm-12 col-md-12 col-lg-6">
+				<fieldset>					
+					<legend class="text-primary">TABLA DE CONSUMO</legend>
 					<table class="" id="tablaConsumo">   	
 						<thead>
 							<tr>
@@ -27,22 +27,19 @@
 						</thead>
 						<tbody id="lista">
 							<tr>
+								<!--<th></th>
 								<th></th>
 								<th></th>
-								<th></th>
-								<th></th>
+								<th></th>-->
 							</tr>
-							<tr>
-
-							</tr>
-
 						</tbody>		
-				</table>
-				
-			</form>
-			</div>							  
+					</table>
+				</fieldset>		
+			</div>
 		</div>
-		<hr>		
+
+		<hr>	
+
 		<input type="button" id="guardar_cerrar" value="Guardar y Cerrar" onclick="obtenerAllDateTable()"> 
-	</div>
+</div>
 	
