@@ -1,6 +1,6 @@
 from .base import * 
 # Base
-SECRET_KEY = env('DJANGO_SECRET_KEY')
+SECRET_KEY = env('DJANGO_SECRET_KEY', default='5=lchar9e*pz(3mt-xsj8l$$pe4-4(j)i)kt-hlhi4m5ukt2#3')
 
 DATABASES ={
     'default': dj_database_url.config(
