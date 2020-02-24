@@ -3,6 +3,7 @@ djangorestframework
 psycopg2
 django-webpack-loader
 django-cors-headers
+django-environ
 
 gunicorn
 django-heroku
