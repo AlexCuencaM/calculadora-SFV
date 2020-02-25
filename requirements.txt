@@ -10,3 +10,4 @@ django-heroku
 whitenoise
 dj-database-url
 python-decouple
+reportlab

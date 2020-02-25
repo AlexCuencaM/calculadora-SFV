@@ -12,12 +12,19 @@
 	</div>
 	<div class="container">
 		<label class="col-sm-6 col-md-6 col-lg-6"> La cantidad de paneles a utilizar: </label>
-		<label class="col-sm-6 col-md-6 col-lg-6" id="cantidad_paneles"> {{TotalPanel}} paneles<!--Aquí va la cantidad de paneles--></label>
+		<label class="col-md-offset-6" id="cantidad_paneles"> {{TotalPanel}} paneles<!--Aquí va la cantidad de paneles--></label>
 	</div>
 	<div class="container">
 		<label class="col-sm-6 col-md-6 col-lg-6"> La cantidad de baterias a utilizar: </label>
-		<label class="col-sm-6 col-md-6 col-lg-6" id="cantidad_baterias">{{TotalBateria}} baterías <!--Aquí va la cantidad de paneles--></label>
+		<label class="col-md-offset-6" id="cantidad_baterias">{{TotalBateria}} baterías <!--Aquí va la cantidad de paneles--></label>
 	</div>
+
+	<div class="container">
+		<label class="col-sm-6 col-md-6 col-lg-6"> Inversor Seleccionado: </label>
+		<label class="col-md-offset-6" id="cantidad_baterias">{{inversor}} baterías <!--Aquí va la cantidad de paneles--></label>
+	</div>
+
+	
 	<div class="container">	
 		<fieldset>
 			<legend class="my-5 text-center text-primary">Tabla de consumo </legend>
@@ -44,7 +51,6 @@
 		</fieldset>	
 
 		<hr>
-		<input type="button" name="pdf" value="Generar PDF">
-		
+		<a name="pdf" href="/reporte/{{TotalPanel}}/{{TotalBateria}}/{{resultadosDevices}}/{{inversor}}">Generar PDF</a>		
 	</div>
 {% endblock 'content' %}
