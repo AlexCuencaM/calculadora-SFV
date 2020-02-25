@@ -48,7 +48,7 @@ class MyPrint:
         elements.append(Paragraph("La cantidad de paneles a utilizar: {} Paneles".format(self.panel),styles['Normal']))        
         elements.append(Paragraph("La cantidad de baterias a utilizar: {} Baterias".format(self.bateria),styles['Normal']))                
         elements.append(Paragraph("Inversor Seleccionado: {}".format(self.inversor),styles['Normal']))
-        elements.append(Spacer(1, 0.4*cm))
+        elements.append(Spacer(1, 0.7*cm))
         pdf = buffer.getvalue()
         elements.append(self.tabla(pdf))                    
         doc.build(elements)                        
@@ -64,7 +64,7 @@ class MyPrint:
         for i in detalles:
             encabezados.append(i)        
         #Establecemos el tamaño de cada una de las columnas de la tabla
-        tabla = Table(encabezados, colWidths=[5 * cm, 2 * cm, 2 * cm, 2 * cm])        
+        tabla = Table(encabezados, colWidths=[8 * cm, 2.4 * cm, 2.4 * cm, 2.4 * cm])        
         #Aplicamos estilos a las celdas de la tabla
         tabla.setStyle(TableStyle(
         [
