@@ -8,12 +8,13 @@ from uuid import uuid4,UUID
 import io
 from calculadora.models import ConsumoDeDispositivo
 class MyPrint:
-    def __init__(self, buffer, pagesize,token,panel,bateria,total):
+    def __init__(self, buffer, pagesize,token,panel,bateria,total,inversor):
         self.buffer = buffer
         self.token = token
         self.panel = panel
         self.bateria = bateria
         self.total = total
+        self.inversor = inversor
         if pagesize == 'A4':
             self.pagesize = A4
         elif pagesize == 'Letter':
@@ -46,7 +47,7 @@ class MyPrint:
         elements.append(Paragraph("Potencia en Wh/ día: {} Watts".format(self.total),styles['Normal']))        
         elements.append(Paragraph("La cantidad de paneles a utilizar: {} Paneles".format(self.panel),styles['Normal']))        
         elements.append(Paragraph("La cantidad de baterias a utilizar: {} Baterias".format(self.bateria),styles['Normal']))                
-        elements.append(Paragraph("Dispositivo:",styles['Normal']))
+        elements.append(Paragraph("Inversor Seleccionado: {}".format(self.inversor),styles['Normal']))
         elements.append(Spacer(1, 0.4*cm))
         pdf = buffer.getvalue()
         elements.append(self.tabla(pdf))                    

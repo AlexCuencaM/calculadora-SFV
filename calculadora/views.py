@@ -117,13 +117,14 @@ def calcularPanelYbateria(request):
             "devices": devices,
             "resultadosDevices": sum([i.totalConsumoDiario for i in devices]),
             "TotalBateria":round(float(BA/calcularBateria.bateria.capacidad)) ,#TB
-            "TotalPanel":round(float(CP))            
+            "TotalPanel":round(float(CP)),
+            "inversor": request.POST["inversor"]
         })
         
 
-def generarPdf(request,panel,bateria,total):
+def generarPdf(request,panel,bateria,total,inversor):
     buffer = io.BytesIO()
-    report = MyPrint(buffer, 'A4',request.session['token'],panel,bateria,total)
+    report = MyPrint(buffer, 'A4',request.session['token'],panel,bateria,total,inversor)
     report.printReport()
     buffer.seek(0)
     
