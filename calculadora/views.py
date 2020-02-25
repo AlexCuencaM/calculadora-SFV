@@ -1,10 +1,11 @@
+from calculadora.Myprint import MyPrint
 from django import forms
 from django.shortcuts import render,reverse
 from django.forms import ModelForm
-from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
+from django.http import HttpResponse,HttpResponseRedirect,JsonResponse,FileResponse
 import json, decimal
 from rest_framework import views, generics
-
+import io
 from calculadora.models import(EquipoDeComputoModel,
     DetalleEquipoDeComputoModel,ConsumoDeDispositivo,
     BateriaModel,CalculoPanelModel,CalculoBateriaModel,ReporteModel
@@ -119,3 +120,10 @@ def calcularPanelYbateria(request):
             "TotalPanel":round(float(CP))
             
         })
+
+def generarPdf(request):
+    buffer = io.BytesIO()
+    report = MyPrint(buffer, 'A4',request.session['token'])
+    report.printReport()
+    buffer.seek(0)
+    return FileResponse(buffer, as_attachment=True, filename='reporte.pdf')
