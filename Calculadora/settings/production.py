@@ -1,7 +1,7 @@
 from .base import * 
 # Base
-SECRET_KEY = '5=lchar9e*pz(3mt-xsj8l$$pe4-4(j)i)kt-hlhi4m5ukt2#3'
-ALLOWED_HOSTS +=['localhost','https://calculadora-sfv.herokuapp.com',]
+SECRET_KEY = env('DJANGO_SECRET_KEY')
+ALLOWED_HOSTS +=['localhost',]
 DATABASES ={
     'default': dj_database_url.config(
         default=config('DATABASE_URL')
@@ -9,7 +9,7 @@ DATABASES ={
 }
 
 CORS_ORIGIN_WHITELIST = (
-    'https://calculadora-sfv.herokuapp.com:8000',
+    'https://calculadora-sfv.herokuapp.com',
 )
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
