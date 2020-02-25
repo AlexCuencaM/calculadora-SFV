@@ -1,4 +1,3 @@
-from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer,Table,TableStyle
 from reportlab.lib.styles import getSampleStyleSheet,ParagraphStyle
@@ -57,22 +56,18 @@ class MyPrint:
     def tabla(self,pdf):
         #Creamos una tupla de encabezados para neustra tabla
         encabezados = [['Nombre del equipo', 'Horas', 'Watts'],]
-        #Creamos una lista de tuplas que van a contener a las personas
-        #detalles = [list(encabezados),['c','fc','ff']]
+        #Creamos una lista de tuplas que van a contener a las personas        
         detalles = [list((device.equipo.equipo.descripcion,
             str(device.equipo.horas), device.equipo.watts))
             for device in ConsumoDeDispositivo.objects.filter(token=UUID(self.token,version=4))]        
         for i in detalles:
-            encabezados.append(i)
-        print(encabezados)
+            encabezados.append(i)        
         #Establecemos el tamaño de cada una de las columnas de la tabla
-        tabla = Table(encabezados, colWidths=[5 * cm, 2 * cm, 2 * cm, 2 * cm])
-        print(tabla)
+        tabla = Table(encabezados, colWidths=[5 * cm, 2 * cm, 2 * cm, 2 * cm])        
         #Aplicamos estilos a las celdas de la tabla
         tabla.setStyle(TableStyle(
         [
-                #La primera fila(encabezados) va a estar centrada
-                #('ALIGN',(0,0),(1,0),'CENTER'),
+                #La primera fila(encabezados) va a estar centrada                
                 #Los bordes de todas las celdas serán de color negro y con un grosor de 1
                 ('GRID', (0, 0), (-1, -1),1, colors.black),
                 #El tamaño de las letras de cada una de las celdas será de 10
