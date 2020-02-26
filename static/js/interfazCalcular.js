@@ -70,17 +70,18 @@ function datosTabla(electrodomestico,nombreTabla){
 	console.log(array_electrodomestico.length);
 	/*registro de practica*/
 	if(array_electrodomestico.length%2==0){
+	
 	//inserta en cada celda los atributos del objeto
-	cell[0].innerHTML='<td><label> '+electrodomestico.tipo+'<input type="hidden" name="producto[]" value="'+electrodomestico.id+'" id="tv"></label></td>';
-	cell[1].innerHTML='<td><input type="text" value="'+electrodomestico.tiempo+'" name="tiempo[]"></td>';
-	cell[2].innerHTML='<td><input type="text" value="'+electrodomestico.cantidad+'" name="cantidad[]"></td>';
-	cell[3].innerHTML='<td><input type="button" value="Eliminar" name="eliminar[]"  id="eliminar" onclick="eliminarFila(this)"></td>';
+	cell[0].innerHTML='<td scope="col"><label> '+electrodomestico.tipo+'<input type="hidden" name="producto[]" value="'+electrodomestico.id+'" id="tv"></label></td>';
+	cell[1].innerHTML='<td scope="col"><input type="text" value="'+electrodomestico.tiempo+'" name="tiempo[]"></td>';
+	cell[2].innerHTML='<td scope="col"><input type="text" value="'+electrodomestico.cantidad+'" name="cantidad[]"></td>';
+	cell[3].innerHTML='<td scope="col"><input type="button" value="Eliminar" name="eliminar[]"  id="eliminar" onclick="eliminarFila(this)"></td>';
 	}
 	else{
-		cell[0].innerHTML='<td><label> '+electrodomestico.tipo+'<input type="hidden" name="producto[]" value="'+electrodomestico.id+'" id="tv"></label></td>';
-	cell[1].innerHTML='<td><input type="text" value="'+'20'+'" name="tiempo[]"></td>';
-	cell[2].innerHTML='<td><input type="text" value="'+'30'+'" name="cantidad[]"></td>';
-	cell[3].innerHTML='<td><input type="button" value="Eliminar" name="eliminar[]"  id="eliminar" onclick="eliminarFila(this)"></td>';
+	cell[0].innerHTML='<td scope="col"><label> '+electrodomestico.tipo+'<input type="hidden" name="producto[]" value="'+electrodomestico.id+'" id="tv"></label></td>';
+	cell[1].innerHTML='<td scope="col"><input type="text" value="'+'20'+'" name="tiempo[]"></td>';
+	cell[2].innerHTML='<td scope="col"><input type="text" value="'+'30'+'" name="cantidad[]"></td>';
+	cell[3].innerHTML='<td scope="col"><input type="button" value="Eliminar" name="eliminar[]"  id="eliminar" onclick="eliminarFila(this)"></td>';
 	}
 
 }
