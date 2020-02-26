@@ -42,7 +42,7 @@
 						<tr>
 							<th>{{device.equipo.equipo.descripcion}}</th>
 							<th>{{device.equipo.horas}}</th>
-							<th>{{device.equipo.watts}}</th>					
+							<th>{{device.totalConsumoDiario}}</th>					
 						</tr>
 		            {% endfor %}
 					</tbody>
@@ -51,6 +51,6 @@
 		</fieldset>	
 
 		<hr>
-		<a name="pdf" href="/reporte/{{TotalPanel}}/{{TotalBateria}}/{{resultadosDevices}}/{{inversor}}">Generar PDF</a>		
+		<a href="/reporte/{{TotalPanel}}/{{TotalBateria}}/{{resultadosDevices}}/{{inversor}}/{{ah}}/{{panelCantidad}}">Generar PDF</a>
 	</div>
 {% endblock 'content' %}

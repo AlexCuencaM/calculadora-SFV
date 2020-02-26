@@ -118,14 +118,19 @@ def calcularPanelYbateria(request):
             "resultadosDevices": sum([i.totalConsumoDiario for i in devices]),
             "TotalBateria":round(float(BA/calcularBateria.bateria.capacidad)) ,#TB
             "TotalPanel":round(float(CP)),
-            "inversor": request.POST["inversor"]
+            "inversor": request.POST["inversor"],
+            "ah": calcularBateria.bateria.capacidad,
+            "panelCantidad" : panel.potenciaDePanel,
         })
         
 
-def generarPdf(request,panel,bateria,total,inversor):
+def generarPdf(request,panel,bateria,total,inversor,ah,panelCantidad):
     buffer = io.BytesIO()
-    report = MyPrint(buffer, 'A4',request.session['token'],panel,bateria,total,inversor)
+    report = MyPrint(buffer, 'A4',request.session['token'],panel,bateria,total,inversor,ah,panelCantidad)
     report.printReport()
     buffer.seek(0)
     
     return FileResponse(buffer, as_attachment=True, filename='reporte.pdf')
+
+def test(request):
+    return render(request,"calculadora/BotonCalcular.html")

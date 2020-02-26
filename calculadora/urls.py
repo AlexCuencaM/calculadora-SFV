@@ -9,5 +9,6 @@ urlpatterns = [
     path("equipos/",views.ListEquipoDeComputoView.as_view(), name="equipos"),    
     path("consumo/",views.calcularConsumoDispositivo,name="consumo"),#POST
     path("panel-y-bateria/",views.calcularPanelYbateria,name="panel-y-bateria"),
-    path("reporte/<int:panel>/<int:bateria>/<str:total>/<str:inversor>",views.generarPdf , name="reporte"),
+    path("reporte/<int:panel>/<int:bateria>/<str:total>/<str:inversor>/<str:ah>/<str:panelCantidad>",views.generarPdf , name="reporte"),
+    path("test/",views.test, name="test")
 ]

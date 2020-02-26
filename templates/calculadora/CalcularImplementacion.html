@@ -1,78 +1,75 @@
+<h1 class="my-5 text-center text-primary"> Calcular para implementación SFV </h1>
+<hr>
 
-	<h1 class="my-5 text-center text-primary"> Calcular para implementación SFV </h1>
-	<hr>
-	
-	<form action="{% url 'calculadora:panel-y-bateria' %}" method="post" onsubmit="return validar();">
-		{% csrf_token %}
-		<div class="container">
-			<div class="row">					
-					<label class="col-md-6 col-sm-6 col-lg-3"> Ingresar dispositivos</label>    
-					<input type="button" name ="consumo-diario" id="consumo-diario" value="Calcular Consumo" onclick="mostrarFormularioCalcular()">
-			</div> 
+<form action="{% url 'calculadora:panel-y-bateria' %}" method="post" onsubmit="return validar();">
+	{% csrf_token %}
+	<div class="container">
+		<div class="row">					
+				<label class="col-md-6 col-sm-6 col-lg-3"> Ingresar dispositivos</label>    
+				<input type="button" name ="consumo-diario" id="consumo-diario" value="Calcular Consumo" onclick="mostrarFormularioCalcular()">
+		</div> 
 
-			<hr>
+		<hr>
 
-			<div class="row">
-					<label class="col-sm-6 col-md-6 col-lg-3"> Consumo mensual</label>						
-					<label class="col-sm-6 col-md-6 col-lg-3" id="valor_consumo">
-					</label>
-					<input class=""type="hidden" class="form-control" id="consumoDiario" name="consumoDiario" value="">
-					
-					<label class="col-sm-6 col-md-6 col-lg-3"> Radiación Solar HSP</label>
-					<input class="col-sm-6 col-md-6 col-lg-3" type="text" placeholder="{{hsp}}" class="form-control" id="hsp" name="hsp" value="">
-			</div>
-
-			<hr>
-
-			<div class="row">
-				<label class="col-sm-6 col-md-6 col-lg-3"> Potencia paneles</label>
-				<input class="col-sm-6 col-md-6 col-lg-3" type="number" class="form-control" name="potencia-de-panel" id="potenciadepanel">
-				<label class="col-sm-6 col-md-6 col-lg-3"> AUTONOMÍA (DÍAS)</label>
-				<input class="col-sm-6 col-md-6 col-lg-3" type="number" class="form-control" name="autonomia-dias" id="autonomiaDias">
-			</div>
-
-			<hr>
-
-			<div class="row">
-				<label class="col-sm-6 col-md-6 col-lg-3"> Capacidad Baterias</label>
-				<input class="col-sm-6 col-md-6 col-lg-3" type="number" id="capacidad" name="capacidad" class="form-control">
-				<label class="col-sm-6 col-md-6 col-lg-3"> Inversor</label>
-					<select class="col-sm-6 col-md-6 col-lg-3" name="inversor">				
-					<option id="" value="PS-LS1522">PS-LS1522 </option>
-					<option id="" value="PS-LS1021">PS-PC2024L </option>
-					<option id="" value="PS-LTS2022">PS-LTS2022 </option>
-				</select>								
-			</div>
-
-			<hr>
-
-			<div class="row">		
-				<label class="col-sm-6 col-md-6 col-lg-3"> Voltaje Baterias </label>
-				<select class="col-sm-6 col-md-6 col-lg-3" name="voltaje">
-				{% for v in category %}
-					 <option id="voltaje" value="{{v}}">{{v}} V</option>
-				{% endfor %}
-				</select>								
-			</div>
-
-			<hr>
-
-			<div>
-				<button type="submit" class="btn btn-primary">Calcular</button>
-			</div>
-		</div>
-	</form >
-
-		<div class="gallery-lightbox">
-			<div class="gallery-lightbox_modal">
-				<button onclick="cerrarFormularioCalcular()" type="button" class="close" aria-label="Close" >
-				<span aria-hidden="true">&times;</span>
-				</button>
-				<div id="mostrar">
+		<div class="row">
+				<label class="col-sm-6 col-md-6 col-lg-3"> Consumo mensual</label>						
+				<label class="col-sm-6 col-md-6 col-lg-3" id="valor_consumo">
+				</label>
+				<input class=""type="hidden" class="form-control" id="consumoDiario" name="consumoDiario" value="">
 				
-				</div>
+				<label class="col-sm-6 col-md-6 col-lg-3"> Radiación Solar HSP</label>
+				<input class="col-sm-6 col-md-6 col-lg-3" type="text" placeholder="{{hsp}}" class="form-control" id="hsp" name="hsp" value="">
+		</div>
 
+		<hr>
+
+		<div class="row">
+			<label class="col-sm-6 col-md-6 col-lg-3"> Potencia paneles</label>
+			<input class="col-sm-6 col-md-6 col-lg-3" type="number" class="form-control" name="potencia-de-panel" id="potenciadepanel">
+			<label class="col-sm-6 col-md-6 col-lg-3"> AUTONOMÍA (DÍAS)</label>
+			<input class="col-sm-6 col-md-6 col-lg-3" type="number" class="form-control" name="autonomia-dias" id="autonomiaDias">
+		</div>
+
+		<hr>
+
+		<div class="row">
+			<label class="col-sm-6 col-md-6 col-lg-3"> Capacidad Baterias(Ah)</label>
+			<input class="col-sm-6 col-md-6 col-lg-3" type="number" id="capacidad" name="capacidad" class="form-control">
+			<label class="col-sm-6 col-md-6 col-lg-3"> Inversor</label>
+				<select class="col-sm-6 col-md-6 col-lg-3" name="inversor">				
+				<option id="" value="PS-LS1522">PS-LS1522 </option>
+				<option id="" value="PS-LS1021">PS-PC2024L </option>
+				<option id="" value="PS-LTS2022">PS-LTS2022 </option>
+			</select>								
+		</div>
+
+		<hr>
+
+		<div class="row">		
+			<label class="col-sm-6 col-md-6 col-lg-3"> Voltaje Baterias </label>
+			<select class="col-sm-6 col-md-6 col-lg-3" name="voltaje">
+			{% for v in category %}
+					<option id="voltaje" value="{{v}}">{{v}} V</option>
+			{% endfor %}
+			</select>								
+		</div>
+
+		<hr>
+
+		<div>
+			<button type="submit" class="btn btn-primary">Calcular</button>
+		</div>
+	</div>
+</form >
+
+	<div class="gallery-lightbox">
+		<div class="gallery-lightbox_modal">
+			<button onclick="cerrarFormularioCalcular()" type="button" class="close" aria-label="Close" >
+			<span aria-hidden="true">&times;</span>
+			</button>
+			<div id="mostrar">
+			
 			</div>
-		</div>  
-					
-</div>
+
+		</div>
+	</div>  

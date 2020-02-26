@@ -7,24 +7,24 @@
 					 <div class="scroll">
 					 	<hr>
 						 {% for device in computoDevice %}					 
-							<div class="div_textbox">
-						 		<a href="#" id="televisor" onclick="anadir({{device.id}},'{{device.descripcion}}')">{{device.descripcion}}</a>					 
-						 	</div>						
+							{% comment %} <div class="div_textbox"> {% endcomment %}
+						 		<a href="#" class="televisor" onclick="anadir({{device.id}},'{{device.descripcion}}')">{{device.descripcion}}</a>					 
+						 	{% comment %} </div>						 {% endcomment %}
 						 {% endfor %}
 					 </div>
 					 
 				  </fieldset>		
 			</div>
-			<div id="tabla" class="col-sm-12 col-md-12 col-lg-6">
+			<div class="col-sm-12 col-md-12 col-lg-6">
 				<fieldset>					
 					<legend class="text-primary">TABLA DE CONSUMO</legend>
 					<table id="tablaConsumo" class="scroll">   	
 						<thead>
 							<tr>
-								<th id="cabecera"> Nombre Equipo</th>
-								<th id="cabecera"> Horas</th>
-								<th id="cabecera"> Watts</th>
-								<th id="cabecera"> Eliminar Equipo </th>
+								<th > Nombre Equipo</th>
+								<th > Horas</th>
+								<th > Watts</th>
+								<th > Eliminar Equipo </th>
 							</tr>
 						</thead>
 						<tbody id="lista">

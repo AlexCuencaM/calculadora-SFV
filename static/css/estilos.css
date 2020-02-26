@@ -29,6 +29,7 @@ html{
 
 .gallery-lightbox.show{
 	display:flex;  
+	
 }
 
 
@@ -67,7 +68,7 @@ p{
 }
 /*estilo de caja*/
 
-#televisor{	
+a.televisor{	
 	/* width:10px;
 	height:10px; */
 	background-color:#007bff;
@@ -83,11 +84,6 @@ p{
 	border-radius:5px ;
 	border:solid#000;
 } */
-
-
-.div_textbox{	
-	padding: 15px;
-}
 
 table{
 	width:100%;
@@ -125,10 +121,10 @@ tr:hover td{
 }
 
 /*Cabecera de la tabla fija*/
-.scroll #cabecera{
+.scroll #tablaconsumo{
 	position:sticky;
 	top:0;
 	background-color: #007bff;
 	color:white;
-	border-bottom: solid 5px #0f362d;
+	
 }
