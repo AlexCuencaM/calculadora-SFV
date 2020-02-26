@@ -4,6 +4,9 @@ html{
 	padding: 0px;
 }
 
+/* body{
+	position: relative;
+} */
 .root{
 	padding:15px;
 }
@@ -19,23 +22,22 @@ html{
 	right:0;
 	background-color:rgba(0,0,0,.8);
 	font-size: 16px;
-	padding:0 15px;
+	padding:15px;
 	display:none;
 	/*pone las figuras en el centro*/
 	justify-content: center;
 	align-items: center;
-  
+
 }
 
 .gallery-lightbox.show{
-	display:flex;  
+	display:flex;	
 }
-
-
-.gallery-lightbox_modal{	
-	position: relative;
+.gallery-lightbox_modal{
+	/* position: relative; */
 	background-color: white;
 	padding: 100px;
+	padding-bottom: 10px;	
 	max-width: 1200px;
 	/*para quitar las esquinas filosas*/
 	border-radius:5px;
@@ -67,7 +69,7 @@ p{
 }
 /*estilo de caja*/
 
-#televisor{	
+.televisor{
 	/* width:10px;
 	height:10px; */
 	background-color:#007bff;
@@ -77,58 +79,26 @@ p{
 	border-radius:5px ;
 	border:3px solid#000;
 }
-
-/* legend{
-	background-color:#74F91A;
-	border-radius:5px ;
-	border:solid#000;
-} */
-
-
-.div_textbox{	
-	padding: 15px;
+.televisor a{
+	/* width:10px;
+	height:10px; */
+	color:#ffffff;
 }
-
-table{
-	width:100%;
-	text-align: left;
-	border-collapse: collapse;
-}
-
-th, td{
-	border:solid 1px;
-	padding:10px;
-}
-
-thead{
-
-	background-color: #007bff;
-	color:white;
-	border-bottom: solid 5px #0f362d;
-}
-
-tr:nth-child(even){
-	background-color: #ddd;
-}
-
-tr:hover td{
-	background-color: #007bff;
-	color:white;
-}
-
-
 /*scroll*/
 .scroll{
-	height:500px;
-	max-height: 100%;
-	overflow:auto;
+	height:300px;
+	width: 700px;
+	max-height:1300px;
+	overflow:scroll;
 }
 
 /*Cabecera de la tabla fija*/
-.scroll #cabecera{
-	position:sticky;
-	top:0;
-	background-color: #007bff;
-	color:white;
-	border-bottom: solid 5px #0f362d;
+.scrolldevices{
+	
+	/* max-height:1300px; */
+	overflow:scroll;
+}
+
+.spacer{
+	padding: 30px;
 }

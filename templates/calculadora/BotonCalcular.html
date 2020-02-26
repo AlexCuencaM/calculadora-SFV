@@ -1,47 +1,39 @@
-<div class="container-fluid">
+<div class="container" id="navbar-example">		
 		<div class="row">
-			<div class="col-sm-12 col-md-12 col-lg-6">
-				<fieldset>
-					 <legend class="text-primary">Lista de equipo de computo</legend>
-					 <h2>Añadirlo</h2>
-					 <div class="scroll">
-					 	<hr>
-						 {% for device in computoDevice %}					 
-							<div class="div_textbox">
-						 		<a href="#" id="televisor" onclick="anadir({{device.id}},'{{device.descripcion}}')">{{device.descripcion}}</a>					 
-						 	</div>						
-						 {% endfor %}
-					 </div>
-					 
-				  </fieldset>		
-			</div>
-			<div id="tabla" class="col-sm-12 col-md-12 col-lg-6">
-				<fieldset>					
-					<legend class="text-primary">TABLA DE CONSUMO</legend>
-					<table id="tablaConsumo" class="scroll">   	
-						<thead>
-							<tr>
-								<th id="cabecera"> Nombre Equipo</th>
-								<th id="cabecera"> Horas</th>
-								<th id="cabecera"> Watts</th>
-								<th id="cabecera"> Eliminar Equipo </th>
-							</tr>
-						</thead>
-						<tbody id="lista">
-							<tr>
-								<!--<th></th>
-								<th></th>
-								<th></th>
-								<th></th>-->
-							</tr>
-						</tbody>		
-					</table>
-				</fieldset>		
-			</div>
+			<div class="col-sm-12 col-md-12 col-lg-12">				
+					<legend class="text-primary">Lista de equipo de computo</legend>
+			</div>			
+		</div> 			
+		<div class="row spacer ">			
+				{% for device in computoDevice %}
+					<div class="col-sm-6 col-md-4 col-lg-3 televisor">					 							
+						<a href="#" onclick="anadir({{device.id}},'{{device.descripcion}}')">{{device.descripcion}}</a>
+					</div>
+				{% endfor %}
+								 				  
+		</div>	
+		<div class="row">
+			<div class="col-sm-12 col-md-12 col-lg-12">				
+				<legend class="text-primary">Tabla de Consumo</legend>
+			</div>			
 		</div>
-
-		<hr>	
-
+		
+		<div class="row scroll">							
+				<table id= "tablaConsumo" class="table table-hover table-striped">   	
+					<thead class="thead-light">
+						<tr>
+							<th scope="col" > Nombre Equipo</th>
+							<th scope="col"> Horas</th>
+							<th scope="col"> Watts</th>
+							<th scope="col" > Eliminar Equipo </th>
+						</tr>
+					</thead>
+					<tbody id="lista">
+						<tr>								
+						</tr>
+					</tbody>		
+				</table>										 				  
+		</div>											
 		<input type="button" id="guardar_cerrar" value="Guardar y Cerrar" onclick="obtenerAllDateTable()"> 
 </div>
 	
