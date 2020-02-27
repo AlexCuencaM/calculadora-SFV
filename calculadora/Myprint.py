@@ -74,7 +74,8 @@ class MyPrint:
         
         doc.build(elements)                        
         return pdf     
-
+    def datosTabla(self,pdf,styles):
+        encabezados = [['Potencia en Wh/ día:', '{} W'.format(self.total),styles['Normal'], 'Watts'],]
     def tabla(self,pdf):
         #Creamos una tupla de encabezados para neustra tabla
         encabezados = [['Nombre del equipo', 'Horas', 'Watts'],]
