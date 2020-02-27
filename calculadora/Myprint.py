@@ -46,36 +46,31 @@ class MyPrint:
         elements.append(Paragraph("Reporte",styles['Title']))        
         elements.append(Paragraph("A continuación se muestra el total de equipos a utilizar en la implementacion del sistema fovoltaico",styles['Italic']))
         elements.append(Spacer(1, 0.4*cm))
-                
-        elements.append(Paragraph("Potencia en Wh/ día:{} W".format(self.total),styles['Normal']))        
-        elements.append(Spacer(1, 0.2*cm))
-        elements.append(Paragraph("La cantidad de paneles a utilizar: {} ".format(self.panel),styles['Normal']) )         
-        elements.append(Paragraph("Potencia de paneles: {}W ".format(self.panelCantidad),styles['Normal']) )         
-        elements.append(Spacer(1, 0.2*cm))
-
-        elements.append(Paragraph("La cantidad de baterias a utilizar:{} ".format(self.bateria),styles['Normal'])) 
-        elements.append(Paragraph("Capacidad de las baterias:{} Ah".format(self.ah),styles['Normal'])) 
-        elements.append(Spacer(1, 0.2*cm))
-
-        elements.append(Paragraph("Inversor OFF GRID a utilizar: {}".format(self.inversor),styles['Normal']))        
-        
-        elements.append(Spacer(1, 0.3*cm))
-        elements.append(Paragraph("4 Parejas de conectores MC4",styles['Normal']))        
-        elements.append(Paragraph("Cable PV(Opcional)",styles['Normal']))        
-        
-        elements.append(Spacer(1, 0.3*cm))
-
+                                
+        elements.append(self.datosTabla())
         elements.append(Paragraph("A continuación se detalla los equipos ingresados en el sistema que fueron considerados en el cálculo del consumo:",styles['Italic']))
         elements.append(Spacer(1, 0.7*cm))
         pdf = buffer.getvalue()
-        elements.append(self.tabla(pdf))                    
-        elements.append(Spacer(1, 1*cm))
+        elements.append(self.tabla())                    
+        elements.append(Spacer(1, 2*cm))
         elements.append(Paragraph("Consumo Total Watts diarios: {} Watts".format(self.total),styles['Heading3']))
         
         doc.build(elements)                        
         return pdf     
+    def datosTabla(self):
+        uso = ' a utilizar:'
+        data = [
+                ['Potencia en Wh/ día:', '{} W'.format(self.total),''],
+                ['La cantidad de paneles' + uso, str(self.panel),"{}W".format(self.panelCantidad) ],
+                ['La cantidad de baterias' + uso,str(self.bateria),"{} Ah".format(self.ah)],
+                ['Inversor OFF GRID' + uso, str(self.inversor),'' ],
+                ['4 Parejas de conectores MC4','',''],
+                ['Cable PV(Opcional)','',''],
+        ]
+        data = Table(data, colWidths=[8 * cm, 3 * cm, 2 * cm, 4 * cm])  
+        return data 
 
-    def tabla(self,pdf):
+    def tabla(self):
         #Creamos una tupla de encabezados para neustra tabla
         encabezados = [['Nombre del equipo', 'Horas', 'Watts'],]
         #Creamos una lista de tuplas que van a contener a las personas        
