@@ -54,7 +54,7 @@ div .button_gallery{
 
 /*Mi estilo de Carousel*/
 div .carousel-item{
-	height:90vh;
+	height:85vh;
 }
 
 div #carouselExampleIndicators{
@@ -62,7 +62,8 @@ div #carouselExampleIndicators{
 }
 
 .d-block.w-100{
-	height:90vh;
+	
+	height:75vh;
 }
 p{
 	text-align: justify;
