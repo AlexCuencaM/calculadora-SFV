@@ -49,7 +49,7 @@ function mostrarCalcular(){
 //Método que llama a la función datos tabla para su posterior  inserción
 function anadir(id,device){
 	//electrodomestico de prueba
-	var electrodomestico={id:id, tipo:device,tiempo:"70",cantidad:"100"}; 
+	var electrodomestico={id:id, tipo:device,tiempo:"24",cantidad:"0"}; 
 
 	//nombre de la tabla html
 	var nombreTabla=document.getElementById("tablaConsumo");
@@ -68,21 +68,12 @@ function datosTabla(electrodomestico,nombreTabla){
 	// le asigna al objeto cell 3
 	var cell=[fila.insertCell(0),fila.insertCell(1),fila.insertCell(2),fila.insertCell(3)];	
 	console.log(array_electrodomestico.length);
-	/*registro de practica*/
-	if(array_electrodomestico.length%2==0){
-	
+	/*registro de practica*/	
 	//inserta en cada celda los atributos del objeto
-	cell[0].innerHTML='<td scope="col"><label> '+electrodomestico.tipo+'<input type="hidden" name="producto[]" value="'+electrodomestico.id+'" id="tv"></label></td>';
+	cell[0].innerHTML='<td scope="col"><input type="text" value="'+electrodomestico.tipo+'" name="descripcion-producto[]"><input type="hidden" name="producto[]" value="'+electrodomestico.id+'" id="tv">'+'</td>';
 	cell[1].innerHTML='<td scope="col"><input type="text" value="'+electrodomestico.tiempo+'" name="tiempo[]"></td>';
 	cell[2].innerHTML='<td scope="col"><input type="text" value="'+electrodomestico.cantidad+'" name="cantidad[]"></td>';
-	cell[3].innerHTML='<td scope="col"><input type="button" value="Eliminar" name="eliminar[]"  id="eliminar" onclick="eliminarFila(this)"></td>';
-	}
-	else{
-	cell[0].innerHTML='<td scope="col"><label> '+electrodomestico.tipo+'<input type="hidden" name="producto[]" value="'+electrodomestico.id+'" id="tv"></label></td>';
-	cell[1].innerHTML='<td scope="col"><input type="text" value="'+'20'+'" name="tiempo[]"></td>';
-	cell[2].innerHTML='<td scope="col"><input type="text" value="'+'30'+'" name="cantidad[]"></td>';
-	cell[3].innerHTML='<td scope="col"><input type="button" value="Eliminar" name="eliminar[]"  id="eliminar" onclick="eliminarFila(this)"></td>';
-	}
+	cell[3].innerHTML='<td scope="col"><input type="button" value="Eliminar" name="eliminar[]"  id="eliminar" onclick="eliminarFila(this)"></td>';	
 
 }
 
@@ -98,6 +89,7 @@ function eliminarFila(r){
 
 
 function obtenerAllDateTable(){
+	var array_descripcion=document.getElementsByName("descripcion-producto[]");
 	var array_id=document.getElementsByName("producto[]");
 	var array_tiempo=document.getElementsByName("tiempo[]");
 	var array_cantidad=document.getElementsByName("cantidad[]");			
@@ -109,6 +101,7 @@ function obtenerAllDateTable(){
 	{
 		json.result.push({
 			id:array_id[i].value,//Suministrado
+			descripcion:array_descripcion[i].value,
 			horas:array_tiempo[i].value,
 			watts:array_cantidad[i].value
 		})

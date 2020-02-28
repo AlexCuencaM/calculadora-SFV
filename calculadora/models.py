@@ -11,6 +11,7 @@ class EquipoDeComputoModel(models.Model):
 #API POST
 class DetalleEquipoDeComputoModel(models.Model):
     equipo = models.ForeignKey(EquipoDeComputoModel,on_delete=models.DO_NOTHING)
+    descripcion = models.CharField(max_length=255, null=False,default="NA")
     watts = models.IntegerField(null=False,default=300)
     horas = models.DecimalField(null=False, max_digits=10, decimal_places=2,default=8)
 
@@ -31,7 +32,7 @@ class ReporteModel(models.Model):
     consumoDiario = models.DecimalField(null=False,default=0,max_digits=10, decimal_places=2)
 
 class CalculoPanelModel(models.Model):
-    PROMEDIO = 3.18
+    PROMEDIO = 3.97
     TOLERANCIA = 1.3
     hsp = models.DecimalField(null=False, max_digits=10, decimal_places=2, default=PROMEDIO)
     potenciaDePanel = models.DecimalField(null=False, max_digits=10, decimal_places=2,default=1)

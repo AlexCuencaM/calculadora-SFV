@@ -61,6 +61,7 @@ class ListEquipoDeComputoView(generics.ListAPIView):
 def getDetalle(calculos,equipo):
     return DetalleEquipoDeComputoModel(
         equipo=equipo,
+        descripcion = calculos["descripcion"],
         watts=int(calculos["watts"]),
         horas=decimal.Decimal(calculos["horas"])  
     )
@@ -128,6 +129,5 @@ def generarPdf(request,panel,bateria,total,inversor,ah,panelCantidad):
     buffer = io.BytesIO()
     report = MyPrint(buffer, 'A4',request.session['token'],panel,bateria,total,inversor,ah,panelCantidad)
     report.printReport()
-    buffer.seek(0)
-    
+    buffer.seek(0)    
     return FileResponse(buffer, as_attachment=True, filename='reporte.pdf')

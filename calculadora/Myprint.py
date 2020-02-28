@@ -74,7 +74,7 @@ class MyPrint:
         #Creamos una tupla de encabezados para neustra tabla
         encabezados = [['Nombre del equipo', 'Horas', 'Watts'],]
         #Creamos una lista de tuplas que van a contener a las personas        
-        detalles = [list((device.equipo.equipo.descripcion,
+        detalles = [list((device.equipo.descripcion,
             str(device.equipo.horas), device.totalConsumoDiario))
             for device in ConsumoDeDispositivo.objects.filter(token=UUID(self.token,version=4))]        
         for i in detalles:
