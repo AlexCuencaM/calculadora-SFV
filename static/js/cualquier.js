@@ -1,7 +1,3 @@
-/*$('nav a').click(function(){	
-	var b=$(this).attr('href');
-	console.log(b);
-});*/
 document.getElementById("pestana1").addEventListener("click",function(){
 	pestanasTodas("0");
 });

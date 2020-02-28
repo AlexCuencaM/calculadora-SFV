@@ -1,6 +1,3 @@
-/*document.getElementById("consumo").addEventListener("click",function(){
-	calcular()});*/
-
 /*Obtiene el selector*/	
 
 function ligthBox(){
