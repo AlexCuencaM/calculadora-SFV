@@ -12,11 +12,11 @@ function validar(){
 
 function datosformulario(){
 	var array,consumo,radiacion,potencia,autonomia,capacidad,voltaje;
-	consumo=document.getElementById("valor_consumo").value;	
+	consumo=document.getElementById("consumoDiario").value;	
 	potencia=document.getElementById("potenciadepanel").value;
 	autonomia=document.getElementById("autonomiaDias").value;
 	capacidad=document.getElementById("capacidad").value;
-	voltaje=document.getElementById("voltaje").value;
+	voltaje=document.getElementById("voltaje").value;	
 	array=[consumo,radiacion,potencia,autonomia,capacidad,voltaje];
 	return array;
 }

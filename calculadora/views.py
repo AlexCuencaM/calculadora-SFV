@@ -131,6 +131,3 @@ def generarPdf(request,panel,bateria,total,inversor,ah,panelCantidad):
     buffer.seek(0)
     
     return FileResponse(buffer, as_attachment=True, filename='reporte.pdf')
-
-def test(request):
-    return render(request,"calculadora/BotonCalcular.html")
