@@ -28,11 +28,14 @@ class Calcular:
     def total(self):
         for data in self.__datos["result"]:
             equipo = EquipoDeComputoModel.objects.get(pk=int(data["id"]))
-            detalles = self.__getDetalle(data,equipo)
-            result = self.__getCalculo(detalles)            
-            result.equipo.save()
-
-            result.save(force_insert=True)
+            detalles = self.__getDetalle(data,equipo)            
+            self.__guardar(detalles)
+            
         obj = ConsumoDeDispositivo.objects.filter(token=self.getId())
 
         return {"total":sum([i.totalConsumoDiario for i in obj])}
+
+    def __guardar(self,detalles):
+        result = self.__getCalculo(detalles)            
+        result.equipo.save()
+        result.save(force_insert=True)
