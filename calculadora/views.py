@@ -1,4 +1,6 @@
-from calculadora.Myprint import MyPrint
+from calculadora.Calcular import *
+from calculadora.Myprint import *
+
 from django import forms
 from django.shortcuts import render,reverse
 from django.forms import ModelForm
@@ -58,37 +60,12 @@ class ListEquipoDeComputoView(generics.ListAPIView):
     queryset = EquipoDeComputoModel.objects.all()
     serializer_class = EquipoDeComputoSerializer    
 
-def getDetalle(calculos,equipo):
-    return DetalleEquipoDeComputoModel(
-        equipo=equipo,
-        descripcion = calculos["descripcion"],
-        watts=int(calculos["watts"]),
-        horas=decimal.Decimal(calculos["horas"])  
-    )
-
-def getCalculo(detalle,token):
-    return ConsumoDeDispositivo(
-        equipo=detalle,
-        totalConsumoDiario = detalle.watts*detalle.horas,
-        token=token
-    )
 @csrf_exempt
-def calcularConsumoDispositivo(request): 
-    #La clase debe realizar un nuevo uuid.
-    # Recibir el request y retornar el total       
+def calcularConsumoDispositivo(request):     
     if(request.method == "POST"):
-        token = uuid4()
-        request.session['token'] = str(token)        
-        calculos = json.loads(request.body)        
-        for data in calculos["result"]:
-            equipo = EquipoDeComputoModel.objects.get(pk=int(data["id"]))
-            detalles = getDetalle(data,equipo)
-            result = getCalculo(detalles,token)
-            result.equipo.save()
-            result.save(force_insert=True)
-        obj = ConsumoDeDispositivo.objects.filter(token=UUID(request.session['token'],version=4))        
-        total = {"total":sum([i.totalConsumoDiario for i in obj])}        
-    return JsonResponse(total,safe=False)
+        calcular = Calcular(request)        
+        request.session['token'] = str(calcular.getId())                
+    return JsonResponse(calcular.total(),safe=False)
     
 def calcularPanelYbateria(request):
     if(request.method=="POST"):
