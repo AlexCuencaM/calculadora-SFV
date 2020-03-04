@@ -73,7 +73,9 @@ def getCalculo(detalle,token):
         token=token
     )
 @csrf_exempt
-def calcularConsumoDispositivo(request):        
+def calcularConsumoDispositivo(request): 
+    #La clase debe realizar un nuevo uuid.
+    # Recibir el request y retornar el total       
     if(request.method == "POST"):
         token = uuid4()
         request.session['token'] = str(token)        
