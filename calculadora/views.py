@@ -1,19 +1,17 @@
 from calculadora.Calcular import *
 from calculadora.Myprint import *
+from calculadora.CalcularBateriaPanel import *
+from calculadora.CalcularReporte import *
 
 from django import forms
 from django.shortcuts import render,reverse
 from django.forms import ModelForm
-from django.http import HttpResponse,HttpResponseRedirect,JsonResponse,FileResponse
-import json, decimal
+from django.http import JsonResponse,FileResponse
 from rest_framework import views, generics
 import io
-from calculadora.models import(EquipoDeComputoModel,
-    DetalleEquipoDeComputoModel,ConsumoDeDispositivo,
-    BateriaModel,CalculoPanelModel,CalculoBateriaModel,ReporteModel
+from calculadora.models import(EquipoDeComputoModel, BateriaModel,
 ) 
 from calculadora.serializers import EquipoDeComputoSerializer
-from uuid import uuid4,UUID
 from django.views.decorators.csrf import csrf_exempt
 
 class EquipoDeComputoForm(ModelForm):
@@ -69,41 +67,11 @@ def calcularConsumoDispositivo(request):
     
 def calcularPanelYbateria(request):
     if(request.method=="POST"):
-        calculo = ReporteModel(consumoDiario= decimal.Decimal(request.POST["consumoDiario"]) )
-        bateria = BateriaModel(voltaje=int(request.POST["voltaje"]),capacidad=int(request.POST["capacidad"]))
-
-        calcularBateria = CalculoBateriaModel(bateria=bateria, report=calculo,
-            corrienteNecesaria=decimal.Decimal(calculo.consumoDiario/bateria.voltaje), autonomiaDias=int(request.POST["autonomia-dias"]),)
-        if(request.POST["hsp"] == ""):
-            panel=CalculoPanelModel(report=calculo,potenciaDePanel=decimal.Decimal(request.POST["potencia-de-panel"]))
-
-        else:
-            panel=CalculoPanelModel(hsp=decimal.Decimal(request.POST["hsp"]), report=calculo,
-            potenciaDePanel=decimal.Decimal(request.POST["potencia-de-panel"]))
-
-        calcularBateria.report.save()   
-        calcularBateria.bateria.save()     
-        calcularBateria.save()
-        panel.report.save()
-        panel.save()
-
-        devices = ConsumoDeDispositivo.objects.filter(token=UUID(request.session['token'],version=4))
+        ward = CalcularBateriaPanel(request.POST, request.session['token'])
+        ward.calcularPanelYbateria()
+        reporte = CalcularReporte(ward)        
+        return render(request,"calculadora/reporte.html", reporte.getReporte())
         
-        BA = decimal.Decimal(calcularBateria.autonomiaDias * calcularBateria.corrienteNecesaria)/ decimal.Decimal(calcularBateria.constanteDeDescarga)
-        denominador = decimal.Decimal(panel.report.consumoDiario * decimal.Decimal(panel.tolerancia))
-        CP = denominador / decimal.Decimal(decimal.Decimal(panel.hsp) * panel.potenciaDePanel)
-        return render(request,"calculadora/reporte.html",
-        {
-            "devices": devices,
-            "resultadosDevices": sum([i.totalConsumoDiario for i in devices]),
-            "TotalBateria":round(float(BA/calcularBateria.bateria.capacidad)) ,#TB
-            "TotalPanel":round(float(CP)),
-            "inversor": request.POST["inversor"],
-            "ah": calcularBateria.bateria.capacidad,
-            "panelCantidad" : panel.potenciaDePanel,
-        })
-        
-
 def generarPdf(request,panel,bateria,total,inversor,ah,panelCantidad):
     buffer = io.BytesIO()
     report = MyPrint(buffer, 'A4',request.session['token'],panel,bateria,total,inversor,ah,panelCantidad)
