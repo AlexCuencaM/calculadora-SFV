@@ -7,11 +7,11 @@ from django import forms
 from django.shortcuts import render,reverse
 from django.forms import ModelForm
 from django.http import JsonResponse,FileResponse
-from rest_framework import views, generics
+
 import io
 from calculadora.models import(EquipoDeComputoModel, BateriaModel,
 ) 
-from calculadora.serializers import EquipoDeComputoSerializer
+
 from django.views.decorators.csrf import csrf_exempt
 
 class EquipoDeComputoForm(ModelForm):
@@ -53,10 +53,6 @@ def addEquipo(request):
     else:
         form = EquipoDeComputoForm()                
         return render(request,'calculadora/equipoForm.html',{'form': form})
-
-class ListEquipoDeComputoView(generics.ListAPIView):
-    queryset = EquipoDeComputoModel.objects.all()
-    serializer_class = EquipoDeComputoSerializer    
 
 @csrf_exempt
 def calcularConsumoDispositivo(request):     

@@ -3,7 +3,7 @@ from calculadora.models import(
     ConsumoDeDispositivo
 ) 
 import decimal
-#BA
+
 class CalcularReporte:
     def __init__(self,calculoBateriaPanel):
         self.__calculoBateriaPanel = calculoBateriaPanel
@@ -27,7 +27,7 @@ class CalcularReporte:
         return decimal.Decimal(self.__calculoBateriaPanel.getPanel().report.consumoDiario * decimal.Decimal(self.__calculoBateriaPanel.getPanel().tolerancia))
 
     def __denominadorCP(self):
-        return decimal.Decimal(self.__calculoBateriaPanel.getPanel().report.consumoDiario * self.__calculoBateriaPanel.getPanel().potenciaDePanel)
+        return decimal.Decimal(decimal.Decimal(self.__calculoBateriaPanel.getPanel().hsp) * self.__calculoBateriaPanel.getPanel().potenciaDePanel)
     
     def __setCP(self):
         self.__CP = self.__numeradorCP()/self.__denominadorCP()
