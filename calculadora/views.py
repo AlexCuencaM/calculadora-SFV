@@ -9,7 +9,7 @@ from django.forms import ModelForm
 from django.http import JsonResponse,FileResponse
 
 import io
-from calculadora.models import(EquipoDeComputoModel, BateriaModel,
+from calculadora.models import(EquipoDeComputoModel, BateriaModel,CalculoPanelModel
 ) 
 
 from django.views.decorators.csrf import csrf_exempt
@@ -26,8 +26,7 @@ def home(request,ventana=""):
     elif(ventana=="info"):
         return render(request,'calculadora/ViewInformation.html')
     elif(ventana=="implementacion"):
-        category = BateriaModel.VOLTAJE     
-        print(CalculoPanelModel.PROMEDIO)   
+        category = BateriaModel.VOLTAJE             
         return render(request,'calculadora/CalcularImplementacion.html',
         {
             "category":[i[0] for i in category],
