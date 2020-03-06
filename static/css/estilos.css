@@ -1,16 +1,3 @@
-/*eliminar los margenes que trae por defecto los navegadores*/
-html{
-	margin:0px;
-	padding: 0px;
-}
-
-/* body{
-	position: relative;
-} */
-.root{
-	padding:15px;
-}
-
 /*el cuerpo en color negro*/
 .gallery-lightbox{
 	/*posesione con respecto al tamaño del navegador*/
