@@ -1,12 +1,13 @@
 <h1 class="my-5 text-center text-primary"> Calcular para implementación SFV </h1>
 <hr>
 
+
 <form action="{% url 'calculadora:panel-y-bateria' %}" method="post" onsubmit="return validar();">
 	{% csrf_token %}
 	<div class="container">
 		<div class="row">					
-				<label class="col-sm-6 col-md-3" > Ingresar dispositivos</label>    
-				<input class="col-sm-6 col-md-3" type="button" name ="consumo-diario" id="consumo-diario" value="Calcular Consumo" onclick="mostrarFormularioCalcular()" >
+				<label class="col col-sm-6 col-md-4" > Ingresar dispositivos</label>    
+				<input class="col col-sm-6 col-md-2 btn btn-primary" type="button" name ="consumo-diario" id="consumo-diario" value="Calcular Consumo" onclick="mostrarFormularioCalcular()" >
 		</div> 
 		<hr>		
 		<div class="form-row">													
@@ -62,7 +63,7 @@
 		</div>
 
 		<div>
-			<button type="submit" class="btn btn-primary">Calcular</button>
+			<button type="submit" class="btn btn-success">Calcular</button>
 		</div>
 	</div>
 </form >
