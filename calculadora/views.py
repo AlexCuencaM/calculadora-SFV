@@ -18,6 +18,12 @@ class EquipoDeComputoForm(ModelForm):
     class Meta:
         model= EquipoDeComputoModel
         fields=['descripcion',]
+def detalles():
+    category = BateriaModel.VOLTAJE
+    return {
+        "category":[i[0] for i in category],
+        "hsp": CalculoPanelModel.PROMEDIO,
+    }
 
 # Create your views here.
 def home(request,ventana=""):
@@ -25,13 +31,8 @@ def home(request,ventana=""):
         return render(request,'calculadora/inicio.html')
     elif(ventana=="info"):
         return render(request,'calculadora/ViewInformation.html')
-    elif(ventana=="implementacion"):
-        category = BateriaModel.VOLTAJE             
-        return render(request,'calculadora/CalcularImplementacion.html',
-        {
-            "category":[i[0] for i in category],
-            "hsp": CalculoPanelModel.PROMEDIO,          
-        })
+    elif(ventana=="implementacion"):        
+        return render(request,'calculadora/CalcularImplementacion.html',detalles())
     elif(ventana=="contact"):
         return render(request,'calculadora/Contactar.html')
     elif(ventana=="imagenes"):

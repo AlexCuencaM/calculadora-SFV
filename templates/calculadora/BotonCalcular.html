@@ -1,6 +1,6 @@
-<div class="container" id="navbar-example">		
+<div class="container">		
 		<div class="row">			
-					<legend class="text-primary">Lista de equipo de computo</legend>			
+				<legend class="text-primary">Lista de equipo de computo</legend>			
 		</div> 			
 		<div class="row spacer">			
 				{% for device in computoDevice %}
@@ -16,7 +16,7 @@
 			</div>			
 		</div>
 		
-		<div class="row scroll">							
+		<div class="col-sm-12 col-md-12 col-lg-12 scroll">							
 				<table id= "tablaConsumo" class="table table-hover table-striped">   	
 					<thead class="thead-dark">
 						<tr>
@@ -31,6 +31,7 @@
 					</tbody>		
 				</table>										 				  
 		</div>											
-		<input type="button" id="guardar_cerrar" value="Guardar y Cerrar" onclick="obtenerAllDateTable()"> 
+		<input type="button" id="guardar_cerrar" class="btn btn-primary" value="Guardar y Cerrar" onclick="obtenerAllDateTable()"> 
+		
 </div>
 	

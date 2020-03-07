@@ -67,14 +67,12 @@ function datosTabla(electrodomestico,nombreTabla){
 	console.log(array_electrodomestico.length);
 	/*registro de practica*/	
 	//inserta en cada celda los atributos del objeto
-	cell[0].innerHTML='<td scope="col"><input type="text" value="'+electrodomestico.tipo+'" name="descripcion-producto[]"><input type="hidden" name="producto[]" value="'+electrodomestico.id+'" id="tv">'+'</td>';
-	cell[1].innerHTML='<td scope="col"><input type="text" value="'+electrodomestico.tiempo+'" name="tiempo[]"></td>';
-	cell[2].innerHTML='<td scope="col"><input type="text" value="'+electrodomestico.cantidad+'" name="cantidad[]"></td>';
-	cell[3].innerHTML='<td scope="col"><input type="button" value="Eliminar" name="eliminar[]"  id="eliminar" onclick="eliminarFila(this)"></td>';	
+	cell[0].innerHTML='<div class="form-group"><td><input type="text" class="form-control form-control-sm" value="'+electrodomestico.tipo+'" name="descripcion-producto[]"><input type="hidden" name="producto[]" value="'+electrodomestico.id+'" id="tv">'+'</td>';
+	cell[1].innerHTML='<td><input type="text" class="form-control form-control-sm" value="'+electrodomestico.tiempo+'" name="tiempo[]"></td>';
+	cell[2].innerHTML='<td><input type="text" class="form-control form-control-sm" value="'+electrodomestico.cantidad+'" name="cantidad[]"></td>';
+	cell[3].innerHTML='<td><input type="button" class="form-control form-control-sm btn btn-danger" value="Eliminar" name="eliminar[]"  id="eliminar" onclick="eliminarFila(this)"></td></div>';	
 
 }
-
-
 //Método de eliminar fila de la tabla
 function eliminarFila(r){
 	/*Obtiene la fila que se va a eliminar*/
