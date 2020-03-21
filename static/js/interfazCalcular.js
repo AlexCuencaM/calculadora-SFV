@@ -8,7 +8,7 @@ function ligthBox(){
 
 /*Funcion que add una palabra a una clase de una etiqueta*/
 
-function mostrarFormularioCalcular(){
+async function mostrarFormularioCalcular(){
 
 	/*Le agrega a la etiqueta ligtbox show*/
 	this.ligthBox().classList.add('show');
@@ -19,7 +19,7 @@ function mostrarFormularioCalcular(){
 
 /*Funcion que delete una palabra a una clase de una etiqueta*/
 
-function cerrarFormularioCalcular(){
+async function cerrarFormularioCalcular(){
 	/*Cierra la pantalla*/
 	this.ligthBox().classList.remove('show');
 }
@@ -44,7 +44,7 @@ function mostrarCalcular(){
 
 
 //Método que llama a la función datos tabla para su posterior  inserción
-function anadir(id,device){
+async function anadir(id,device){
 	//electrodomestico de prueba
 	var electrodomestico={id:id, tipo:device,tiempo:"24",cantidad:"0"}; 
 
@@ -60,7 +60,7 @@ function anadir(id,device){
 function datosTabla(electrodomestico,nombreTabla){		
 
 	//se añade una fila a la tabla
-	var fila=nombreTabla.insertRow(1);
+	var fila=nombreTabla.insertRow(-1);
 	var array_electrodomestico=document.getElementsByName("producto[]");
 	// le asigna al objeto cell 3
 	var cell=[fila.insertCell(0),fila.insertCell(1),fila.insertCell(2),fila.insertCell(3)];	
@@ -68,21 +68,19 @@ function datosTabla(electrodomestico,nombreTabla){
 	/*registro de practica*/	
 	//inserta en cada celda los atributos del objeto
 	cell[0].innerHTML='<div class="form-group"><td><input type="text" class="form-control form-control-sm" value="'+electrodomestico.tipo+'" name="descripcion-producto[]"><input type="hidden" name="producto[]" value="'+electrodomestico.id+'" id="tv">'+'</td>';
-	cell[1].innerHTML='<td><input type="text" class="form-control form-control-sm" value="'+electrodomestico.tiempo+'" name="tiempo[]"></td>';
-	cell[2].innerHTML='<td><input type="text" class="form-control form-control-sm" value="'+electrodomestico.cantidad+'" name="cantidad[]"></td>';
+	cell[1].innerHTML='<td><input type="number" class="form-control form-control-sm" value="'+electrodomestico.tiempo+'" name="tiempo[]"></td>';
+	cell[2].innerHTML='<td><input type="number" class="form-control form-control-sm" value="'+electrodomestico.cantidad+'" name="cantidad[]"></td>';
 	cell[3].innerHTML='<td><input type="button" class="form-control form-control-sm btn btn-danger" value="Eliminar" name="eliminar[]"  id="eliminar" onclick="eliminarFila(this)"></td></div>';	
 
 }
 //Método de eliminar fila de la tabla
-function eliminarFila(r){
+async function eliminarFila(r){
 	/*Obtiene la fila que se va a eliminar*/
 	var obtener_fila=	r.parentNode.parentNode.rowIndex;
 	/*elimina fila*/
 	document.getElementById("tablaConsumo").deleteRow(obtener_fila);
 
 }
-
-
 function obtenerAllDateTable(){
 	var array_descripcion=document.getElementsByName("descripcion-producto[]");
 	var array_id=document.getElementsByName("producto[]");
@@ -107,22 +105,6 @@ function obtenerAllDateTable(){
 	cerrarFormularioCalcular();
 	
 }
-function getCookie(name) {
-	var cookieValue = null;
-	if (document.cookie && document.cookie !== '') {
-		var cookies = document.cookie.split(';');
-		for (var i = 0; i < cookies.length; i++) {
-			var cookie = cookies[i].trim();
-			// Does this cookie string begin with the name we want?
-			if (cookie.substring(0, name.length + 1) === (name + '=')) {
-				cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-				break;
-			}
-		}
-	}
-	return cookieValue;
-}
-
 /*Funcion mostrar el html*/
 function enviarDatosPost(json){	
 	var xhr=new XMLHttpRequest();
