@@ -1,18 +1,11 @@
 /*Obtiene el selector*/	
 
-function ligthBox(){
-	var lightbox=document.querySelector(".gallery-lightbox")
-	return lightbox
-}
-
-
 /*Funcion que add una palabra a una clase de una etiqueta*/
+var lightBox = () => document.querySelector(".gallery-lightbox");
 
 async function mostrarFormularioCalcular(){
-
 	/*Le agrega a la etiqueta ligtbox show*/
-	this.ligthBox().classList.add('show');
-
+	lightBox().classList.add('show');
 	/*Llama al metodo que muestra la pagina html BotonCalcular.html*/
 	await this.mostrarCalcular();
 }
@@ -21,7 +14,7 @@ async function mostrarFormularioCalcular(){
 
 function cerrarFormularioCalcular(){
 	/*Cierra la pantalla*/
-	this.ligthBox().classList.remove('show');
+	lightBox().classList.remove('show');
 }
 
 /*Funcion mostrar el html*/
@@ -39,9 +32,6 @@ async function mostrarCalcular(){
 	xhr.open("GET",url,true);
 	xhr.send();			
 }
-
-
-
 //Método que llama a la función datos tabla para su posterior  inserción
 async function anadir(id,device){
 	//electrodomestico de prueba
@@ -77,6 +67,7 @@ async function eliminarFila(r){
 	document.getElementById("tablaConsumo").deleteRow(obtener_fila);
 
 }
+//Llama desde el html
 function obtenerAllDateTable(){
 	var array_descripcion=document.getElementsByName("descripcion-producto[]");
 	var array_id=document.getElementsByName("producto[]");
