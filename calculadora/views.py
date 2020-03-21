@@ -8,12 +8,11 @@ from django.shortcuts import render,reverse
 from django.forms import ModelForm
 from django.http import JsonResponse,FileResponse
 
-import io
+import io,json
 from calculadora.models import(EquipoDeComputoModel, BateriaModel,CalculoPanelModel
 ) 
 
 from django.views.decorators.csrf import csrf_exempt
-import json
 class EquipoDeComputoForm(ModelForm):
     class Meta:
         model= EquipoDeComputoModel
