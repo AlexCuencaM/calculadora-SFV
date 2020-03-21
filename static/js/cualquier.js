@@ -14,7 +14,7 @@ document.getElementById("pestana5").addEventListener("click",function(){
 	pestanasTodas("4");
 });
 
-async function pestanasTodas(id = 0){
+function pestanasTodas(id = 0){
 	const base= "/home";
 	var xhr=new XMLHttpRequest();
 	const url=[base+"/slider", base + "/info",base + "/implementacion",
@@ -26,12 +26,6 @@ async function pestanasTodas(id = 0){
 		}
 	};
 	// Open especifica la solicitud		
-				xhr.open("GET",url[id],true);
-				xhr.send();			
+	xhr.open("GET",url[id],true);
+	xhr.send();			
 }
-
-
-	
-
-
-
