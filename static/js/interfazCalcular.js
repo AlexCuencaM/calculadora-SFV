@@ -14,19 +14,18 @@ async function mostrarFormularioCalcular(){
 	this.ligthBox().classList.add('show');
 
 	/*Llama al metodo que muestra la pagina html BotonCalcular.html*/
-	this.mostrarCalcular();
+	await this.mostrarCalcular();
 }
 
 /*Funcion que delete una palabra a una clase de una etiqueta*/
 
-async function cerrarFormularioCalcular(){
+function cerrarFormularioCalcular(){
 	/*Cierra la pantalla*/
 	this.ligthBox().classList.remove('show');
 }
 
-
 /*Funcion mostrar el html*/
-function mostrarCalcular(){
+async function mostrarCalcular(){
 	var xhr=new XMLHttpRequest();
 	const url="/calcular";
 	xhr.onreadystatechange=function(){			//mapear el estado de la solicitud
@@ -37,8 +36,8 @@ function mostrarCalcular(){
 		}
 	};
 	// Open especifica la solicitud		
-				xhr.open("GET",url,true);
-				xhr.send();			
+	xhr.open("GET",url,true);
+	xhr.send();			
 }
 
 
@@ -46,18 +45,15 @@ function mostrarCalcular(){
 //Método que llama a la función datos tabla para su posterior  inserción
 async function anadir(id,device){
 	//electrodomestico de prueba
-	var electrodomestico={id:id, tipo:device,tiempo:"24",cantidad:"0"}; 
-
+	var electrodomestico={id:id, tipo:device,tiempo:"24",cantidad:"10"}; 
 	//nombre de la tabla html
 	var nombreTabla=document.getElementById("tablaConsumo");
-
 	//llama al método datosTabla la cual inserta los datos en la tabla
-	datosTabla(electrodomestico,nombreTabla);
-
+	await datosTabla(electrodomestico,nombreTabla);
 }
 
 //Método que inserta los datos en la tabla
-function datosTabla(electrodomestico,nombreTabla){		
+async function datosTabla(electrodomestico,nombreTabla){		
 
 	//se añade una fila a la tabla
 	var fila=nombreTabla.insertRow(-1);
@@ -76,7 +72,7 @@ function datosTabla(electrodomestico,nombreTabla){
 //Método de eliminar fila de la tabla
 async function eliminarFila(r){
 	/*Obtiene la fila que se va a eliminar*/
-	var obtener_fila=	r.parentNode.parentNode.rowIndex;
+	var obtener_fila=r.parentNode.parentNode.rowIndex;
 	/*elimina fila*/
 	document.getElementById("tablaConsumo").deleteRow(obtener_fila);
 
