@@ -1,14 +1,23 @@
 function validar(){	
 	var array=datosformulario();
-	for(var i=0;i<array.length;i++){
-		if(array[i]===""){
-			alert("Todos los campos son obligatorios");
-			return false;
-		}
-	}
+	array.forEach(iterate);
+	// for(var i=0;i<array.length;i++){
+	// 	if(array[i]===""){
+	// 		alert("Todos los campos son obligatorios");
+	// 		return false;
+	// 	}
 
+	// }
 }
 
+function iterate(value,index,array){
+	if(value === "")
+	{
+		alert("Todos los campos son obligatorios");
+		return false	
+	}
+	
+}
 
 function datosformulario(){
 	var array,consumo,radiacion,potencia,autonomia,capacidad,voltaje;
