@@ -13,7 +13,7 @@ from calculadora.models import(EquipoDeComputoModel, BateriaModel,CalculoPanelMo
 ) 
 
 from django.views.decorators.csrf import csrf_exempt
-
+import json
 class EquipoDeComputoForm(ModelForm):
     class Meta:
         model= EquipoDeComputoModel
@@ -56,16 +56,22 @@ def addEquipo(request):
 
 @csrf_exempt
 def calcularConsumoDispositivo(request):     
-    if(request.method == "POST"):
-        calcular = Calcular(request)        
-        request.session['token'] = str(calcular.getId())                
+    if(request.method == "POST"):        
+        request.session['token'] = str(uuid4())   
+        request.session['datos'] = json.loads(request.body)
+        calcular = Calcular(request.session['datos'], request.session['token'])        
+
     return JsonResponse(calcular.total(),safe=False)
     
 def calcularPanelYbateria(request):
-    if(request.method=="POST"):
+    if(request.method=="POST"):            
+        calcular = Calcular(request.session['datos'], request.session['token'])
+        calcular.guardar()
+
         ward = CalcularBateriaPanel(request.POST, request.session['token'])
         ward.calcularPanelYbateria()
-        reporte = CalcularReporte(ward)        
+        reporte = CalcularReporte(ward)
+        
         return render(request,"calculadora/reporte.html", reporte.getReporte())
         
 def generarPdf(request,panel,bateria,total,inversor,ah,panelCantidad):
