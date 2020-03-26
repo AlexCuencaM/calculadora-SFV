@@ -16,9 +16,9 @@ document.getElementById("pestana5").addEventListener("click",function(){
 
 function pestanasTodas(id = 0){
 	const base= "/home";
-	var xhr=new XMLHttpRequest();
-	const url=[base+"/slider", base + "/info",base + "/implementacion",
-	base + "/imagenes",`${base}/contact`];
+	const xhr=new XMLHttpRequest();
+	const url=[`${base}/slider`, `${base}/info`,`${base}/implementacion`,
+		`${base}/imagenes`,`${base}/contact`];
 	xhr.onreadystatechange=function(){			//mapear el estado de la solicitud
 		if(this.readyState==4 && this.status==200)//4.respuesta a finalizado y response is ready 200ok(XMLHttpRequestObject)
 		{				
