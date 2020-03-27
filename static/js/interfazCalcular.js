@@ -12,10 +12,7 @@ async function mostrarFormularioCalcular(){
 
 /*Funcion que delete una palabra a una clase de una etiqueta*/
 
-function cerrarFormularioCalcular(){
-	/*Cierra la pantalla*/
-	lightBox().classList.remove('show');
-}
+const cerrarFormularioCalcular = () => lightBox().classList.remove('show');
 
 /*Funcion mostrar el html*/
 async function mostrarCalcular(){
@@ -35,9 +32,9 @@ async function mostrarCalcular(){
 //Método que llama a la función datos tabla para su posterior  inserción
 async function anadir(id,device){
 	//electrodomestico de prueba
-	var electrodomestico={id:id, tipo:device,tiempo:"24",cantidad:"10"}; 
+	const electrodomestico={id:id, tipo:device,tiempo:"24",cantidad:"10"}; 
 	//nombre de la tabla html
-	var nombreTabla=document.getElementById("tablaConsumo");
+	const nombreTabla=document.getElementById("tablaConsumo");
 	//llama al método datosTabla la cual inserta los datos en la tabla
 	await datosTabla(electrodomestico,nombreTabla);
 }
@@ -46,11 +43,9 @@ async function anadir(id,device){
 async function datosTabla(electrodomestico,nombreTabla){		
 
 	//se añade una fila a la tabla
-	var fila=nombreTabla.insertRow(-1);
-	var array_electrodomestico=document.getElementsByName("producto[]");
+	const fila=nombreTabla.insertRow(-1);	
 	// le asigna al objeto cell 3
-	var cell=[fila.insertCell(0),fila.insertCell(1),fila.insertCell(2),fila.insertCell(3)];	
-	console.log(array_electrodomestico.length);
+	let cell=[fila.insertCell(0),fila.insertCell(1),fila.insertCell(2),fila.insertCell(3)];		
 	/*registro de practica*/	
 	//inserta en cada celda los atributos del objeto
 	cell[0].innerHTML='<div class="form-group"><td><input type="text" class="form-control form-control-sm" value="'+electrodomestico.tipo+'" name="descripcion-producto[]"><input type="hidden" name="producto[]" value="'+electrodomestico.id+'" id="tv">'+'</td>';
@@ -62,18 +57,24 @@ async function datosTabla(electrodomestico,nombreTabla){
 //Método de eliminar fila de la tabla
 async function eliminarFila(r){
 	/*Obtiene la fila que se va a eliminar*/
-	var obtener_fila=r.parentNode.parentNode.rowIndex;
+	const obtener_fila=r.parentNode.parentNode.rowIndex;
 	/*elimina fila*/
 	document.getElementById("tablaConsumo").deleteRow(obtener_fila);
 
 }
 //Llama desde el html
-function obtenerAllDateTable(){
-	var array_descripcion=document.getElementsByName("descripcion-producto[]");
-	var array_id=document.getElementsByName("producto[]");
-	var array_tiempo=document.getElementsByName("tiempo[]");
-	var array_cantidad=document.getElementsByName("cantidad[]");			
-	var json ={
+function obtenerAllDateTable(){	
+	const array_descripcion=document.getElementsByName("descripcion-producto[]");
+	const array_id=document.getElementsByName("producto[]");
+	const array_tiempo=document.getElementsByName("tiempo[]");
+	const array_cantidad=document.getElementsByName("cantidad[]");			
+	enviarDatosPost(getJson(array_descripcion,array_id,array_tiempo,array_cantidad));
+	cerrarFormularioCalcular();
+	
+}
+
+const getJson = (array_descripcion,array_id,array_tiempo,array_cantidad) =>{	
+	const json ={
 		result:[			
 		]
 	}
@@ -85,28 +86,26 @@ function obtenerAllDateTable(){
 			horas:array_tiempo[i].value,
 			watts:array_cantidad[i].value
 		})
-	}	
-
-	console.log(json)
-	enviarDatosPost(json);
-	cerrarFormularioCalcular();
-	
+	}
+	return json;
 }
+
 /*Funcion mostrar el html*/
 function enviarDatosPost(json){	
-	var xhr=new XMLHttpRequest();
+	const xhr=new XMLHttpRequest();
 	const url="/consumo/";
 	xhr.open("POST",url,true);
 	xhr.setRequestHeader("Content-Type", "application/json");
 
 	xhr.onreadystatechange = function () {
-		if (xhr.readyState === 4 && xhr.status === 200) {
-			var sendJson = JSON.parse(xhr.responseText);	
-			document.getElementById("valor_consumo").innerHTML=sendJson.total + " W";
-			document.getElementById("consumoDiario").value=sendJson.total;
-			console.log(document.getElementById("consumoDiario").value);
-		}
+		if (xhr.readyState === 4 && xhr.status === 200)
+			consumoDiario(xhr.responseText);		
 	};	
 	
 	xhr.send(JSON.stringify(json));				
+}
+const consumoDiario = (responseText) =>{
+	let sendJson = JSON.parse(responseText);
+	document.getElementById("valor_consumo").innerHTML=sendJson.total + " W";
+	document.getElementById("consumoDiario").value=sendJson.total;			
 }
