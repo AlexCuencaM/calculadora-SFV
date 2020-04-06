@@ -1,7 +1,7 @@
 /*Obtiene el selector*/	
 
 /*Funcion que add una palabra a una clase de una etiqueta*/
-var lightBox = () => document.querySelector(".gallery-lightbox");
+const lightBox = () => document.querySelector(".gallery-lightbox");
 
 async function mostrarFormularioCalcular(){
 	/*Le agrega a la etiqueta ligtbox show*/
@@ -16,7 +16,7 @@ const cerrarFormularioCalcular = () => lightBox().classList.remove('show');
 
 /*Funcion mostrar el html*/
 async function mostrarCalcular(){
-	var xhr=new XMLHttpRequest();
+	let xhr=new XMLHttpRequest();
 	const url="/calcular";
 	xhr.onreadystatechange=function(){			//mapear el estado de la solicitud
 		if(this.readyState==4 && this.status==200)//4.respuesta a finalizado y response is ready 200ok(XMLHttpRequestObject)
@@ -30,13 +30,18 @@ async function mostrarCalcular(){
 	xhr.send();			
 }
 //Método que llama a la función datos tabla para su posterior  inserción
-async function anadir(id,device){
-	//electrodomestico de prueba
-	const electrodomestico={id:id, tipo:device,tiempo:"24",cantidad:"10"}; 
+function Electrodomestico (id,device,tiempo=24,cantidad=10){
+	this.id = id;
+	this.tipo = device;
+	this.tiempo = tiempo;
+	this.cantidad = cantidad;
+}
+
+async function anadir(id,device){		
 	//nombre de la tabla html
 	const nombreTabla=document.getElementById("tablaConsumo");
 	//llama al método datosTabla la cual inserta los datos en la tabla
-	await datosTabla(electrodomestico,nombreTabla);
+	await datosTabla(new Electrodomestico(id,device),nombreTabla);
 }
 
 //Método que inserta los datos en la tabla
@@ -72,6 +77,7 @@ function obtenerAllDateTable(){
 	cerrarFormularioCalcular();
 	
 }
+
 
 const getJson = (array_descripcion,array_id,array_tiempo,array_cantidad) =>{	
 	const json ={

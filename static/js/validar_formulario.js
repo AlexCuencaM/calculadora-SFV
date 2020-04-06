@@ -1,5 +1,5 @@
 function validar(){	
-	var array=datosformulario();		
+	const array=datosformulario();		
 	for(let field of array){		
 		if(field===""){
 			alert("Todos los campos son obligatorios");
