@@ -1,20 +1,17 @@
 function validar(){	
-	var array=datosformulario();		
-	for(let field of array){		
-		if(field===""){
-			alert("Todos los campos son obligatorios");
-			return false;
-		}
-	}
-	return true;
+	const array=datosformulario();	
+	const validate = (value,index,array) => value !== "";
+	const validar = array.every(validate);	
+	if(!validar)	
+		alert("Todos los campos son obligatorios");		
+	return validar;	
 }
 
 function datosformulario(){	
 	return [
-		document.getElementById("consumoDiario").value,
-		document.getElementById("potenciadepanel").value,
+		document.getElementById("consumoDiario").value,		
 		document.getElementById("autonomiaDias").value,
 		document.getElementById("capacidad").value,
-		document.getElementById("voltaje").value,
+		document.getElementById("potenciadepanel").value,
 	];
 }
