@@ -1,5 +1,4 @@
 /*Obtiene el selector*/	
-
 /*Funcion que add una palabra a una clase de una etiqueta*/
 const lightBox = () => document.querySelector(".gallery-lightbox");
 
@@ -11,19 +10,15 @@ async function mostrarFormularioCalcular(){
 }
 
 /*Funcion que delete una palabra a una clase de una etiqueta*/
-
 const cerrarFormularioCalcular = () => lightBox().classList.remove('show');
 
 /*Funcion mostrar el html*/
 async function mostrarCalcular(){
-	let xhr=new XMLHttpRequest();
+	const xhr=new XMLHttpRequest();
 	const url="/calcular";
 	xhr.onreadystatechange=function(){			//mapear el estado de la solicitud
-		if(this.readyState==4 && this.status==200)//4.respuesta a finalizado y response is ready 200ok(XMLHttpRequestObject)
-		{
-			console.log(this.responseText);
-			document.getElementById("mostrar").innerHTML=this.responseText;
-		}
+		if(this.readyState==4 && this.status==200)//4.respuesta a finalizado y response is ready 200ok(XMLHttpRequestObject)			
+			document.getElementById("mostrar").innerHTML=this.responseText;		
 	};
 	// Open especifica la solicitud		
 	xhr.open("GET",url,true);
@@ -39,25 +34,28 @@ function Electrodomestico (id,device,tiempo=24,cantidad=10){
 
 async function anadir(id,device){		
 	//nombre de la tabla html
-	const nombreTabla=document.getElementById("tablaConsumo");
-	//llama al método datosTabla la cual inserta los datos en la tabla
-	await datosTabla(new Electrodomestico(id,device),nombreTabla);
+	const tabla=document.getElementById("tablaConsumo");
+	//llama al método datosTabla la cual inserta los datos en la tabla	
+	await datosTabla(new Electrodomestico(id,device),tabla);
 }
 
+const contentRow = (electrodomestico) => [
+	'<div class="form-group"><td><input type="text" class="form-control form-control-sm" value="'+electrodomestico.tipo+'" name="descripcion-producto[]"><input type="hidden" name="producto[]" value="'+electrodomestico.id+'" id="tv">'+'</td>',
+	'<td><input type="number" class="form-control form-control-sm" value="'+electrodomestico.tiempo+'" name="tiempo[]"></td>',
+	'<td><input type="number" class="form-control form-control-sm" value="'+electrodomestico.cantidad+'" name="cantidad[]"></td>',
+	'<td><input type="button" class="form-control form-control-sm btn btn-danger" value="Eliminar" name="eliminar[]" id="eliminar" onclick="eliminarFila(this)"></td>' + '</div>'
+];
 //Método que inserta los datos en la tabla
-async function datosTabla(electrodomestico,nombreTabla){		
-
+async function datosTabla(electrodomestico,tabla){		
 	//se añade una fila a la tabla
-	const fila=nombreTabla.insertRow(-1);	
-	// le asigna al objeto cell 3
-	let cell=[fila.insertCell(0),fila.insertCell(1),fila.insertCell(2),fila.insertCell(3)];		
-	/*registro de practica*/	
-	//inserta en cada celda los atributos del objeto
-	cell[0].innerHTML='<div class="form-group"><td><input type="text" class="form-control form-control-sm" value="'+electrodomestico.tipo+'" name="descripcion-producto[]"><input type="hidden" name="producto[]" value="'+electrodomestico.id+'" id="tv">'+'</td>';
-	cell[1].innerHTML='<td><input type="number" class="form-control form-control-sm" value="'+electrodomestico.tiempo+'" name="tiempo[]"></td>';
-	cell[2].innerHTML='<td><input type="number" class="form-control form-control-sm" value="'+electrodomestico.cantidad+'" name="cantidad[]"></td>';
-	cell[3].innerHTML='<td><input type="button" class="form-control form-control-sm btn btn-danger" value="Eliminar" name="eliminar[]"  id="eliminar" onclick="eliminarFila(this)"></td></div>';	
-
+	const fila=tabla.insertRow(-1);		
+	let cell=[];
+	const array = contentRow(electrodomestico);	
+	for(let i = 0; i < array.length; i++)
+	{
+		cell.push(fila.insertCell(i));
+		cell[i].innerHTML = array[i];
+	}			
 }
 //Método de eliminar fila de la tabla
 async function eliminarFila(r){
@@ -78,21 +76,21 @@ function obtenerAllDateTable(){
 	
 }
 
+function Result(id,descripcion,horas,watts){
+	this.id = id;
+	this.descripcion = descripcion;
+	this.horas = horas;
+	this.watts = watts;
+}
 
 const getJson = (array_descripcion,array_id,array_tiempo,array_cantidad) =>{	
 	const json ={
-		result:[			
-		]
+		result:[]
 	}
-	for(var i = 0; i<array_tiempo.length; i++)
-	{
-		json.result.push({
-			id:array_id[i].value,//Suministrado
-			descripcion:array_descripcion[i].value,
-			horas:array_tiempo[i].value,
-			watts:array_cantidad[i].value
-		})
-	}
+	for(let i = 0; i<array_tiempo.length; i++)
+		json.result.push(new Result(array_id[i].value, array_descripcion[i].value,
+			array_tiempo[i].value, array_cantidad[i].value))
+	
 	return json;
 }
 
