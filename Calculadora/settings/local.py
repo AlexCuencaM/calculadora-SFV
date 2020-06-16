@@ -2,7 +2,7 @@
 from .base import *
 DEBUG = True
 SECRET_KEY = env('DJANGO_SECRET_KEY', default='5=lchar9e*pz(3mt-xsj8l$$pe4-4(j)i)kt-hlhi4m5ukt2#3')
-
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0',]
 # Database MySQL
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 # settings.py
