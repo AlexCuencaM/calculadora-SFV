@@ -7,7 +7,7 @@ DATABASES ={
     )
 }
 ALLOWED_HOSTS = ['https://calculadora-sfv.herokuapp.com']
-
+SECURE_SSL_REDIRECT = True
 CORS_ORIGIN_WHITELIST = (
     'https://calculadora-sfv.herokuapp.com',
 )
