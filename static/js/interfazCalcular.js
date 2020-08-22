@@ -96,6 +96,7 @@ const getJson = (array_descripcion,array_id,array_tiempo,array_cantidad) =>{
 
 /*Funcion mostrar el html*/
 function enviarDatosPost(json){	
+	
 	const xhr=new XMLHttpRequest();
 	const url="/consumo/";
 	xhr.open("POST",url,true);
