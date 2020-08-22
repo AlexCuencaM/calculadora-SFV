@@ -35,7 +35,7 @@ def home(request,ventana=""):
     elif(ventana=="contact"):
         return render(request,'calculadora/Contactar.html')
     elif(ventana=="imagenes"):
-        return render(request,'calculadora/Imagenes.html')
+        return render(request,'calculadora/imagenes.html')
     return render(request,'calculadora/home.html')       
 
 def botonCalcular(request):

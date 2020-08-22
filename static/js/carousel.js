@@ -1,7 +1,8 @@
-
 var acumulador=1;
-function nextCambiar(){
-
+function nextCambiar(){	
+	const imagenes=document.getElementById("imagenes");	
+	if(imagenes == null)
+		return;
 	acumulador=acumulador+1;
 	if(acumulador>=16){
 		acumulador=1;
@@ -18,8 +19,8 @@ function backCambiar(){
 }
 
 function imagen(acumulador){
-	var imagen=document.getElementById("imagenes");
-	imagen.src="../img/Imagenes SFV/"+acumulador+".jpg";
+	var imagen=document.getElementById("imagenes");	
+	imagen.src="/static/img/Imagenes SFV/"+acumulador+".jpg";
 }
 
-setInterval('nextCambiar()',10000);
+setInterval(nextCambiar,5000);

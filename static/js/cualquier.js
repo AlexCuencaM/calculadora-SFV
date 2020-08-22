@@ -1,6 +1,4 @@
-document.getElementById("pestana1").addEventListener("click",function(){
-	pestanasTodas("0");
-});
+document.getElementById("pestana1").addEventListener("click",() => {pestanasTodas("0")});
 document.getElementById("pestana2").addEventListener("click",function(){
 	pestanasTodas("1");
 });
