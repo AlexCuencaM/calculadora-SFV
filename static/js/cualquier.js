@@ -12,8 +12,8 @@ document.getElementById("pestana5").addEventListener("click",function(){
 	pestanasTodas("4");
 });
 
-function pestanasTodas(id = "0"){
-	const base= "/home";
+const pestanasTodas = (id = "0") => {
+	const base= "/home";	
 	const xhr=new XMLHttpRequest();
 	const url=[`${base}/slider`, `${base}/info`,`${base}/implementacion`,
 		`${base}/imagenes`,`${base}/contact`];

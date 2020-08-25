@@ -10,7 +10,7 @@ async function mostrarFormularioCalcular(){
 }
 
 /*Funcion que delete una palabra a una clase de una etiqueta*/
-const cerrarFormularioCalcular = () => lightBox().classList.remove('show');
+const cerrarFormularioCalcular = async () => lightBox().classList.remove('show');
 
 /*Funcion mostrar el html*/
 async function mostrarCalcular(){
@@ -66,13 +66,13 @@ async function eliminarFila(r){
 
 }
 //Llama desde el html
-function obtenerAllDateTable(){	
+async function obtenerAllDateTable(){	
 	const array_descripcion=document.getElementsByName("descripcion-producto[]");
 	const array_id=document.getElementsByName("producto[]");
 	const array_tiempo=document.getElementsByName("tiempo[]");
 	const array_cantidad=document.getElementsByName("cantidad[]");			
 	enviarDatosPost(getJson(array_descripcion,array_id,array_tiempo,array_cantidad));
-	cerrarFormularioCalcular();
+	await cerrarFormularioCalcular();
 	
 }
 
