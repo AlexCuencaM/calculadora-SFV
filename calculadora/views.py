@@ -17,10 +17,9 @@ class EquipoDeComputoForm(ModelForm):
     class Meta:
         model= EquipoDeComputoModel
         fields=['descripcion',]
-def detalles():
-    category = BateriaModel.VOLTAJE
+def detalles():    
     return {
-        "category":[i[0] for i in category],
+        "category":[i[0] for i in BateriaModel.VOLTAJE],
         "hsp": CalculoPanelModel.PROMEDIO,
     }
 
