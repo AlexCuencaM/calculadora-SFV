@@ -95,9 +95,10 @@ p{
 }
 
 .spacer{
-	background-color: lightblue;
+	/* background-color: lightblue; */
+	background-color: red;
 	padding-right: 20px;	
 	max-height: 250px;
-	overflow: scroll;
-	overflow-x: hidden;
+	/* overflow: scroll;
+	overflow-x: hidden; */
 }
