@@ -38,18 +38,17 @@ async function anadir(id, device) {
 	//llama al método datosTabla la cual inserta los datos en la tabla	
 	await datosTabla(new Electrodomestico(id, device), tabla);
 }
-
 const contentRow = (electrodomestico) => [
-	'<div class="form-group"><td><input type="text" class="form-control form-control-sm" value="' + electrodomestico.tipo + '" name="descripcion-producto[]"><input type="hidden" name="producto[]" value="' + electrodomestico.id + '" id="tv">' + '</td>',
-	'<td><input type="number" class="form-control form-control-sm" value="' + electrodomestico.tiempo + '" name="tiempo[]"></td>',
-	'<td><input type="number" class="form-control form-control-sm" value="' + electrodomestico.cantidad + '" name="cantidad[]"></td>',
-	'<td><input type="button" class="form-control form-control-sm btn btn-danger" value="Eliminar" name="eliminar[]" id="eliminar" onclick="eliminarFila(this)"></td>' + '</div>'
+	`<div class="form-group"><td><input type="text" class="form-control form-control-sm" value="${electrodomestico.tipo}" name="descripcion-producto[]"><input type="hidden" name="producto[]" value="${electrodomestico.id}" id="tv"></td>`,
+	`<td><input type="number" class="form-control form-control-sm" value="${electrodomestico.tiempo}" name="tiempo[]"></td>`,
+	`<td><input type="number" class="form-control form-control-sm" value="${electrodomestico.cantidad}" name="cantidad[]"></td>`,	
+	`<td><button class="btn btn-danger" name="eliminar[]" id="eliminar" onclick="eliminarFila(this)"><i class="fa fa-trash-o"></i></button></td></div>`
 ];
 //Método que inserta los datos en la tabla
 async function datosTabla(electrodomestico, tabla) {
 	//se añade una fila a la tabla
 	const fila = tabla.insertRow(-1);
-	let cell = [];
+	let cell = [];	
 	const array = contentRow(electrodomestico);
 	for (let i = 0; i < array.length; i++) {
 		cell.push(fila.insertCell(i));
@@ -112,8 +111,7 @@ const enviarDatosPost = (json) => {
 
 }
 
-const consumoDiario = (responseText) => {
-	let sendJson = responseText;
-	document.getElementById("valor_consumo").innerHTML = sendJson.total + " W";
-	document.getElementById("consumoDiario").value = sendJson.total;
+const consumoDiario = (responseText) => {	
+	document.getElementById("valor_consumo").innerHTML = responseText.total + " W";
+	document.getElementById("consumoDiario").value = responseText.total;
 }
