@@ -39,10 +39,10 @@ async function anadir(id, device) {
 	await datosTabla(new Electrodomestico(id, device), tabla);
 }
 const contentRow = (electrodomestico) => [
-	`<div class="form-group"><td><input type="text" class="form-control form-control-sm" value="${electrodomestico.tipo}" name="descripcion-producto[]"><input type="hidden" name="producto[]" value="${electrodomestico.id}" id="tv"></td>`,
+	`<td><input type="text" class="form-control form-control-sm" value="${electrodomestico.tipo}" name="descripcion-producto[]"><input type="hidden" name="producto[]" value="${electrodomestico.id}" id="tv"></td>`,
 	`<td><input type="number" class="form-control form-control-sm" value="${electrodomestico.tiempo}" name="tiempo[]"></td>`,
 	`<td><input type="number" class="form-control form-control-sm" value="${electrodomestico.cantidad}" name="cantidad[]"></td>`,	
-	`<td><button class="btn btn-danger" name="eliminar[]" id="eliminar" onclick="eliminarFila(this)"><i class="fa fa-trash-o"></i></button></td></div>`
+	`<td><button class="btn btn-danger" name="eliminar[]" id="eliminar" onclick="eliminarFila(this)"><i class="fa fa-trash-o"></i></button></td>`
 ];
 //Método que inserta los datos en la tabla
 async function datosTabla(electrodomestico, tabla) {
