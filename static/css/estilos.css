@@ -1,5 +1,5 @@
 html{
-	padding-bottom: 10px;
+	padding-bottom: 10px;	
 }
 /*el cuerpo en color negro*/
 .gallery-lightbox{
@@ -84,7 +84,6 @@ p{
 .scroll{	
 	overflow:auto;
 	height: 200px;	
-	width: 100%;
 }
 
 /*Cabecera de la tabla fija*/
@@ -95,10 +94,10 @@ p{
 }
 
 .spacer{
-	/* background-color: lightblue; */
-	background-color: red;
+	background-color: lightblue;	
 	padding-right: 20px;	
 	max-height: 250px;
+	overflow:auto;
 	/* overflow: scroll;
 	overflow-x: hidden; */
 }
