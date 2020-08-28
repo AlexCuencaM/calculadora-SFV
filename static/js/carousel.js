@@ -18,7 +18,8 @@ function backCambiar(){
 }
 
 function imagen(acumulador){
-	const imagen=document.getElementById("imagenes");	
+	let imagen=document.getElementById("imagenes");
+	imagen.loading="lazy";
 	imagen.src=`/static/img/Imagenes SFV/${acumulador}.jpg`;
 }
 
