@@ -1,16 +1,9 @@
 /*Obtiene el selector*/
-/*Funcion que add una palabra a una clase de una etiqueta*/
-const lightBox = () => document.querySelector(".gallery-lightbox");
 
-async function mostrarFormularioCalcular() {
-	/*Le agrega a la etiqueta ligtbox show*/
-	lightBox().classList.add('show');
+async function mostrarFormularioCalcular() {	
 	/*Llama al metodo que muestra la pagina html BotonCalcular.html*/
 	await this.mostrarCalcular();
 }
-
-/*Funcion que delete una palabra a una clase de una etiqueta*/
-const cerrarFormularioCalcular = async () => lightBox().classList.remove('show');
 
 /*Funcion mostrar el html*/
 async function mostrarCalcular() {
@@ -34,34 +27,29 @@ function Electrodomestico(id, device, tiempo = 24, cantidad = 10) {
 
 async function anadir(id, device) {
 	//nombre de la tabla html
-	const tabla = document.getElementById("tablaConsumo");
+	const tabla = document.getElementById("table-body");	
 	//llama al método datosTabla la cual inserta los datos en la tabla	
 	await datosTabla(new Electrodomestico(id, device), tabla);
 }
-
 const contentRow = (electrodomestico) => [
-	'<div class="form-group"><td><input type="text" class="form-control form-control-sm" value="' + electrodomestico.tipo + '" name="descripcion-producto[]"><input type="hidden" name="producto[]" value="' + electrodomestico.id + '" id="tv">' + '</td>',
-	'<td><input type="number" class="form-control form-control-sm" value="' + electrodomestico.tiempo + '" name="tiempo[]"></td>',
-	'<td><input type="number" class="form-control form-control-sm" value="' + electrodomestico.cantidad + '" name="cantidad[]"></td>',
-	'<td><input type="button" class="form-control form-control-sm btn btn-danger" value="Eliminar" name="eliminar[]" id="eliminar" onclick="eliminarFila(this)"></td>' + '</div>'
+	`<td><input type="text" class="form-control form-control-sm" value="${electrodomestico.tipo}" name="descripcion-producto[]"><input type="hidden" name="producto[]" value="${electrodomestico.id}" id="tv"></td>`,
+	`<td><input type="number" class="form-control form-control-sm" value="${electrodomestico.tiempo}" name="tiempo[]"></td>`,
+	`<td><input type="number" class="form-control form-control-sm" value="${electrodomestico.cantidad}" name="cantidad[]"></td>`,	
+	`<td class="text-center"><button class="btn btn-outline-danger" name="eliminar[]" id="eliminar" onclick="eliminarFila(this)"><i class="fa fa-trash-o"></i></button></td>`
+	
 ];
 //Método que inserta los datos en la tabla
-async function datosTabla(electrodomestico, tabla) {
-	//se añade una fila a la tabla
-	const fila = tabla.insertRow(-1);
-	let cell = [];
+async function datosTabla(electrodomestico, tabla) {	
 	const array = contentRow(electrodomestico);
-	for (let i = 0; i < array.length; i++) {
-		cell.push(fila.insertCell(i));
-		cell[i].innerHTML = array[i];
-	}
+	//se añade una fila a la tabla
+	tabla.innerHTML += array.join(' ');	
 }
 //Método de eliminar fila de la tabla
 async function eliminarFila(r) {
 	/*Obtiene la fila que se va a eliminar*/
-	const obtener_fila = r.parentNode.parentNode.rowIndex;
+	const obtener_fila = r.parentNode.rowIndex;	
 	/*elimina fila*/
-	document.getElementById("tablaConsumo").deleteRow(obtener_fila);
+	document.getElementById("table-body").deleteRow(obtener_fila);
 
 }
 //Llama desde el html
@@ -71,7 +59,6 @@ async function obtenerAllDateTable() {
 	const array_tiempo = document.getElementsByName("tiempo[]");
 	const array_cantidad = document.getElementsByName("cantidad[]");
 	enviarDatosPost(getJson(array_descripcion, array_id, array_tiempo, array_cantidad));
-	await cerrarFormularioCalcular();
 
 }
 
@@ -112,8 +99,7 @@ const enviarDatosPost = (json) => {
 
 }
 
-const consumoDiario = (responseText) => {
-	let sendJson = responseText;
-	document.getElementById("valor_consumo").innerHTML = sendJson.total + " W";
-	document.getElementById("consumoDiario").value = sendJson.total;
+const consumoDiario = (responseText) => {	
+	document.getElementById("valor_consumo").innerHTML = responseText.total + " W";
+	document.getElementById("consumoDiario").value = responseText.total;
 }

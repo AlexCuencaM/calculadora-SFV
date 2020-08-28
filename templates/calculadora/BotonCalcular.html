@@ -1,39 +1,31 @@
-<div class="container">		
-		<div class="row">			
-				<legend class="text-primary">Lista de equipo de computo</legend>						
-		</div> 			
-		<div class="row spacer">			
-				{% for device in computoDevice %}
-					<div class="col-sm-5 col-md-3 col-lg-2 televisor">					 							
-						<a href="#" onclick="anadir({{device.id}},'{{device.descripcion}}')">{{device.descripcion}}</a>
-					</div>
-				{% endfor %}
-								 				  
-		</div>	
-		<div class="row">
-			<div class="col-sm-12 col-md-12 col-lg-12">				
-				<legend class="text-primary">Tabla de Consumo</legend>
-			</div>			
-		</div>
-		<div class = "row">
-			<div class="scroll">							
-					<table id= "tablaConsumo" class="table table-hover">   	
-						<thead class="thead-dark">
-							<tr>
-								<th scope="col" > Nombre Equipo</th>
-								<th scope="col"> Horas</th>
-								<th scope="col"> Watts</th>
-								<th scope="col" > Eliminar Equipo </th>
-							</tr>
-						</thead>
-						<tbody id="lista">
-							
-						</tbody>		
-					</table>										 				  
-			</div>											
-		</div>
-		
-		<input type="button" id="guardar_cerrar" class="btn btn-primary" value="Guardar y Cerrar" onclick="obtenerAllDateTable()"> 
-		
+<div class ="container-fluid">
+	<div class="row">			
+			{% for device in computoDevice %}
+				<div class=" col-sm-12 col-md-4">
+					<button class ="btn btn-outline-dark btn-block m-1" onclick="anadir({{device.id}},'{{device.descripcion}}')">{{device.descripcion}}</button>
+				</div>
+			{% endfor %}
+	</div>												
+	<div class="row">
+		<div class="col-sm-12 col-md-12 col-lg-12">				
+			<legend class="text-primary">Tabla de Consumo</legend>
+		</div>			
+	</div>		
+	<div class="row scroll table_responsive">							
+			<table id= "tablaConsumo" class="table table-hover table-striped" >   	
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col"> Nombre Equipo</th>
+						<th scope="col"> Horas</th>
+						<th scope="col"> Watts</th>
+						<th scope="col" > Eliminar Equipo </th>
+					</tr>
+				</thead>
+				<tbody id="table-body">
+					
+				</tbody>		
+			</table>										 				  
+	</div>																 
+
 </div>
-	
+

@@ -11,9 +11,9 @@ document.getElementById("pestana4").addEventListener("click",function(){
 document.getElementById("pestana5").addEventListener("click",function(){
 	pestanasTodas("4");
 });
-const initParams = (methodtype) => {
+const initParams = () => {
 return {
-	method: methodtype,
+	method: "get",
 	headers: new Headers(),
 	mode: "cors",
 	cache: "default"
@@ -23,7 +23,7 @@ const request = (id = 0) =>{
 	const url=[`${base}/slider`, `${base}/info`,`${base}/implementacion`,
 		`${base}/imagenes`,`${base}/contact`];
 
-	return new Request(url[id],initParams("get"));
+	return new Request(url[id],initParams());
 } 
 
 const pestanasTodas = (id = 0) =>{
