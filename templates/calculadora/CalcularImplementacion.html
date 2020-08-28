@@ -1,13 +1,13 @@
 <h1 class="my-5 text-center text-primary"> Calcular para implementación SFV </h1>
 <hr>
 
-
 <form action="{% url 'calculadora:panel-y-bateria' %}" method="post" onsubmit="return validar()">
 	{% csrf_token %}
-	<div class="container">
+	<div class="container">		
+		<!-- Modal -->	
 		<div class="row">					
 				<label class="col col-sm-6 col-md-4" > Ingresar dispositivos</label>    
-				<input class="col col-sm-6 col-md-2 btn btn-primary" type="button" name ="consumo-diario" id="consumo-diario" value="Calcular Consumo" onclick="mostrarFormularioCalcular()" >
+				<input class="btn btn-primary" type="button" name ="consumo-diario" id="consumo-diario" value="Calcular Consumo" data-toggle="modal" data-target=".bd-equipos-lg" onclick="mostrarFormularioCalcular()">
 		</div> 
 		<hr>		
 		<div class="form-row">													
@@ -66,16 +66,22 @@
 			<button type="submit" class="btn btn-success">Calcular</button>
 		</div>
 	</div>
-</form >
+</form >	
 
-	<div class="gallery-lightbox scrolldevices">
-		<div class="gallery-lightbox_modal">
-			<button onclick="cerrarFormularioCalcular()" type="button" class="close" aria-label="Close" >
-			<span aria-hidden="true">&times;</span>
-			</button>
-			<div id="mostrar">
-			
+	<div class="modal fade bd-equipos-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-primary" id="exampleModalLabel"> Lista de equipo de computo</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" id="mostrar"></div>
+				<div class="modal-footer">					
+					<input type="button" id="guardar_cerrar" data-dismiss="modal" class="btn btn-primary" value="Guardar y Cerrar" onclick="obtenerAllDateTable()">
+				</div>
 			</div>
-
 		</div>
-	</div>  
+	</div>
+

@@ -1,16 +1,9 @@
 /*Obtiene el selector*/
-/*Funcion que add una palabra a una clase de una etiqueta*/
-const lightBox = () => document.querySelector(".gallery-lightbox");
 
-async function mostrarFormularioCalcular() {
-	/*Le agrega a la etiqueta ligtbox show*/
-	lightBox().classList.add('show');
+async function mostrarFormularioCalcular() {	
 	/*Llama al metodo que muestra la pagina html BotonCalcular.html*/
 	await this.mostrarCalcular();
 }
-
-/*Funcion que delete una palabra a una clase de una etiqueta*/
-const cerrarFormularioCalcular = async () => lightBox().classList.remove('show');
 
 /*Funcion mostrar el html*/
 async function mostrarCalcular() {
@@ -42,7 +35,7 @@ const contentRow = (electrodomestico) => [
 	`<td><input type="text" class="form-control form-control-sm" value="${electrodomestico.tipo}" name="descripcion-producto[]"><input type="hidden" name="producto[]" value="${electrodomestico.id}" id="tv"></td>`,
 	`<td><input type="number" class="form-control form-control-sm" value="${electrodomestico.tiempo}" name="tiempo[]"></td>`,
 	`<td><input type="number" class="form-control form-control-sm" value="${electrodomestico.cantidad}" name="cantidad[]"></td>`,	
-	`<td class="text-center"><button class="btn btn-danger" name="eliminar[]" id="eliminar" onclick="eliminarFila(this)"><i class="fa fa-trash-o"></i></button></td>`
+	`<td class="text-center"><button class="btn btn-outline-danger" name="eliminar[]" id="eliminar" onclick="eliminarFila(this)"><i class="fa fa-trash-o"></i></button></td>`
 	
 ];
 //Método que inserta los datos en la tabla
@@ -66,7 +59,6 @@ async function obtenerAllDateTable() {
 	const array_tiempo = document.getElementsByName("tiempo[]");
 	const array_cantidad = document.getElementsByName("cantidad[]");
 	enviarDatosPost(getJson(array_descripcion, array_id, array_tiempo, array_cantidad));
-	await cerrarFormularioCalcular();
 
 }
 
