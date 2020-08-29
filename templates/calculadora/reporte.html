@@ -3,23 +3,50 @@
 
 {% block 'content' %}
 <div class="container">
-<h1 class="my-5 text-center text-primary">Reporte</h1>
-<hr>
+	<h1 class="my-5 text-center text-primary">Reporte</h1>
+	<hr>
+	<div class="row">
+		<div class="col-12 col-sm-6 col-md-6">
+			<label> Potencia en Wh/ día: </label>
+		</div>
+		<div class="col-6 col-sm-6 col-md-6">
+			<label id="potencia"> {{resultadosDevices}} W </label>
+		</div>
 
-<label class="col-sm-5 col-md-5 col-lg-5"> Potencia en Wh/ día: </label>
-<label class="col-md-2" id="potencia"> {{resultadosDevices}} W<!--Aqui va el valor de potencia--> </label>
+	</div>
+	
+	<div class="row">
+		<div class="col-12 col-sm-6 col-md-6">
+			<label> La cantidad de paneles a utilizar: </label>
+		</div>
+		<div class="col-6 col-sm-3 col-md-2">
+			<label id="cantidad_paneles"> {{TotalPanel}} paneles</label>
+		</div>
+		<div class="col-3 col-sm-3 col-md-2">
+			<label > {{panelCantidad}} W </label>
+		</div>
+	</div>
 
+	<div class="row">
+		<div class="col-12 col-sm-6 col-md-6">
+			<label> La cantidad de baterias a utilizar: </label>
+		</div>
+		<div class="col-6 col-sm-3 col-md-2">
+			<label id="cantidad_baterias">{{TotalBateria}} baterías</label>
+		</div>
+		<div class="col-3 col-sm-3 col-md-2">
+			<label> {{ah}} Ah</label>
+		</div>
+	</div>		
+	<div class="row">
+		<div class="col-6 col-sm-6 col-md-6">
+			<label> Inversor Seleccionado: </label>
+		</div>
+		<div class="col-6 col-sm-4 col-md-6">
+			<label id="xd">{{inversor}}</label>
+		</div>
 
-<label class="col-sm-5 col-md-5 col-lg-5"> La cantidad de paneles a utilizar: </label>
-<label class="col-md-2" id="cantidad_paneles"> {{TotalPanel}} paneles<!--Aquí va la cantidad de paneles--></label>
-<label class="col-md-4" id=""> {{panelCantidad}} W<!--Aqui va el valor de potencia--> </label>
-
-<label class="col-sm-5 col-md-5 col-lg-5"> La cantidad de baterias a utilizar: </label>
-<label class="col-md-2" id="cantidad_baterias">{{TotalBateria}} baterías <!--Aquí va la cantidad de paneles--></label>
-<label class="col-md-4" id=""> {{ah}} Ah<!--Aqui va el valor de potencia--> </label>
-
-<label class="col-sm-5 col-md-5 col-lg-5"> Inversor Seleccionado: </label>
-<label class="col-md-2" id="xd">{{inversor}}<!--Aquí va la cantidad de paneles--></label>		
+	</div>
 	<legend class="my-5 text-center text-primary">Tabla de consumo </legend>
 	
 		<table class="table table-bordered table-hover table-striped">
@@ -40,11 +67,10 @@
 			{% endfor %}
 			</tbody>
 		</table>			
-<hr>
-<a href="/reporte/{{TotalPanel}}/{{TotalBateria}}/{{resultadosDevices}}/{{inversor}}/{{ah}}/{{panelCantidad}}">Generar PDF</a>
+	<hr>
+	<button class="btn btn-success" href="/reporte/{{TotalPanel}}/{{TotalBateria}}/{{resultadosDevices}}/{{inversor}}/{{ah}}/{{panelCantidad}}">Descargar <i class="fa fa-download"></i></button>
 </div>
-
-	
 {% endblock 'content' %}
 
 </div>
+{% comment %} <i class="fa fa-home"></i> {% endcomment %}
