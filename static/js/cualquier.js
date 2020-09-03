@@ -24,10 +24,12 @@ const request = (id = 0) => {
 };
 
 const pestanasTodas = (id = 0) => {
+    
     fetch(request(id))
         .then((response) => response.text())
-        .then(
-            (response) => (document.getElementById("pestanas").innerHTML = response)
-        );
+        .then((response) =>{
+            document.getElementById("pestanas").innerHTML = response;
+            if(id === 2) form();            
+        });    
 };
 pestanasTodas();

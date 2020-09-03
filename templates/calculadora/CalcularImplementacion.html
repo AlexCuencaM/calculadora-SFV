@@ -1,7 +1,7 @@
 <h1 class="my-5 text-center text-primary"> Calcular para implementación SFV </h1>
 <hr>
 
-<form action="{% url 'calculadora:panel-y-bateria' %}" method="post" onsubmit="return validar()">
+<form id="impl" action="{% url 'calculadora:panel-y-bateria' %}" method="post">
 	{% csrf_token %}
 	<div class="container">		
 		<!-- Modal -->	

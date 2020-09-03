@@ -7,15 +7,18 @@ async function mostrarFormularioCalcular() {
 
 /*Funcion mostrar el html*/
 async function mostrarCalcular() {
-	const xhr = new XMLHttpRequest();
+	
 	const url = "/calcular";
+	
+	fetch(url, enviarPost(json))
+		.then(response => response.text())		
+		.catch(error => alert('Error:' + error))
+		.then(response => consumoDiario(response));
+	
 	xhr.onreadystatechange = function () {			//mapear el estado de la solicitud
 		if (this.readyState == 4 && this.status == 200)//4.respuesta a finalizado y response is ready 200ok(XMLHttpRequestObject)			
 			document.getElementById("mostrar").innerHTML = this.responseText;
-	};
-	// Open especifica la solicitud		
-	xhr.open("GET", url, true);
-	xhr.send();
+	};	
 }
 //Método que llama a la función datos tabla para su posterior  inserción
 function Electrodomestico(id, device, tiempo = 24, cantidad = 10) {
