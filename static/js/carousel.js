@@ -22,5 +22,3 @@ function imagen(acumulador){
 	imagen.loading="lazy";
 	imagen.src=`/static/img/Imagenes SFV/${acumulador}.jpg`;
 }
-
-setInterval(nextCambiar,5000);

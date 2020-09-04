@@ -1,13 +1,12 @@
 function validar(e){	
-	const array=datosformulario();	
-	const validate = value => value !== "";
-	const validar = array.every(validate);	
+	const array=datosformulario();		
+	const validar = array.every(value => value !== "");	
 	if(!validar){
 		e.preventDefault();
 		alert("Todos los campos son obligatorios");
-	}
-		
+	}		
 }
+
 function form(){	
 	const form = document.querySelector('#impl')	
 	form.addEventListener('submit',validar);
