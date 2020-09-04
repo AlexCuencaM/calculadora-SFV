@@ -1,10 +1,15 @@
-function validar(){	
-	const array=datosformulario();	
-	const validate = (value,index,array) => value !== "";
-	const validar = array.every(validate);	
-	if(!validar)	
-		alert("Todos los campos son obligatorios");		
-	return validar;	
+function validar(e){	
+	const array=datosformulario();		
+	const validar = array.every(value => value !== "");	
+	if(!validar){
+		e.preventDefault();
+		alert("Todos los campos son obligatorios");
+	}		
+}
+
+function form(){	
+	const form = document.querySelector('#impl')	
+	form.addEventListener('submit',validar);
 }
 
 function datosformulario(){	

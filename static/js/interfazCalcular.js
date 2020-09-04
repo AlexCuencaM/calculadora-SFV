@@ -1,22 +1,12 @@
-/*Obtiene el selector*/
-
-async function mostrarFormularioCalcular() {	
-	/*Llama al metodo que muestra la pagina html BotonCalcular.html*/
-	await this.mostrarCalcular();
+async function mostrarFormularioCalcular() {		
+	const url = "/calcular/";
+	
+	fetch(url, initParams())
+		.then(response => response.text())		
+		.catch(error => alert('Error:' + error))
+		.then(response => document.getElementById("mostrar").innerHTML = response);	
 }
 
-/*Funcion mostrar el html*/
-async function mostrarCalcular() {
-	const xhr = new XMLHttpRequest();
-	const url = "/calcular";
-	xhr.onreadystatechange = function () {			//mapear el estado de la solicitud
-		if (this.readyState == 4 && this.status == 200)//4.respuesta a finalizado y response is ready 200ok(XMLHttpRequestObject)			
-			document.getElementById("mostrar").innerHTML = this.responseText;
-	};
-	// Open especifica la solicitud		
-	xhr.open("GET", url, true);
-	xhr.send();
-}
 //Método que llama a la función datos tabla para su posterior  inserción
 function Electrodomestico(id, device, tiempo = 24, cantidad = 10) {
 	this.id = id;

@@ -1,7 +1,7 @@
 <h1 class="my-5 text-center text-primary"> Calcular para implementación SFV </h1>
 <hr>
 
-<form action="{% url 'calculadora:panel-y-bateria' %}" method="post" onsubmit="return validar()">
+<form id="impl" action="{% url 'calculadora:panel-y-bateria' %}" method="post">
 	{% csrf_token %}
 	<div class="container">		
 		<!-- Modal -->	
@@ -62,7 +62,7 @@
 			
 		</div>
 
-		<div>
+		<div class="form-row">
 			<button type="submit" class="btn btn-success">Calcular</button>
 		</div>
 	</div>
@@ -74,12 +74,12 @@
 				<div class="modal-header">
 					<h5 class="modal-title text-primary" id="exampleModalLabel"> Lista de equipo de computo</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
+					<span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
 					</button>
 				</div>
 				<div class="modal-body" id="mostrar"></div>
 				<div class="modal-footer">					
-					<input type="button" id="guardar_cerrar" data-dismiss="modal" class="btn btn-primary" value="Guardar y Cerrar" onclick="obtenerAllDateTable()">
+					<button id="guardar_cerrar" data-dismiss="modal" class="btn btn-primary" onclick="obtenerAllDateTable()">Guardar <i class="fa fa-floppy-o"></i></button>
 				</div>
 			</div>
 		</div>

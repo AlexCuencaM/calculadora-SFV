@@ -24,11 +24,6 @@ p{
 }
 
 /*scroll*/
-.scroll{	
-	overflow:auto;
-	height: 200px;	
-}
-
-.spacer{
-	background-color: lightblue;	
+.overflow-auto{	
+	max-height: 200px;
 }
