@@ -31,15 +31,15 @@ const contentRow = (electrodomestico) => [
 //Método que inserta los datos en la tabla
 async function datosTabla(electrodomestico, tabla) {	
 	const array = contentRow(electrodomestico);
+	fila = tabla.insertRow(-1);
 	//se añade una fila a la tabla
-	tabla.innerHTML += array.join(' ');	
+	fila.innerHTML = array.join(' ');	
 }
 //Método de eliminar fila de la tabla
-async function eliminarFila(r) {
+async function eliminarFila(r) {	
 	/*Obtiene la fila que se va a eliminar*/
-	const obtener_fila = r.parentNode.rowIndex;	
-	/*elimina fila*/
-	document.getElementById("table-body").deleteRow(obtener_fila);
+	const obtener_fila = r.parentNode.parentNode.rowIndex;		
+	document.getElementById("tablaConsumo").deleteRow(obtener_fila);
 
 }
 //Llama desde el html

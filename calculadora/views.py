@@ -42,6 +42,16 @@ def botonCalcular(request):
     return render(request,'calculadora/BotonCalcular.html',
         {"computoDevice" : computoDevice})
 
+def addPanel(request):
+    if request.method == "POST":
+        form = CalculoPanelForm(request.POST)
+        if(form.is_valid()):
+            form.save()
+            return HttpResponseRedirect('/home')
+    else:
+        form = CalculoPanelForm()                
+        return render(request,'calculadora/equipoForm.html',{'form': form})
+
 def addEquipo(request):
     if request.method =="POST":
         form = EquipoDeComputoForm(request.POST)
