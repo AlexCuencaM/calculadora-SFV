@@ -3,8 +3,6 @@ psycopg2
 django-webpack-loader
 django-cors-headers
 django-environ
-#Si tiene el mysql instalado
-#mysqlclient
 gunicorn
 django-heroku
 whitenoise
