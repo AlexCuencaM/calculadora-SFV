@@ -52,6 +52,16 @@ def addPanel(request):
         form = CalculoPanelForm()                
         return render(request,'calculadora/equipoForm.html',{'form': form})
 
+def addEquipo(request):
+    if request.method =="POST":
+        form = EquipoDeComputoForm(request.POST)
+        if(form.is_valid()):
+            form.save()
+            return HttpResponseRedirect('/home')
+    else:
+        form = EquipoDeComputoForm()                
+        return render(request,'calculadora/equipoForm.html',{'form': form})
+
 @csrf_exempt
 def calcularConsumoDispositivo(request):     
     if(request.method == "POST"):        
