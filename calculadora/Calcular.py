@@ -28,7 +28,7 @@ class Calcular:
         )    
     #Aqui se va a modificar
     def total(self):        
-        return self.__calcular.perDay()
+        return {"total":self.__calcular.perDay()}
 
     def __guardar(self,detalles):
         result = self.__getCalculo(detalles)

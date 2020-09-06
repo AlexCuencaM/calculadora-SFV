@@ -50,8 +50,7 @@ async function obtenerAllDateTable() {
 	const array_horarios =[1,2,4,5,6,12,24];				
 	const array_cantidad = document.getElementsByName("cantidad[]");
 	const array_consumo = document.getElementsByName("consumo[]");	
-	json = getJson(array_descripcion, array_id, array_horarios, array_cantidad,array_consumo);
-	console.log(JSON.stringify(json));
+	json = getJson(array_descripcion, array_id, array_horarios, array_cantidad,array_consumo);	
 	enviarDatosPost(json);
 
 }
