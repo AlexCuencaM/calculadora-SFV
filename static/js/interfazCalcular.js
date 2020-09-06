@@ -8,23 +8,23 @@ async function mostrarFormularioCalcular() {
 }
 
 //Método que llama a la función datos tabla para su posterior  inserción
-function Electrodomestico(id, device, tiempo = 24, cantidad = 10) {
+function Equipo(id, descripcion, consumo = 2.4, cantidad = 10) {
 	this.id = id;
-	this.tipo = device;
-	this.tiempo = tiempo;
+	this.descripcion = descripcion;
+	this.consumo = consumo;
 	this.cantidad = cantidad;
 }
 
-async function anadir(id, device) {
+async function anadir(id, descripcion) {
 	//nombre de la tabla html
 	const tabla = document.getElementById("table-body");	
 	//llama al método datosTabla la cual inserta los datos en la tabla	
-	await datosTabla(new Electrodomestico(id, device), tabla);
+	await datosTabla(new Equipo(id, descripcion), tabla);
 }
-const contentRow = (electrodomestico) => [
-	`<td><input type="text" class="form-control form-control-sm" value="${electrodomestico.tipo}" name="descripcion-producto[]"><input type="hidden" name="producto[]" value="${electrodomestico.id}" id="tv"></td>`,
-	`<td><input type="number" class="form-control form-control-sm" value="${electrodomestico.tiempo}" name="tiempo[]"></td>`,
-	`<td><input type="number" class="form-control form-control-sm" value="${electrodomestico.cantidad}" name="cantidad[]"></td>`,	
+const contentRow = (equipo) => [
+	`<td><input type="text" class="form-control form-control-sm" value="${equipo.descripcion}" name="descripcion-producto[]"><input type="hidden" name="producto[]" value="${equipo.id}" id="tv"></td>`,
+	`<td><input type="number" class="form-control form-control-sm" value="${equipo.consumo}" step="0.01" name="consumo[]"></td>`,
+	`<td><input type="number" class="form-control form-control-sm" value="${equipo.cantidad}" name="cantidad[]"></td>`,	
 	`<td class="text-center"><button class="btn btn-outline-danger" name="eliminar[]" id="eliminar" onclick="eliminarFila(this)"><i class="fa fa-trash-o"></i></button></td>`
 	
 ];
@@ -42,33 +42,54 @@ async function eliminarFila(r) {
 	document.getElementById("tablaConsumo").deleteRow(obtener_fila);
 
 }
+//Cambiadisimo :V
 //Llama desde el html
 async function obtenerAllDateTable() {
 	const array_descripcion = document.getElementsByName("descripcion-producto[]");
-	const array_id = document.getElementsByName("producto[]");
-	const array_tiempo = document.getElementsByName("tiempo[]");
+	const array_id = document.getElementsByName("producto[]");	
+	const array_horarios =[1,2,4,5,6,12,24];				
 	const array_cantidad = document.getElementsByName("cantidad[]");
-	enviarDatosPost(getJson(array_descripcion, array_id, array_tiempo, array_cantidad));
+	const array_consumo = document.getElementsByName("consumo[]");	
+	json = getJson(array_descripcion, array_id, array_horarios, array_cantidad,array_consumo);
+	console.log(JSON.stringify(json));
+	enviarDatosPost(json);
 
 }
 
-function Result(id, descripcion, horas, watts) {
+function Result(id, descripcion, cantidad, consumoKwH, horarios) {
 	this.id = id;
 	this.descripcion = descripcion;
-	this.horas = horas;
-	this.watts = watts;
+	this.cantidad = cantidad;
+	this.consumoKwH = consumoKwH;
+	this.horarios = horarios;
 }
 
-const getJson = (array_descripcion, array_id, array_tiempo, array_cantidad) => {
+const getJson = (array_descripcion, array_id, array_horarios, array_cantidad,array_consumo) => {
 	const json = {
 		result: []
 	}
-	for (let i = 0; i < array_tiempo.length; i++)
-		json.result.push(new Result(array_id[i].value, array_descripcion[i].value,
-			array_tiempo[i].value, array_cantidad[i].value))
-
+	for (let i = 0; i < array_id.length; i++)
+		json.result.push(new Result(array_id[i].value,
+			array_descripcion[i].value,
+			array_cantidad[i].value,
+			array_consumo[i].value,
+			array_horarios));
 	return json;
 }
+// {
+// 	"result" : [
+// 		{
+// 			"id": 1,
+// 			"descripcion": "mouse",
+// 			"consumoKwH": 3.4
+// 			"cantidad" : 3
+// 			"horarios" : [
+// 				1,2,3,4,5,6
+// 			]
+		
+// 		},
+// 	]
+// }
 
 const enviarPost = (json) => {
 	return {
@@ -85,7 +106,10 @@ const enviarDatosPost = (json) => {
 	fetch(url, enviarPost(json))
 		.then(response => response.json())		
 		.catch(error => alert('Error:' + error))
-		.then(response => consumoDiario(response));
+		.then(response => {
+
+			consumoDiario(response)
+		});
 
 }
 
