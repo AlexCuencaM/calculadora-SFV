@@ -13,7 +13,9 @@ class CalcularBateriaPanel:
     def getPost(self):
         return self.__post
     def __setReporte(self):
-        self.__calculo = ReporteModel(consumoDiario= decimal.Decimal(self.__post["consumoDiario"]) )
+        self.__calculo = ReporteModel(consumoDiario=decimal.Decimal(self.__post["consumoDiario"]),
+            token=self.token
+         )
 
     def __setBateria(self):
         self.__bateria = BateriaModel(voltaje=int(self.__post["voltaje"]),capacidad=int(self.__post["capacidad"]))

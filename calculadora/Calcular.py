@@ -27,7 +27,7 @@ class Calcular:
             token= self.getId()
         )    
     #Aqui se va a modificar
-    def total(self):        
+    def total(self) -> dict:       
         return {"total":self.__calcular.perDay()}
 
     def __guardar(self,detalles):
