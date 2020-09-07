@@ -6,7 +6,7 @@ from calculadora.CalcularReporte import *
 from django import forms
 from django.shortcuts import render,reverse
 from django.forms import ModelForm
-from django.http import JsonResponse,FileResponse
+from django.http import JsonResponse,FileResponse,HttpResponseRedirect
 
 import io,json
 from calculadora.models import(EquipoDeComputoModel, BateriaModel,CalculoPanelModel
