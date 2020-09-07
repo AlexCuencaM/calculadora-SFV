@@ -17,8 +17,10 @@
 				<thead class="thead-dark">
 					<tr>
 						<th scope="col">Descripcion</th>
-						<th scope="col"> Consumo</th>
+						<th scope="col"> Consumo Kw/H</th>
 						<th scope="col"> Cantidad</th>
+						{% comment %} <th scope="col"> Total Kw/H</th> {% endcomment %}
+						<th scope="col"> Perfil de carga</th>
 						<th scope="col" > Eliminar</th>						
 					</tr>
 					
@@ -30,4 +32,20 @@
 	</div>																 
 
 </div>
-
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+{% comment %} Para modal centrado: modal-dialog-centered {% endcomment %}
+  <div class="modal-dialog  modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Tiempo de operación de los equipos en horas</h5>
+        <button type="button" id="cerrar" class="close" onclick="cerrar()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body horario-js"></div>
+      <div class="modal-footer">
+			<button type="button" class="btn btn-primary" id="save-modal" onclick="guardarHoras()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
