@@ -184,6 +184,6 @@ const enviarDatosPost = (json) => {
 }
 
 const consumoDiario = (responseText) => {	
-	document.getElementById("valor_consumo").innerHTML = responseText.total + " W";
+	document.getElementById("valor_consumo").innerHTML = responseText.total + " KW/H";
 	document.getElementById("consumoDiario").value = responseText.total;
 }

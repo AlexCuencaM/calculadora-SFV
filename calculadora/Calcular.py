@@ -16,7 +16,7 @@ class Calcular:
         return DetalleEquipoDeComputoModel(
             equipo=equipo,
             descripcion = calculos["descripcion"],
-            consumoKwH=int(calculos["watts"]),
+            consumoKwH=Decimal(calculos["consumoKwH"]),
             cantidad=int(calculos["cantidad"]),
             horarios= json.dumps(calculos["horarios"]),
         )

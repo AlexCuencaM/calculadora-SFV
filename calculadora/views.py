@@ -68,7 +68,7 @@ def calcularPanelYbateria(request):
         calcular.guardar()
         ward = CalcularBateriaPanel(request.POST, request.session['token'])
         ward.calcularPanelYbateria()        
-        reporte = CalcularReporte(ward)        
+        reporte = CalcularReporte(ward,calcular.total())        
         
     return render(request,"calculadora/reporte.html", reporte.getReporte())
         

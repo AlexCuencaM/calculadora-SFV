@@ -5,11 +5,12 @@ from calculadora.models import(
 import decimal
 
 class CalcularReporte:
-    def __init__(self,calculoBateriaPanel):
+    def __init__(self,calculoBateriaPanel,total):
         self.__calculoBateriaPanel = calculoBateriaPanel
         self.__setDevices()
         self.__setBA()
         self.__setCP()
+        self.__total = total["total"]
 
     def __setDevices(self):
         self.__devices = ConsumoDeDispositivo.objects.filter(token=self.__calculoBateriaPanel.token)
@@ -40,8 +41,8 @@ class CalcularReporte:
 
     def getReporte(self):
         return {
-            "devices": self.__devices,
-            "resultadosDevices": sum([i.totalConsumoDiario for i in self.__devices]),
+            "devices": self.__devices,            
+            "resultadosDevices": self.__total,
             "TotalBateria": self.__totalBateria(),#TB
             "TotalPanel": self.__totalPanel(),
             "inversor": self.__calculoBateriaPanel.getPost()["inversor"],

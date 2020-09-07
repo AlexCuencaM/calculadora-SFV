@@ -4,15 +4,15 @@
 {% block 'content' %}
 <div class="container">
 	<a class="btn btn-success rounded" hreF="/home"><i class="fa fa-home"></i></a>
-	<h1 class="my-5 text-center text-primary">Reporte</h1>
+	<h1 class="my-5 text-center text-primary">Reporte del dimensionamiento del sistema fotovoltaico</h1>
 	<hr>
 
 	<div class="row">
 		<div class="col-12 col-sm-6 col-md-6">
-			<label> Potencia en Wh/ día: </label>
+			<label> Perfil de carga/ consumo diario: </label>
 		</div>
 		<div class="col-6 col-sm-6 col-md-6">
-			<label id="potencia"> {{resultadosDevices}} W </label>
+			<label id="potencia"> {{resultadosDevices}} KWh/d </label>
 		</div>
 
 	</div>
@@ -55,15 +55,15 @@
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">Nombre del equipo</th>
-					<th scope="col">Horas</th>
-					<th scope="col">Watts</th>					
+					<th scope="col">Cantidad</th>
+					<th scope="col">Consumo Total KW/H</th>					
 				</tr>
 			</thead>
 			<tbody>
 			{% for device in devices %}
 				<tr>
 					<th>{{device.equipo.descripcion}}</th>
-					<th>{{device.equipo.horas}}</th>
+					<th>{{device.equipo.cantidad}}</th>
 					<th>{{device.totalConsumoDiario}}</th>					
 				</tr>
 			{% endfor %}
