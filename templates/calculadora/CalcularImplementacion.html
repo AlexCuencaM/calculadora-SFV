@@ -13,11 +13,11 @@
 		<div class="form-row">													
 			<label class="col-sm-6 col-md-6 col-lg-3"> Consumo mensual</label>						
 			<label class="col-sm-6 col-md-6 col-lg-3" id="valor_consumo"></label>
-			<input class=""type="hidden" class="form-control" id="consumoDiario" name="consumoDiario" value="">		
+			<input class=""type="hidden" class="form-control" id="consumoDiario" name="consumoDiario" value="">
 
 			<div class="form-group col-sm-12 col-md-6">
 				<label for="hsp"> Radiación Solar HSP</label>
-				<input placeholder="{{hsp}}" class="form-control" type="number" name="hsp" value="3.97" step="0.01" required="" id="hsp">				
+				<input class="form-control" type="number" name="hsp" value="3.97" step="0.01" required="" id="hsp">
 			</div>	
 		</div>
 		<div class="form-row">
@@ -42,8 +42,8 @@
 				<select name="inversor" class="form-control" id="lista">				
 				<option id="" value="PS-LS1522">PS-LS1522 </option>
 				<option id="" value="PS-LS1021">PIS5K5-48 </option>
-				<option id="" value="PS-LTS2022">PS-LTS2022 </option>
-			</select>								
+				<option id="" value="PS-LTS2022">PS-LTS2022 </option>				
+			</select>
 			</div>				
 
 			
@@ -63,25 +63,25 @@
 		</div>
 
 		<div class="form-row">
-			<button type="submit" class="btn btn-success">Calcular</button>
+			<button type="submit" class="btn btn-success">Calcular</button>			
 		</div>
 	</div>
 </form >	
-
-	<div class="modal fade bd-equipos-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title text-primary" id="exampleModalLabel"> Lista de equipo de computo</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
-					</button>
-				</div>
-				<div class="modal-body" id="mostrar"></div>
-				<div class="modal-footer">					
-					<button id="guardar_cerrar" data-dismiss="modal" class="btn btn-primary" onclick="obtenerAllDateTable()">Guardar <i class="fa fa-floppy-o"></i></button>
-				</div>
+{% comment %} <input data-toggle="modal" data-target=".bd-equipos-lg" onclick="mostrarFormularioCalcular()"> {% endcomment %}
+<div class="modal fade bd-equipos-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-xl" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title text-primary" id="exampleModalLabel"> Lista de equipo de computo</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
+				</button>
+			</div>
+			<div class="modal-body" id="mostrar"></div>
+			<div class="modal-footer">					
+				<button id="guardar_cerrar" data-dismiss="modal" class="btn btn-primary" onclick="obtenerAllDateTable()">Guardar <i class="fa fa-floppy-o"></i></button>
 			</div>
 		</div>
 	</div>
+</div>
 

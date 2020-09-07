@@ -7,7 +7,7 @@ function validar(e){
 	}		
 }
 
-function form(){	
+function form(){			
 	const form = document.querySelector('#impl')	
 	form.addEventListener('submit',validar);
 }

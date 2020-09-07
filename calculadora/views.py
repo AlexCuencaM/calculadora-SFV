@@ -42,16 +42,6 @@ def botonCalcular(request):
     return render(request,'calculadora/BotonCalcular.html',
         {"computoDevice" : computoDevice})
 
-def addPanel(request):
-    if request.method == "POST":
-        form = CalculoPanelForm(request.POST)
-        if(form.is_valid()):
-            form.save()
-            return HttpResponseRedirect('/home')
-    else:
-        form = CalculoPanelForm()                
-        return render(request,'calculadora/equipoForm.html',{'form': form})
-
 def addEquipo(request):
     if request.method =="POST":
         form = EquipoDeComputoForm(request.POST)
@@ -62,11 +52,12 @@ def addEquipo(request):
         form = EquipoDeComputoForm()                
         return render(request,'calculadora/equipoForm.html',{'form': form})
 
+#Mucho OJO aqui es :D
 @csrf_exempt
 def calcularConsumoDispositivo(request):     
     if(request.method == "POST"):        
-        request.session['token'] = str(uuid4())   
-        request.session['datos'] = json.loads(request.body)
+        request.session['token'] = str(uuid4())        
+        request.session['datos'] = json.loads(request.body)                
         calcular = Calcular(request.session['datos'], request.session['token'])        
 
     return JsonResponse(calcular.total(),safe=False)
@@ -85,5 +76,5 @@ def generarPdf(request,panel,bateria,total,inversor,ah,panelCantidad):
     buffer = io.BytesIO()
     report = MyPrint(buffer, 'A4',request.session['token'],panel,bateria,total,inversor,ah,panelCantidad)
     report.printReport()
-    buffer.seek(0)    
+    buffer.seek(0)
     return FileResponse(buffer, as_attachment=True, filename='reporte.pdf')
