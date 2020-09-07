@@ -60,7 +60,7 @@ class MyPrint:
     def datosTabla(self):
         uso = ' a utilizar:'
         data = [
-                ['Potencia en Wh/ día:', '{} W'.format(self.total),''],
+                ['Carga Máxima del dimensionamiento:', '{} W'.format(self.total),''],
                 ['La cantidad de paneles' + uso, str(self.panel),"{}W".format(self.panelCantidad) ],
                 ['La cantidad de baterias' + uso,str(self.bateria),"{} Ah".format(self.ah)],
                 ['Inversor OFF GRID' + uso, str(self.inversor),'' ],
@@ -72,15 +72,14 @@ class MyPrint:
 
     def tabla(self):
         #Creamos una tupla de encabezados para neustra tabla
-        encabezados = [['Nombre del equipo', 'Horas', 'Watts'],]
+        encabezados = [['Nombre del equipo', 'Consumo KW/H'],]
         #Creamos una lista de tuplas que van a contener a las personas        
-        detalles = [list((device.equipo.descripcion,
-            str(device.equipo.horas), device.totalConsumoDiario))
+        detalles = [list((device.equipo.descripcion, device.totalConsumoDiario))
             for device in ConsumoDeDispositivo.objects.filter(token=UUID(self.token,version=4))]        
         for i in detalles:
             encabezados.append(i)        
         #Establecemos el tamaño de cada una de las columnas de la tabla
-        tabla = Table(encabezados, colWidths=[10 * cm, 2.4 * cm, 2.4 * cm, 4 * cm])        
+        tabla = Table(encabezados, colWidths=[9 * cm, 3.4 * cm, 4 * cm])        
         #Aplicamos estilos a las celdas de la tabla
         tabla.setStyle(TableStyle(
         [
