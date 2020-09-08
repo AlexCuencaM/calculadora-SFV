@@ -53,7 +53,7 @@ class MyPrint:
         pdf = buffer.getvalue()
         elements.append(self.tabla())                    
         elements.append(Spacer(1, 2*cm))
-        elements.append(Paragraph("Consumo Total Watts diarios: {} Watts".format(self.total),styles['Heading3']))
+        elements.append(Paragraph("Perfil de carga: {} KW/H".format(self.total),styles['Heading3']))
         
         doc.build(elements)                        
         return pdf     
@@ -72,14 +72,16 @@ class MyPrint:
 
     def tabla(self):
         #Creamos una tupla de encabezados para neustra tabla
-        encabezados = [['Nombre del equipo', 'Consumo KW/H'],]
+        encabezados = [['Nombre del equipo','Cantidad', 'Consumo KW/H'],]
         #Creamos una lista de tuplas que van a contener a las personas        
-        detalles = [list((device.equipo.descripcion, device.totalConsumoDiario))
-            for device in ConsumoDeDispositivo.objects.filter(token=UUID(self.token,version=4))]        
+        detalles = [list((device.equipo.descripcion,
+            str(device.equipo.cantidad),
+            device.totalConsumoDiario))
+            for device in ConsumoDeDispositivo.objects.filter(token=UUID(self.token,version=4))]
         for i in detalles:
             encabezados.append(i)        
         #Establecemos el tamaño de cada una de las columnas de la tabla
-        tabla = Table(encabezados, colWidths=[9 * cm, 3.4 * cm, 4 * cm])        
+        tabla = Table(encabezados, colWidths=[10.0 * cm, 2.3 * cm, 3.0 * cm, 3 * cm])
         #Aplicamos estilos a las celdas de la tabla
         tabla.setStyle(TableStyle(
         [
