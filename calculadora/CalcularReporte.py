@@ -3,7 +3,7 @@ from calculadora.models import(
     ConsumoDeDispositivo
 ) 
 import decimal
-
+import math
 class CalcularReporte:
     def __init__(self,calculoBateriaPanel,total):
         self.__calculoBateriaPanel = calculoBateriaPanel
@@ -23,21 +23,24 @@ class CalcularReporte:
 
     def __setBA(self):
         self.__BA = self.__numeradorBA()/self.__denominadorBA()
-     
-    def __numeradorCP(self):
-        return decimal.Decimal(self.__calculoBateriaPanel.getPanel().report.consumoDiario * decimal.Decimal(self.__calculoBateriaPanel.getPanel().tolerancia))
+
+    def __CDtoWatts(self):
+        return self.__calculoBateriaPanel.getPanel().report.consumoDiario * 1000
+
+    def __numeradorCP(self):#Ojo
+        return decimal.Decimal(self.__CDtoWatts() * decimal.Decimal(self.__calculoBateriaPanel.getPanel().tolerancia))
 
     def __denominadorCP(self):
         return decimal.Decimal(decimal.Decimal(self.__calculoBateriaPanel.getPanel().hsp) * self.__calculoBateriaPanel.getPanel().potenciaDePanel)
     
-    def __setCP(self):
+    def __setCP(self):#OJO
         self.__CP = self.__numeradorCP()/self.__denominadorCP()
 
     def __totalBateria(self):
-        return round(float(self.__BA/self.__calculoBateriaPanel.getBateria().bateria.capacidad))
+        return math.ceil(float(self.__BA/self.__calculoBateriaPanel.getBateria().bateria.capacidad))
 
     def __totalPanel(self):
-        return round(float(self.__CP))
+        return math.ceil(float(self.__CP))
 
     def getReporte(self):
         return {
