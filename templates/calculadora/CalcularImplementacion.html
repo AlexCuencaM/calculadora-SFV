@@ -4,17 +4,19 @@
 <form id="impl" action="{% url 'calculadora:panel-y-bateria' %}" method="post">
 	{% csrf_token %}
 	<div class="container">		
-		<!-- Modal -->	
-		<div class="row">					
-				<label class="col col-sm-6 col-md-4" > Ingresar dispositivos</label>    
-				<input class="btn btn-primary" type="button" name ="consumo-diario" id="consumo-diario" value="Calcular Consumo" data-toggle="modal" data-target=".bd-equipos-lg" onclick="mostrarFormularioCalcular()">
-		</div> 
+		<!-- Modal -->			
 		<hr>		
 		<div class="form-row">													
-			<label class="col-sm-6 col-md-6 col-lg-3"> Perfil de carga obtenido:</label>						
-			<label class="col-sm-6 col-md-6 col-lg-3" id="valor_consumo"></label>
-			<input class=""type="hidden" class="form-control" id="consumoDiario" name="consumoDiario" value="">
+			{% comment %} <label class="col-sm-6 col-md-6 col-lg-3"> Perfil de carga obtenido:</label>						 {% endcomment %}
+			<div class="col-6 col-sm-6 col-md-3 align-self-center my-2">
+				<button class="btn btn-primary preven" name ="consumo-diario" id="consumo-diario" data-toggle="modal" data-target="#exampleModal" onclick="mostrarFormularioCalcular()">Perfil de carga <i class="fa fa-calculator"></i></button>
+			</div>
+{% comment %} class="" {% endcomment %}
+			<div class="col-sm-6 col-md-6 col-md-3 col-lg-3 align-self-center">				
+				<label id="valor_consumo">0 KW/H</label>
+			</div>			
 
+			<input class=""type="hidden" class="form-control" id="consumoDiario" name="consumoDiario" value="">
 			<div class="form-group col-sm-12 col-md-6">
 				<label for="hsp"> Radiación Solar HSP</label>
 				<input class="form-control" type="number" name="hsp" value="3.97" step="0.01" required="" id="hsp">
@@ -51,22 +53,29 @@
 
 		<div class="form-row">		
 			<div class="form-group col-sm-12 col-md-6">
-			<label for="voltaje"> Voltaje Baterias </label>
-			<select class="form-control" name="voltaje" id="voltaje">
-				{% for v in category %}
-					<option id="{{v}}" value="{{v}}">{{v}} V</option>
-				{% endfor %}
-			</select>
-			</div>				
-
-			
+				<label for="voltaje"> Voltaje Baterias </label>
+				<select class="form-control" name="voltaje" id="voltaje">
+					{% for v in category %}
+						<option id="{{v}}" value="{{v}}">{{v}} V</option>
+					{% endfor %}
+				</select>
+			</div>			
+			<div class="col-sm-12 col-md-6 align-self-center">				
+				<button class="btn btn-primary btn-block preven" id="boton-materiales" data-toggle="modal" data-target="#materiales">Materiales <i class="fa fa-wrench"></i></button> 
+			</div>	
 		</div>
-
+				
+		
 		<div class="form-row">
-			<button type="submit" class="btn btn-success">Calcular</button>			
+			<div class="col-sm-12 col-md-12 my-2">
+				<button type="submit" class="btn btn-outline-success btn-block">Calcular <i class="fa fa-calculator"></i></button>
+			</div>
 		</div>
 	</div>
-</form >	
+</form >
+
+
+
 {% comment %} <input data-toggle="modal" data-target=".bd-equipos-lg" onclick="mostrarFormularioCalcular()"> {% endcomment %}
 <div class="modal fade bd-equipos-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-xl" role="document">
@@ -85,3 +94,20 @@
 	</div>
 </div>
 
+
+<div class="modal fade" id="materiales" tabindex="0" role="dialog" aria-labelledby="materialesModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-md" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title text-primary" id="materialesLabel"> Ingreso de Materiales</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
+				</button>
+			</div>
+			<div class="modal-body" id="materiales-modal"></div>
+			<div class="modal-footer">					
+				<button id="guardar_cerrar" data-dismiss="modal" class="btn btn-primary" >Guardar <i class="fa fa-floppy-o"></i></button>
+			</div>
+		</div>
+	</div>
+</div>

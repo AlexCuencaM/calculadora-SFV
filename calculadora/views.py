@@ -41,6 +41,9 @@ def botonCalcular(request):
     computoDevice = EquipoDeComputoModel.objects.all()
     return render(request,'calculadora/BotonCalcular.html',
         {"computoDevice" : computoDevice})
+def botonMateriales(request):
+    return render(request,'calculadora/BotonMaterial.html',
+        {"iteracion": [i for i in range(5)]})
 
 def addEquipo(request):
     if request.method =="POST":
