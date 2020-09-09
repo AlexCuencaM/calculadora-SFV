@@ -4,8 +4,7 @@
 <form id="impl" action="{% url 'calculadora:panel-y-bateria' %}" method="post">
 	{% csrf_token %}
 	<div class="container">		
-		<!-- Modal -->			
-		<hr>		
+		<!-- Modal -->					
 		<div class="form-row">													
 			{% comment %} <label class="col-sm-6 col-md-6 col-lg-3"> Perfil de carga obtenido:</label>						 {% endcomment %}
 			<div class="col-6 col-sm-6 col-md-3 align-self-center my-2">
@@ -16,7 +15,7 @@
 				<label id="valor_consumo">0 KW/H</label>
 			</div>			
 
-			<input class=""type="hidden" class="form-control" id="consumoDiario" name="consumoDiario" value="">
+			<input class=""type="hidden" id="consumoDiario" name="consumoDiario" value="">
 			<div class="form-group col-sm-12 col-md-6">
 				<label for="hsp"> Radiación Solar HSP</label>
 				<input class="form-control" type="number" name="hsp" value="3.97" step="0.01" required="" id="hsp">
@@ -63,15 +62,18 @@
 			<div class="col-sm-12 col-md-6 align-self-center">				
 				<button class="btn btn-primary btn-block preven" id="boton-materiales" data-toggle="modal" data-target="#materiales">Materiales <i class="fa fa-wrench"></i></button> 
 			</div>	
-		</div>
-				
-		
+		</div>				
+		{% for i in iteracion %}
+			<input type="hidden" name="descripcion-materials{{i}}" id="descripcion-materials{{i}}" value="">
+			<input type="hidden" name="cantidad-materials{{i}}" id="cantidad-materials{{i}}" value="">
+		{% endfor %}
 		<div class="form-row">
 			<div class="col-sm-12 col-md-12 my-2">
 				<button type="submit" class="btn btn-outline-success btn-block">Calcular <i class="fa fa-calculator"></i></button>
 			</div>
 		</div>
 	</div>
+	
 </form >
 
 
@@ -96,7 +98,7 @@
 
 
 <div class="modal fade" id="materiales" tabindex="0" role="dialog" aria-labelledby="materialesModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-md" role="document">
+	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title text-primary" id="materialesLabel"> Ingreso de Materiales</h5>
@@ -106,7 +108,7 @@
 			</div>
 			<div class="modal-body" id="materiales-modal"></div>
 			<div class="modal-footer">					
-				<button id="guardar_cerrar" data-dismiss="modal" class="btn btn-primary" >Guardar <i class="fa fa-floppy-o"></i></button>
+				<button id="guardar_cerrar_2" data-dismiss="modal" class="btn btn-primary">Guardar <i class="fa fa-floppy-o"></i></button>
 			</div>
 		</div>
 	</div>

@@ -3,7 +3,7 @@
 
 {% block 'content' %}
 <div class="container">
-	<a class="btn btn-success rounded" hreF="/home"><i class="fa fa-home"></i></a>
+	{% comment %} <a class="btn btn-success rounded" hreF="/home"><i class="fa fa-home"></i></a> {% endcomment %}
 	<h1 class="my-5 text-center text-primary">Reporte del dimensionamiento del sistema fotovoltaico</h1>
 	<hr>
 
@@ -49,6 +49,17 @@
 		</div>
 
 	</div>
+	{% for descripcion,cantidad in iteraciones %}
+	<div class="row">
+		<div class="col-6 col-sm-6 col-md-6">
+			<label> {{descripcion}} </label>
+		</div>
+		<div class="col-6 col-sm-4 col-md-6">
+			<label>{{cantidad}}</label>
+		</div>
+
+	</div>
+	{% endfor %}
 	<legend class="my-5 text-center text-primary">Tabla de consumo </legend>
 	
 		<table class="table table-bordered table-hover table-striped">

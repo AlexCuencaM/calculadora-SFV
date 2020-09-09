@@ -42,7 +42,7 @@ class CalcularReporte:
     def __totalPanel(self):
         return math.ceil(float(self.__CP))
 
-    def getReporte(self):
+    def getReporte(self,request):
         return {
             "devices": self.__devices,            
             "resultadosDevices": self.__total,
@@ -50,5 +50,6 @@ class CalcularReporte:
             "TotalPanel": self.__totalPanel(),
             "inversor": self.__calculoBateriaPanel.getPost()["inversor"],
             "ah": self.__calculoBateriaPanel.getBateria().bateria.capacidad,
-            "panelCantidad" : self.__calculoBateriaPanel.getPanel().potenciaDePanel,
-        }
+            "panelCantidad" : self.__calculoBateriaPanel.getPanel().potenciaDePanel,            
+            "iteraciones" : [[request.POST["descripcion-materials"+str(i)],request.POST["cantidad-materials"+str(i)]] for i in range(6)]
+        }    

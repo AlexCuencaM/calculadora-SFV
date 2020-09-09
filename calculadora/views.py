@@ -21,6 +21,7 @@ def detalles():
     return {
         "category":[i[0] for i in BateriaModel.VOLTAJE],
         "hsp": CalculoPanelModel.PROMEDIO,
+        "iteracion": [i for i in range(6)]
     }
 
 # Create your views here.
@@ -43,7 +44,7 @@ def botonCalcular(request):
         {"computoDevice" : computoDevice})
 def botonMateriales(request):
     return render(request,'calculadora/BotonMaterial.html',
-        {"iteracion": [i for i in range(5)]})
+        {"iteracion": [i for i in range(6)]})
 
 def addEquipo(request):
     if request.method =="POST":
@@ -70,10 +71,10 @@ def calcularPanelYbateria(request):
         calcular = Calcular(request.session['datos'], request.session['token'])
         calcular.guardar()
         ward = CalcularBateriaPanel(request.POST, request.session['token'])
-        ward.calcularPanelYbateria()        
+        ward.calcularPanelYbateria()
         reporte = CalcularReporte(ward,calcular.total())        
         
-    return render(request,"calculadora/reporte.html", reporte.getReporte())
+    return render(request,"calculadora/reporte.html", reporte.getReporte(request))
         
 def generarPdf(request,panel,bateria,total,inversor,ah,panelCantidad):
     buffer = io.BytesIO()
