@@ -53,3 +53,4 @@ class CalcularReporte:
             "panelCantidad" : self.__calculoBateriaPanel.getPanel().potenciaDePanel,            
             "iteraciones" : [[request.POST["descripcion-materials"+str(i)],request.POST["cantidad-materials"+str(i)]] for i in range(6)]
         }    
+    

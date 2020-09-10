@@ -3,7 +3,7 @@ const materialsDefault = () => [
 	new Material("Cable solar 6mm color rojo por metro",1),
 	new Material("Conector MC4 por par",1),
 	new Material("Conectores MC4 Triple Grado A",1),	
-	new Material("Conectores MC4 Dobles en Y.",1),
+	new Material("Conectores MC4 Dobles en Y",1),
 	new Material("Estructura del panel",1),
 ];
 
