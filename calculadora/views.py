@@ -21,6 +21,7 @@ def detalles():
     return {
         "category":[i[0] for i in BateriaModel.VOLTAJE],
         "hsp": CalculoPanelModel.PROMEDIO,
+        "iteracion": [i for i in range(6)]
     }
 
 # Create your views here.
@@ -41,6 +42,9 @@ def botonCalcular(request):
     computoDevice = EquipoDeComputoModel.objects.all()
     return render(request,'calculadora/BotonCalcular.html',
         {"computoDevice" : computoDevice})
+def botonMateriales(request):
+    return render(request,'calculadora/BotonMaterial.html',
+        {"iteracion": [i for i in range(6)]})
 
 def addEquipo(request):
     if request.method =="POST":
@@ -67,14 +71,15 @@ def calcularPanelYbateria(request):
         calcular = Calcular(request.session['datos'], request.session['token'])
         calcular.guardar()
         ward = CalcularBateriaPanel(request.POST, request.session['token'])
-        ward.calcularPanelYbateria()        
+        ward.calcularPanelYbateria()
         reporte = CalcularReporte(ward,calcular.total())        
         
-    return render(request,"calculadora/reporte.html", reporte.getReporte())
+    return render(request,"calculadora/reporte.html", reporte.getReporte(request))
         
-def generarPdf(request,panel,bateria,total,inversor,ah,panelCantidad):
+def generarPdf(request,panel,bateria,total,inversor,ah,panelCantidad,cantidad1,cantidad2,cantidad3,cantidad4,cantidad5,cantidad6):
+    cantidades =[cantidad1,cantidad2,cantidad3,cantidad4,cantidad5,cantidad6]
     buffer = io.BytesIO()
-    report = MyPrint(buffer, 'A4',request.session['token'],panel,bateria,total,inversor,ah,panelCantidad)
+    report = MyPrint(buffer, 'A4',request.session['token'],panel,bateria,total,inversor,ah,panelCantidad,cantidades)
     report.printReport()
     buffer.seek(0)
     return FileResponse(buffer, as_attachment=True, filename='reporte.pdf')

@@ -2,11 +2,7 @@ var posicion = 0;
 let horarios = [];
 async function mostrarFormularioCalcular() {		
 	const url = "/calcular/";
-	
-	fetch(url, initParams())
-		.then(response => response.text())		
-		.catch(error => alert('Error:' + error))
-		.then(response => document.getElementById("mostrar").innerHTML = response);	
+	mostrarFormulario(url,"mostrar");	
 }
 
 //Método que llama a la función datos tabla para su posterior  inserción
@@ -19,8 +15,7 @@ function Equipo(id, descripcion, consumo = 2.4, cantidad = 1) {
 const horarioDefault = (inicio = 1, fin = 24) => {	
 	let horario =[];
 	for(let i = inicio; i <= fin; i++)
-		horario.push(i);
-	console.log(horario);
+		horario.push(i);	
 	return horario;
 };
 

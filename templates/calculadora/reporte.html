@@ -3,7 +3,7 @@
 
 {% block 'content' %}
 <div class="container">
-	<a class="btn btn-success rounded" hreF="/home"><i class="fa fa-home"></i></a>
+	{% comment %} <a class="btn btn-success rounded" hreF="/home"><i class="fa fa-home"></i></a> {% endcomment %}
 	<h1 class="my-5 text-center text-primary">Reporte del dimensionamiento del sistema fotovoltaico</h1>
 	<hr>
 
@@ -49,6 +49,17 @@
 		</div>
 
 	</div>
+	{% for descripcion,cantidad in iteraciones %}
+	<div class="row">
+		<div class="col-6 col-sm-6 col-md-6">
+			<label> {{descripcion}} </label>
+		</div>
+		<div class="col-6 col-sm-4 col-md-6">
+			<label>{{cantidad}}</label>
+		</div>
+
+	</div>
+	{% endfor %}
 	<legend class="my-5 text-center text-primary">Tabla de consumo </legend>
 	
 		<table class="table table-bordered table-hover table-striped">
@@ -70,7 +81,7 @@
 			</tbody>
 		</table>			
 	<hr>
-	<a class="btn btn-success" href="/reporte/{{TotalPanel}}/{{TotalBateria}}/{{resultadosDevices}}/{{inversor}}/{{ah}}/{{panelCantidad}}">Descargar <i class="fa fa-download"></i></a>
+	<a class="btn btn-success" href="/reporte/{{TotalPanel}}/{{TotalBateria}}/{{resultadosDevices}}/{{inversor}}/{{ah}}/{{panelCantidad}}/{{iteraciones.0.1}}/{{iteraciones.1.1}}/{{iteraciones.2.1}}/{{iteraciones.3.1}}/{{iteraciones.4.1}}/{{iteraciones.5.1}}/">Descargar <i class="fa fa-download"></i></a>
 </div>
 </div>
 {% endblock 'content' %}

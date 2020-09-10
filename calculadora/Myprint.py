@@ -8,7 +8,9 @@ from uuid import uuid4,UUID
 import io
 from calculadora.models import ConsumoDeDispositivo
 class MyPrint:
-    def __init__(self, buffer, pagesize,token,panel,bateria,total,inversor,ah,panelCantidad):
+    def __init__(self, buffer, pagesize,token,panel,bateria,total,inversor,ah,panelCantidad,cantidades):
+        self.cantidades = cantidades
+
         self.buffer = buffer
         self.token = token
         self.panel = panel
@@ -64,8 +66,12 @@ class MyPrint:
                 ['La cantidad de paneles' + uso, str(self.panel),"{}W".format(self.panelCantidad) ],
                 ['La cantidad de baterias' + uso,str(self.bateria),"{} Ah".format(self.ah)],
                 ['Inversor OFF GRID' + uso, str(self.inversor),'' ],
-                ['4 Parejas de conectores MC4','',''],
-                ['Cable PV(Opcional)','',''],
+                ['Cable solar 6mm color negro por metro',self.cantidades[0],''],
+                ['Cable solar 6mm color rojo por metro',self.cantidades[1],''],
+                ['Conector MC4 por par',self.cantidades[2],''],
+                ['Conectores MC4 Triple Grado A',self.cantidades[3],''],
+                ['Conectores MC4 Dobles en Y',self.cantidades[4],''],
+                ['Estructura del panel',self.cantidades[5],''],
         ]
         data = Table(data, colWidths=[8 * cm, 3 * cm, 2 * cm, 4 * cm])  
         return data 
