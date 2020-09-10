@@ -46,7 +46,7 @@ class MyPrint:
         # Draw things on the PDF. Here's where the PDF generation happens. 
         # See the ReportLab documentation for the full list of functionality.
         elements.append(Paragraph("Reporte",styles['Title']))        
-        elements.append(Paragraph("A continuación se muestra el total de equipos a utilizar en la implementacion del sistema fovoltaico",styles['Italic']))
+        elements.append(Paragraph("A continuación se muestra el total de equipos a utilizar en la implementacion del sistema fotovoltaico",styles['Italic']))
         elements.append(Spacer(1, 0.4*cm))
                                 
         elements.append(self.datosTabla())
