@@ -23,7 +23,7 @@ class Calcular:
     def __getCalculo(self,detalle):
         return ConsumoDeDispositivo(
             equipo=detalle,
-            totalConsumoDiario = detalle.consumoKwH*detalle.cantidad,
+            totalConsumoDiario = detalle.consumoKwH * detalle.cantidad,
             token= self.getId()
         )    
     #Aqui se va a modificar
@@ -40,3 +40,6 @@ class Calcular:
             equipo = EquipoDeComputoModel.objects.get(pk=int(data["id"]))
             detalles = self.__getDetalle(data,equipo)                        
             self.__guardar(detalles)
+
+    def testing(self):
+        pass

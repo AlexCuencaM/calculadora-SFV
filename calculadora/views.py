@@ -21,7 +21,8 @@ def detalles():
     return {
         "category":[i[0] for i in BateriaModel.VOLTAJE],
         "hsp": CalculoPanelModel.PROMEDIO,
-        "iteracion": [i for i in range(6)]
+        "iteracion": [i for i in range(6)],
+        "panelCategory": [120,200,320]
     }
 
 # Create your views here.
