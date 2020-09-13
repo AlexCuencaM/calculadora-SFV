@@ -23,8 +23,13 @@
 		</div>
 		<div class="form-row">
 			<div class="form-group col-sm-12 col-md-6">
-				<label for="potenciadepanel"> Potencia paneles</label>
-				<input type="number" class="form-control" name="potencia-de-panel" id="potenciadepanel">
+				<label for="potenciadepanel"> Potencia paneles (W)</label>
+				{% comment %} <input type="number" class="form-control" placeholder="100w"> {% endcomment %}
+				<select class="form-control" name="potencia-de-panel" id="potenciadepanel">	
+				{% for watt in panelCategory %}
+					<option id="{{watt}}" value="{{watt}}">{{watt}} W</option>
+				{% endfor %}				
+				</select>
 			</div>	
 
 			<div class="form-group col-sm-12 col-md-6">

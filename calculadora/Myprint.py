@@ -24,18 +24,24 @@ class MyPrint:
         elif pagesize == 'Letter':
             self.pagesize = letter
         self.width, self.height = self.pagesize
-    
-    def printReport(self):
-
-        buffer = self.buffer
-        doc = SimpleDocTemplate(buffer,
+    def __getDoc(self):
+        return SimpleDocTemplate(self.buffer,
                                 rightMargin=72,
                                 leftMargin=72,
                                 topMargin=72,
                                 bottomMargin=72,
                                 pagesize=self.pagesize)
-        
+    def footer(self,canvas, doc):
+        styles = getSampleStyleSheet()
+        canvas.saveState()
+        P = Paragraph("<i><b>Con los resultados obtenidos, para poder consultar el valor estimado de los equipos debe consultar con los diferentes proveedores en el mercado.</b></i>",
+                    styles['Normal'])
+        w, h = P.wrap(doc.width, doc.bottomMargin)
+        P.drawOn(canvas, doc.leftMargin, h)
+        canvas.restoreState()
 
+    def printReport(self):        
+        doc = self.__getDoc()
         # Our container for 'Flowable' objects
         elements = []
 
@@ -52,12 +58,12 @@ class MyPrint:
         elements.append(self.datosTabla())
         elements.append(Paragraph("A continuación se detalla los equipos ingresados en el sistema que fueron considerados en el cálculo del consumo:",styles['Italic']))
         elements.append(Spacer(1, 0.7*cm))
-        pdf = buffer.getvalue()
+        pdf = self.buffer.getvalue()
         elements.append(self.tabla())                    
         elements.append(Spacer(1, 2*cm))
         elements.append(Paragraph("Perfil de carga: {} KW/H".format(self.total),styles['Heading3']))
         
-        doc.build(elements)                        
+        doc.build(elements, onFirstPage=self.footer, onLaterPages=self.footer) 
         return pdf     
     def datosTabla(self):
         uso = ' a utilizar:'
