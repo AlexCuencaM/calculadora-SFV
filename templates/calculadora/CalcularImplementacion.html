@@ -64,14 +64,12 @@
 					{% endfor %}
 				</select>
 			</div>			
-			<div class="col-sm-12 col-md-6 align-self-center">				
-				<button class="btn btn-primary btn-block preven" id="boton-materiales" data-toggle="modal" data-target="#materiales">Materiales <i class="fa fa-wrench"></i></button> 
-			</div>	
-		</div>				
-		{% for i in iteracion %}
-			<input type="hidden" name="descripcion-materials{{i}}" id="descripcion-materials{{i}}" value="">
-			<input type="hidden" name="cantidad-materials{{i}}" id="cantidad-materials{{i}}" value="">
-		{% endfor %}
+				<div class="form-group col-sm-12 col-md-6">
+					<label for="metros"> Distancia(metros) Panel-Inversor</label>					
+					<input type="number" name="metros" id="metros" value="0" class="form-control">
+				</div>				
+
+		</div>									
 		<div class="form-row">
 			<div class="col-sm-12 col-md-12 my-2">
 				<button type="submit" class="btn btn-outline-success btn-block">Calcular <i class="fa fa-calculator"></i></button>
@@ -81,9 +79,6 @@
 	
 </form >
 
-
-
-{% comment %} <input data-toggle="modal" data-target=".bd-equipos-lg" onclick="mostrarFormularioCalcular()"> {% endcomment %}
 <div class="modal fade bd-equipos-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-xl" role="document">
 		<div class="modal-content">
@@ -96,24 +91,6 @@
 			<div class="modal-body" id="mostrar"></div>
 			<div class="modal-footer">					
 				<button id="guardar_cerrar" data-dismiss="modal" class="btn btn-primary" onclick="obtenerAllDateTable()">Guardar <i class="fa fa-floppy-o"></i></button>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-<div class="modal fade" id="materiales" tabindex="0" role="dialog" aria-labelledby="materialesModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title text-primary" id="materialesLabel"> Ingreso de Materiales</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
-				</button>
-			</div>
-			<div class="modal-body" id="materiales-modal"></div>
-			<div class="modal-footer">					
-				<button id="guardar_cerrar_2" data-dismiss="modal" class="btn btn-primary">Guardar <i class="fa fa-floppy-o"></i></button>
 			</div>
 		</div>
 	</div>
