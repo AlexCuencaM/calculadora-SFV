@@ -22,7 +22,7 @@ class ConsumoDeDispositivo(models.Model):
 
 class BateriaModel(models.Model):
     VOLTAJE =(
-        (12,'12V'),(24,'24V'),(48,'48V')
+        (0,'0v'),(12,'12V'),(24,'24V'),(48,'48V')
     )
     voltaje = models.IntegerField(null=False, choices=VOLTAJE)
     capacidad = models.IntegerField(null=False)

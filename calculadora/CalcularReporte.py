@@ -37,8 +37,16 @@ class CalcularReporte:
         self.__CP = self.__numeradorCP()/self.__denominadorCP()
 
     def __totalBateria(self):
-        return math.ceil(float(self.__BA/self.__calculoBateriaPanel.getBateria().bateria.capacidad))
-
+        result = 0
+        try:
+            result = math.ceil(float(self.__BA/self.__calculoBateriaPanel.getBateria().bateria.capacidad))
+            return result        
+        except ZeroDivisionError:
+            return 0
+        except decimal.InvalidOperation:
+            return 0
+        except ValueError:
+            return 0        
     def __totalPanel(self):
         return math.ceil(float(self.__CP))
 

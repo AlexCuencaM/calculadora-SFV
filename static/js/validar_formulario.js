@@ -14,7 +14,7 @@ const descripcion = () =>{
 	return{
 		bateria:{	
 			id: "info-bateria",		
-			descripcion:[`${resumenBattery} 1500Wh`,`${resumenBattery} 3000Wh`,
+			descripcion:["NA",`${resumenBattery} 1500Wh`,`${resumenBattery} 3000Wh`,
 			`${resumenBattery} 6000Wh, ${consejo}`]
 		},
 
@@ -59,6 +59,8 @@ function initPopover(objeto,nombre){
 			title = `Batería de ${select.value}V 100Ah`
 			if(select.value==48)
 				title = `Batería de ${select.value}V 400Ah`
+			if(select.value==0)
+				title= "NA"
 		}
 		$(`#${objeto.id}`).attr("data-original-title",title );
 		$(`#${objeto.id}`).attr("data-content",objeto.descripcion[select.selectedIndex]);		

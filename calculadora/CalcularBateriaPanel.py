@@ -19,12 +19,19 @@ class CalcularBateriaPanel:
 
     def __setBateria(self):
         self.__bateria = BateriaModel(voltaje=int(self.__post["voltaje"]),capacidad=int(self.__post["capacidad"]))
-    
+    def __corrienteNecesaria(self):
+        try:
+            return decimal.Decimal(self.__calculo.consumoDiario/self.__bateria.voltaje)
+        except ZeroDivisionError:
+            return 0
+        except ValueError:
+            return 0
+
     def __setCalcularBateria(self):
         self.__calcularBateria = CalculoBateriaModel(
                 bateria=self.__bateria,
                 report=self.__calculo,
-                corrienteNecesaria=decimal.Decimal(self.__calculo.consumoDiario/self.__bateria.voltaje),
+                corrienteNecesaria= self.__corrienteNecesaria(),
                 autonomiaDias=int(self.__post["autonomia-dias"]),
             )            
 
