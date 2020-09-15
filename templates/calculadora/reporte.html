@@ -101,7 +101,15 @@
 			</tbody>
 		</table>			
 	<hr>
-	<a class="btn btn-success" href="/reporte/{{TotalPanel}}/{{TotalBateria}}/{{resultadosDevices}}/{{inversor}}/{{ah}}/{{panelCantidad}}/{{metro}}/{{conector}}/">Descargar <i class="fa fa-download"></i></a>
+	<div class="row">
+		<div class="col-2 col-sm-2 col-md-2">
+			<a class="btn btn-block btn-success" href="/reporte/{{TotalPanel}}/{{TotalBateria}}/{{resultadosDevices}}/{{inversor}}/{{ah}}/{{panelCantidad}}/{{metro}}/{{conector}}/">Descargar <i class="fa fa-download"></i></a>
+		</div>
+		<div class="col-2 offset-col-8 col-sm-2 offset-sm-8 col-md-2 offset-md-8">
+			<a class="btn btn-block btn-outline-secondary" href={% url 'calculadora:home' %}>Home <i class="fa fa-home"></i></a>
+		</div>		
+	</div>
+	
 </div>
 </div>
 {% endblock 'content' %}
