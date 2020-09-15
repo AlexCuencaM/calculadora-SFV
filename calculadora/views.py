@@ -27,6 +27,8 @@ def detalles():
 
 # Create your views here.
 def home(request,ventana=""):
+    request.session['token'] = ""
+    request.session['datos'] = ""
     if(ventana=="slider"):
         return render(request,'calculadora/inicio.html')
     elif(ventana=="info"):
