@@ -48,18 +48,38 @@
 			<label id="xd">{{inversor}}</label>
 		</div>
 
-	</div>
-	{% for descripcion,cantidad in iteraciones %}
+	</div>	
+	
 	<div class="row">
 		<div class="col-6 col-sm-6 col-md-6">
-			<label> {{descripcion}} </label>
+			<label> Cable solar 6mm color negro por metro </label>
 		</div>
 		<div class="col-6 col-sm-4 col-md-6">
-			<label>{{cantidad}}</label>
+			<label>{{metro}}</label>
 		</div>
 
 	</div>
-	{% endfor %}
+	
+	<div class="row">
+		<div class="col-6 col-sm-6 col-md-6">
+			<label> Cable solar 6mm color rojo por metro </label>
+		</div>
+		<div class="col-6 col-sm-4 col-md-6">
+			<label>{{metro}}</label>
+		</div>
+
+	</div>
+
+	<div class="row">
+		<div class="col-6 col-sm-6 col-md-6">
+			<label> Conector MC4 por par </label>
+		</div>
+		<div class="col-6 col-sm-4 col-md-6">
+			<label>{{conector}}</label>
+		</div>
+	</div>
+
+
 	<legend class="my-5 text-center text-primary">Tabla de consumo </legend>
 	
 		<table class="table table-bordered table-hover table-striped">
@@ -81,7 +101,7 @@
 			</tbody>
 		</table>			
 	<hr>
-	<a class="btn btn-success" href="/reporte/{{TotalPanel}}/{{TotalBateria}}/{{resultadosDevices}}/{{inversor}}/{{ah}}/{{panelCantidad}}/{{iteraciones.0.1}}/{{iteraciones.1.1}}/{{iteraciones.2.1}}/{{iteraciones.3.1}}/{{iteraciones.4.1}}/{{iteraciones.5.1}}/">Descargar <i class="fa fa-download"></i></a>
+	<a class="btn btn-success" href="/reporte/{{TotalPanel}}/{{TotalBateria}}/{{resultadosDevices}}/{{inversor}}/{{ah}}/{{panelCantidad}}/{{metro}}/{{conector}}/">Descargar <i class="fa fa-download"></i></a>
 </div>
 </div>
 {% endblock 'content' %}

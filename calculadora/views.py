@@ -73,12 +73,12 @@ def calcularPanelYbateria(request):
         calcular.guardar()
         ward = CalcularBateriaPanel(request.POST, request.session['token'])
         ward.calcularPanelYbateria()
-        reporte = CalcularReporte(ward,calcular.total())        
+        reporte = CalcularReporte(ward,calcular.total()) 
         
     return render(request,"calculadora/reporte.html", reporte.getReporte(request))
         
-def generarPdf(request,panel,bateria,total,inversor,ah,panelCantidad,cantidad1,cantidad2,cantidad3,cantidad4,cantidad5,cantidad6):
-    cantidades =[cantidad1,cantidad2,cantidad3,cantidad4,cantidad5,cantidad6]
+def generarPdf(request,panel,bateria,total,inversor,ah,panelCantidad,metro,conector):
+    cantidades =[metro,conector]
     buffer = io.BytesIO()
     report = MyPrint(buffer, 'A4',request.session['token'],panel,bateria,total,inversor,ah,panelCantidad,cantidades)
     report.printReport()
