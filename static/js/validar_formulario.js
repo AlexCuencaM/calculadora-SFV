@@ -51,8 +51,9 @@ function form(){
 function initPopover(objeto,nombre){	
 	const info = document.querySelector(`#${objeto.id}`);
 	const select = document.getElementById(`${nombre}`);
-	let title = select.value;
+	
 	select.addEventListener("change",()=>{
+		let title = select.value;
 		if(nombre ==="voltaje")
 		{
 			title = `Batería de ${select.value}V 100Ah`

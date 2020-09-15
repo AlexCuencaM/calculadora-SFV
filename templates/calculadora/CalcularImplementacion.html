@@ -44,7 +44,7 @@
 				<input type="number" id="capacidad" name="capacidad" class="form-control">
 			</div>				
 			<div class="form-group col-sm-12 col-md-6">
-				<label for="lista"> Inversor <a href="#calcular" id="info-inversor" data-toggle="popover" title="PS-LS1522-3KW" data-content="Soporta un perfil de cargar pico de hasta 3kW" data-placement="bottom" data-trigger="focus"><i class="fa fa-info-circle"></i></a> </label>
+				<label for="lista"> Inversor <a href="#calcular" id="info-inversor" data-toggle="popover" title="PS-LS1522-3KW" data-content="Soporta un perfil de cargar pico de hasta 3kW" data-placement="top" data-trigger="focus"><i class="fa fa-info-circle"></i></a> </label>
 				<select name="inversor" class="form-control" id="inversor">				
 				<option id="" value="PS-LS1522-3KW">PS-LS1522-3KW </option>
 				<option id="" value="PS-LS1021-5KW">PIS5K5-48-5KW </option>
@@ -57,7 +57,7 @@
 
 		<div class="form-row">		
 			<div class="form-group col-sm-12 col-md-6">
-				<label for="voltaje"> Voltaje Baterias <a href="#calcular" id="info-bateria" data-toggle="popover" title="Batería 12V 100 Ah" data-content="Tiene una energía acumulada de 1500 Wh" data-placement="bottom" data-trigger="focus"><i class="fa fa-info-circle"></i></a></label>
+				<label for="voltaje"> Voltaje Baterias <a href="#calcular" id="info-bateria" data-toggle="popover" title="Batería 12V 100 Ah" data-content="Tiene una energía acumulada de 1500 Wh" data-placement="top" data-trigger="focus"><i class="fa fa-info-circle"></i></a></label>
 				<select class="form-control" name="voltaje" id="voltaje">
 					{% for v in category %}
 						<option id="{{v}}" value="{{v}}">{{v}} V</option>
