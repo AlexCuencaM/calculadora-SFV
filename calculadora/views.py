@@ -42,12 +42,9 @@ def home(request,ventana=""):
     return render(request,'calculadora/home.html')       
 
 def botonCalcular(request):
-    computoDevice = EquipoDeComputoModel.objects.all()
+    computoDevice = EquipoDeComputoModel.objects.order_by('id')
     return render(request,'calculadora/BotonCalcular.html',
         {"computoDevice" : computoDevice})
-def botonMateriales(request):
-    return render(request,'calculadora/BotonMaterial.html',
-        {"iteracion": [i for i in range(6)]})
 
 def addEquipo(request):
     if request.method =="POST":
