@@ -57,11 +57,11 @@ class CalcularReporte:
         return {
             "devices": self.__devices,            
             "resultadosDevices": self.__total,
-            "TotalBateria": self.__totalBateria(),#TB
-            "TotalPanel": self.__totalPanel(),
-            "inversor": self.__calculoBateriaPanel.getPost()["inversor"],
-            "ah": self.__calculoBateriaPanel.getBateria().bateria.capacidad,
-            "panelCantidad" : self.__calculoBateriaPanel.getPanel().potenciaDePanel,               
+            "TotalBateria": self.__totalBateria(),#Ojo
+            "TotalPanel": self.__totalPanel(),#Ojo
+            "inversor": request.POST["inversor"],
+            "ah": self.__calculoBateriaPanel.getBateria().bateria.capacidad,#Ojo
+            "panelCantidad" : self.__calculoBateriaPanel.getPanel().potenciaDePanel,#Ojo
             "metro" : request.POST["metros"],
             "conector":self.__cablesConectores(),
         }    

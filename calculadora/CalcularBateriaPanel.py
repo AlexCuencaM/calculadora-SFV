@@ -4,12 +4,32 @@ from calculadora.models import(
     BateriaModel,CalculoPanelModel,CalculoBateriaModel,ReporteModel
 ) 
 class CalcularBateriaPanel:
-    def __init__(self,post,token):
-        self.__post = post
+    def __init__(self,post,token):        
         self.token = UUID(token,version=4)
+        self.setPost(post)
         self.__setReporte()
         self.__setBateria()
-    
+
+    def setPost(self,post):
+        if(post == ""):
+            self.__post = self.__convertPost()
+        else:
+            self.__post = post
+
+    def __convertPost(self):
+        report = ReporteModel.objects.get(token=self.token)
+        calculo = CalculoBateriaModel.objects.get(report=report)
+        panel = CalculoPanelModel.objects.get(report=report)
+        bateria = calculo.bateria
+        return {
+            "consumoDiario" : report.consumoDiario,
+            "voltaje" : bateria.voltaje,
+            "capacidad" : bateria.capacidad,
+            "autonomia-dias": calculo.autonomiaDias,
+            "hsp" : panel.hsp,
+            "potencia-de-panel" : panel.potenciaDePanel,
+        }
+
     def getPost(self):
         return self.__post
     def __setReporte(self):
@@ -34,7 +54,7 @@ class CalcularBateriaPanel:
                 corrienteNecesaria= self.__corrienteNecesaria(),
                 autonomiaDias=int(self.__post["autonomia-dias"]),
             )            
-
+#select 
     def __setCalculoPanel(self):
         if(self.__post["hsp"] == ""):
             self.__panel = CalculoPanelModel(report=self.__calculo,
@@ -46,7 +66,7 @@ class CalcularBateriaPanel:
                 potenciaDePanel=decimal.Decimal(self.__post["potencia-de-panel"])
                 )
 
-    def __guardar(self):
+    def guardar(self):
         self.__calcularBateria.report.save()   
         self.__calcularBateria.bateria.save()     
         self.__calcularBateria.save()
@@ -56,7 +76,6 @@ class CalcularBateriaPanel:
     def calcularPanelYbateria(self):
         self.__setCalcularBateria()
         self.__setCalculoPanel()
-        self.__guardar()
     
     def getBateria(self):
         return self.__calcularBateria

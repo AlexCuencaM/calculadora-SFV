@@ -5,10 +5,31 @@ from calculadora.models import(EquipoDeComputoModel,
     DetalleEquipoDeComputoModel,ConsumoDeDispositivo,    
 ) 
 class Calcular:
-    def __init__(self,request,id):
-        self.__datos = request        
-        self.__id = UUID(id,version=4)
+    def __init__(self,request,i):
+        
+        self.__id = UUID(i,version=4)
+        self.setDatos(request)
         self.__calcular = CalcularCargaMax(self.__datos)
+    
+    def setDatos(self,datos):
+        if(datos == ""):
+            self.__datos = self.__convertDatos()
+        else:
+            self.__datos = datos    
+    def __resultados(self,detalleEquipo):
+        return {
+            "id": detalleEquipo.id,
+            "descripcion": detalleEquipo.descripcion,
+            "cantidad": detalleEquipo.cantidad,
+            "consumoKwH": detalleEquipo.consumoKwH,
+            "horarios": json.loads(detalleEquipo.horarios),
+
+        }
+    def __convertDatos(self):
+        consumo = ConsumoDeDispositivo.objects.filter(token=self.getId() )                
+        return {
+            "result":[self.__resultados(i.equipo) for i in consumo],
+        }
     def getId(self):
         return self.__id
 

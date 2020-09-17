@@ -18,9 +18,9 @@ class CalcularCargaMax:
                     ConsumoPerHour.append(self.__consumo(dev))
                 else:
                     ConsumoPerHour.append(0)
-            ConsumoPerDay.append(ConsumoPerHour)                
+            ConsumoPerDay.append(ConsumoPerHour)              
         return ConsumoPerDay
-    
+
     def perDay(self):
         tabla = self.tabla()        
         array = []
