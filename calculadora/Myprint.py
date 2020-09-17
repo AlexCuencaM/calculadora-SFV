@@ -7,23 +7,45 @@ from reportlab.lib import colors
 from uuid import uuid4,UUID
 import io
 from calculadora.models import ConsumoDeDispositivo
+from calculadora.CalcularBateriaPanel import *
+from calculadora.CalcularReporte import *
+from calculadora.Calcular import *
 class MyPrint:
-    def __init__(self, buffer, pagesize,token,panel,bateria,total,inversor,ah,panelCantidad,cantidades):
+    def __init__(self, buffer, pagesize,token,inversor,cantidades):
+        
         self.cantidades = cantidades
-
+        self.inversor = inversor
         self.buffer = buffer
         self.token = token
-        self.panel = panel
-        self.bateria = bateria
-        self.total = total
-        self.inversor = inversor
-        self.ah = ah
-        self.panelCantidad = panelCantidad
+        self.datos = self.initComponents()
+        self.panel = self.datos["TotalPanel"]
+        self.bateria = self.datos["TotalBateria"]
+        self.total = self.datos["resultadosDevices"] #self.total = total        
+        self.ah = self.datos["ah"]
+        self.panelCantidad = self.datos["panelCantidad"]
+        
+        self.setPageSize(pagesize)
+        self.width, self.height = self.pagesize
+
+
+    def initComponents(self):
+        request = {            
+            "inversor": self.inversor,
+            "metros": self.cantidades,            
+        }
+        calcular = Calcular("", self.token)        
+        ward = CalcularBateriaPanel("", self.token)
+        ward.calcularPanelYbateria()
+        reporte = CalcularReporte(ward,calcular.total())
+        return reporte.getReporte(request)
+
+
+    def setPageSize(self,pagesize):
         if pagesize == 'A4':
             self.pagesize = A4
         elif pagesize == 'Letter':
             self.pagesize = letter
-        self.width, self.height = self.pagesize
+
     def __getDoc(self):
         return SimpleDocTemplate(self.buffer,
                                 rightMargin=72,
@@ -86,7 +108,7 @@ class MyPrint:
         detalles = [list((device.equipo.descripcion,
             str(device.equipo.cantidad),
             device.totalConsumoDiario))
-            for device in ConsumoDeDispositivo.objects.filter(token=UUID(self.token,version=4))]
+            for device in self.datos["devices"]]
         for i in detalles:
             encabezados.append(i)        
         #Establecemos el tamaño de cada una de las columnas de la tabla
