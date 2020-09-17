@@ -7,5 +7,5 @@ urlpatterns = [
     path('calcular/',views.botonCalcular, name="botonCalcular"),            
     path("consumo/",views.calcularConsumoDispositivo,name="consumo"),#POST
     path("panel-y-bateria/",views.calcularPanelYbateria,name="panel-y-bateria"),
-    path("reporte/<int:panel>/<int:bateria>/<str:total>/<str:inversor>/<str:ah>/<str:panelCantidad>/<str:metro>/<str:conector>/",views.generarPdf , name="reporte"),
+    path("reporte/<str:inversor>/<str:metro>/<str:conector>/<str:token>",views.generarPdf , name="reporte"),
 ]

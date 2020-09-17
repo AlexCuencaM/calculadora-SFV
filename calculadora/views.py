@@ -94,12 +94,12 @@ def calcularPanelYbateria(request):
         reporte = initComponents(request,True)        
     else:
         reporte = initComponents(request,False)
-    return render(request,"calculadora/reporte.html", reporte.getReporte(request))
+    return render(request,"calculadora/reporte.html", reporte.getReporte(request.POST))
         
-def generarPdf(request,panel,bateria,total,inversor,ah,panelCantidad,metro,conector):
+def generarPdf(request,inversor,metro,conector,token):
     cantidades =[metro,conector]
     buffer = io.BytesIO()
-    report = MyPrint(buffer, 'A4',request.session['token'],panel,bateria,total,inversor,ah,panelCantidad,cantidades)
+    report = MyPrint(buffer, 'A4',token,inversor,cantidades)
     report.printReport()
     buffer.seek(0)
     return FileResponse(buffer, as_attachment=True, filename='reporte.pdf')
