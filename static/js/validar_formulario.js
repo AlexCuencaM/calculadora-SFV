@@ -45,6 +45,7 @@ function form(){
 	buttons();
 
 	$('[data-toggle="popover"]').popover();
+	
 	initPopover(objeto.inversor,"inversor");
 	initPopover(objeto.bateria,"voltaje");
 }

@@ -26,9 +26,15 @@ def detalles():
     }
 
 # Create your views here.
-def home(request,ventana=""):
+def limpiarSesion(request):
     request.session['token'] = ""
     request.session['datos'] = ""
+
+def isClean(request):
+    return request.session['datos'] == ""
+
+def home(request,ventana=""):
+    limpiarSesion(request)
     if(ventana=="slider"):
         return render(request,'calculadora/inicio.html')
     elif(ventana=="info"):
@@ -56,7 +62,6 @@ def addEquipo(request):
         form = EquipoDeComputoForm()                
         return render(request,'calculadora/equipoForm.html',{'form': form})
 
-#Mucho OJO aqui es :D
 @csrf_exempt
 def calcularConsumoDispositivo(request):     
     if(request.method == "POST"):        
@@ -65,15 +70,30 @@ def calcularConsumoDispositivo(request):
         calcular = Calcular(request.session['datos'], request.session['token'])        
 
     return JsonResponse(calcular.total(),safe=False)
-    
-def calcularPanelYbateria(request):
-    if(request.method=="POST"):        
-        calcular = Calcular(request.session['datos'], request.session['token'])
+
+def initComponents(request,modo):    
+    datos = [request.session['datos'], request.POST]
+    if not modo:
+        datos[0] = ""
+        datos[1] = ""
+
+    calcular = Calcular(datos[0], request.session['token'])        
+    ward = CalcularBateriaPanel(datos[1], request.session['token'])
+    ward.calcularPanelYbateria()
+
+    if modo:
+        ward.guardar()
         calcular.guardar()
-        ward = CalcularBateriaPanel(request.POST, request.session['token'])
-        ward.calcularPanelYbateria()
-        reporte = CalcularReporte(ward,calcular.total()) 
-        
+        request.session['datos'] = ""
+
+    return CalcularReporte(ward,calcular.total())    
+
+def calcularPanelYbateria(request):
+    reporte = None
+    if(not isClean(request)):        
+        reporte = initComponents(request,True)        
+    else:
+        reporte = initComponents(request,False)
     return render(request,"calculadora/reporte.html", reporte.getReporte(request))
         
 def generarPdf(request,panel,bateria,total,inversor,ah,panelCantidad,metro,conector):

@@ -85,7 +85,6 @@ function getArray(){
 	return result;
 }
 
-
 const guardarHoras = () =>{	
 	horarios[posicion] = getArray();
 	cerrar();	
@@ -142,20 +141,6 @@ const getJson = (array_descripcion, array_id, array_horarios, array_cantidad,arr
 			array_horarios[i]));
 	return json;
 }
-// {
-// 	"result" : [
-// 		{
-// 			"id": 1,
-// 			"descripcion": "mouse",
-// 			"consumoKwH": 3.4
-// 			"cantidad" : 3
-// 			"horarios" : [
-// 				1,2,3,4,5,6
-// 			]
-		
-// 		},
-// 	]
-// }
 
 const enviarPost = (json) => {
 	return {
@@ -174,8 +159,7 @@ const enviarDatosPost = (json) => {
 		.catch(error => alert('Error:' + error))
 		.then(response => {
 			consumoDiario(response)
-		});
-
+		});	
 }
 
 const consumoDiario = (responseText) => {	
