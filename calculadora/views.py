@@ -71,12 +71,13 @@ def calcularConsumoDispositivo(request):
 
     return JsonResponse(calcular.total(),safe=False)
 
-def initComponents(request,modo):    
-    datos = [request.session['datos'], request.POST]
-    if not modo:
-        datos[0] = ""
-        datos[1] = ""
+def getDatos(request,modo):    
+    if(not modo):
+        return ["",""]
+    return [request.session['datos'], request.POST]
 
+def initComponents(request,modo):    
+    datos = getDatos(request,modo)
     calcular = Calcular(datos[0], request.session['token'])        
     ward = CalcularBateriaPanel(datos[1], request.session['token'])
     ward.calcularPanelYbateria()
@@ -95,7 +96,7 @@ def calcularPanelYbateria(request):
     else:
         reporte = initComponents(request,False)
     return render(request,"calculadora/reporte.html", reporte.getReporte(request.POST))
-        
+
 def generarPdf(request,inversor,metro,conector,token):
     cantidades =[metro,conector]
     buffer = io.BytesIO()
