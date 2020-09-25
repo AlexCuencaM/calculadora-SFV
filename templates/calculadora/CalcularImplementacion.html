@@ -17,31 +17,30 @@
 
 			<input class=""type="hidden" id="consumoDiario" name="consumoDiario" value="">
 			<div class="form-group col-sm-12 col-md-6">
-				<label for="hsp"> Radiación Solar HSP</label>
+				<label for="hsp"> Radiación Solar HSP <a href="#calcular" id="info-hsp" data-toggle="popover" title="HSP" data-content="Valor obtenido despues de dos simulaciones en el aplicativo web lawebdelasenergiasrenovables.com" data-placement="top" data-trigger="focus"><i class="fa fa-info-circle"></i></a></label>
 				<input class="form-control" type="number" name="hsp" value="3.97" step="0.01" required="" id="hsp">
 			</div>	
 		</div>
 		<div class="form-row">
 			<div class="form-group col-sm-12 col-md-6">
-				<label for="potenciadepanel"> Potencia paneles</label>
-				{% comment %} <input type="number" class="form-control" placeholder="100w"> {% endcomment %}
-				<select class="form-control" name="potencia-de-panel" id="potenciadepanel">	
-				{% for watt in panelCategory %}
-					<option id="{{watt}}" value="{{watt}}">{{watt}} W</option>
-				{% endfor %}				
-				</select>
-			</div>	
-
+				<label for="autonomiaDias"> AUTONOMÍA</label>
+				<input type="number" class="form-control-inline" name="autonomia-dias" id="autonomiaDias" min="0" required> Días
+			</div>				
 			<div class="form-group col-sm-12 col-md-6">
-				<label for="autonomiaDias"> AUTONOMÍA (DÍAS)</label>
-				<input type="number" class="form-control" name="autonomia-dias" id="autonomiaDias" required>
+					<label for="metros"> Distancia Panel-Inversor</label>					
+					<input type="number" name="metros" id="metros" class="form-control-inline" min="0" required> metros
 			</div>				
 		</div>
 
 		<div class="form-row">
 			<div class="form-group col-sm-12 col-md-6">
-				<label for="capacidad"> Capacidad Baterias(Ah)</label>
-				<input type="number" id="capacidad" name="capacidad" class="form-control" min="0" required>
+				<label for="capacidad"> Capacidad Baterias</label>
+				{% comment %} <input type="number"  class="form-control" min="0" required> {% endcomment %}
+				<select class="form-control" id="capacidad" name="capacidad">
+					{% for ah in bateriaCategory %}
+						<option id="{{ah}}" value={{ah}}>{{ah}} Ah</option>
+					{% endfor %}
+				</select>
 			</div>				
 			<div class="form-group col-sm-12 col-md-6">
 				<label for="lista"> Inversor <a href="#calcular" id="info-inversor" data-toggle="popover" title="PS-LS1522-3KW" data-content="Soporta un perfil de carga pico de hasta 3kW" data-placement="top" data-trigger="focus"><i class="fa fa-info-circle"></i></a> </label>
@@ -64,10 +63,15 @@
 					{% endfor %}
 				</select>
 			</div>			
-				<div class="form-group col-sm-12 col-md-6">
-					<label for="metros"> Metraje de acometida Panel-Inversor</label>					
-					<input type="number" name="metros" id="metros" value="" placeholder="Ej: 20 metros" class="form-control" required>
-				</div>				
+			<div class="form-group col-sm-12 col-md-6">
+				<label for="potenciadepanel"> Potencia paneles</label>
+				{% comment %} <input type="number" class="form-control" placeholder="100w"> {% endcomment %}
+				<select class="form-control" name="potencia-de-panel" id="potenciadepanel">	
+				{% for watt in panelCategory %}
+					<option id="{{watt}}" value="{{watt}}">{{watt}} W</option>
+				{% endfor %}				
+				</select>
+			</div>			
 
 		</div>									
 		<div class="form-row">

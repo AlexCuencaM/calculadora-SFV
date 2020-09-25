@@ -29,8 +29,7 @@ const pestanasTodas = (id = 0) => {
         .then((response) => response.text())
         .then((response) =>{
             document.getElementById("pestanas").innerHTML = response;
-            if(id === 2) form();
-            if(id===3) setInterval(nextCambiar,5000);          
+            if(id === 2) form();                      
         });    
 };
 pestanasTodas();
