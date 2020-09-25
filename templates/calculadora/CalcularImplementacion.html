@@ -32,16 +32,16 @@
 			</div>				
 		</div>
 
-		<div class="form-row">
+		<div class="form-row">			
 			<div class="form-group col-sm-12 col-md-6">
-				<label for="capacidad"> Capacidad Baterias</label>
-				{% comment %} <input type="number"  class="form-control" min="0" required> {% endcomment %}
-				<select class="form-control" id="capacidad" name="capacidad">
-					{% for ah in bateriaCategory %}
-						<option id="{{ah}}" value={{ah}}>{{ah}} Ah</option>
-					{% endfor %}
+				<label for="potenciadepanel"> Potencia paneles</label>				
+				<select class="form-control" name="potencia-de-panel" id="potenciadepanel">	
+				{% for watt in panelCategory %}
+					<option id="{{watt}}" value="{{watt}}">{{watt}} W</option>
+				{% endfor %}				
 				</select>
-			</div>				
+			</div>			
+
 			<div class="form-group col-sm-12 col-md-6">
 				<label for="lista"> Inversor <a href="#calcular" id="info-inversor" data-toggle="popover" title="PS-LS1522-3KW" data-content="Soporta un perfil de carga pico de hasta 3kW" data-placement="top" data-trigger="focus"><i class="fa fa-info-circle"></i></a> </label>
 				<select name="inversor" class="form-control" id="inversor">				
@@ -56,22 +56,22 @@
 
 		<div class="form-row">		
 			<div class="form-group col-sm-12 col-md-6">
+				<label for="capacidad"> Capacidad Baterias</label>
+				{% comment %} <input type="number"  class="form-control" min="0" required> {% endcomment %}
+				<select class="form-control" id="capacidad" name="capacidad">
+					{% for ah in bateriaCategory %}
+						<option id="{{ah}}" value={{ah}}>{{ah}} Ah</option>
+					{% endfor %}
+				</select>
+			</div>		
+			<div class="form-group col-sm-12 col-md-6">
 				<label for="voltaje"> Voltaje Baterias <a href="#calcular" id="info-bateria" data-toggle="popover" title="NA" data-content="" data-placement="top" data-trigger="focus"><i class="fa fa-info-circle"></i></a></label>
 				<select class="form-control" name="voltaje" id="voltaje">
 					{% for v in category %}
 						<option id="{{v}}" value="{{v}}">{{v}} V</option>
 					{% endfor %}
 				</select>
-			</div>			
-			<div class="form-group col-sm-12 col-md-6">
-				<label for="potenciadepanel"> Potencia paneles</label>
-				{% comment %} <input type="number" class="form-control" placeholder="100w"> {% endcomment %}
-				<select class="form-control" name="potencia-de-panel" id="potenciadepanel">	
-				{% for watt in panelCategory %}
-					<option id="{{watt}}" value="{{watt}}">{{watt}} W</option>
-				{% endfor %}				
-				</select>
-			</div>			
+			</div>						
 
 		</div>									
 		<div class="form-row">
