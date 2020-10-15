@@ -6,7 +6,7 @@ async function mostrarFormularioCalcular() {
 }
 
 //Método que llama a la función datos tabla para su posterior  inserción
-function Equipo(id, descripcion, consumo = 2.4, cantidad = 1) {
+function Equipo(id, descripcion, consumo = 0.15, cantidad = 1) {
 	this.id = id;
 	this.descripcion = descripcion;
 	this.consumo = consumo;
