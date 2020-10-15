@@ -126,12 +126,13 @@ async function obtenerAllDateTable() {
 	const array_consumo = document.getElementsByName("consumo[]");
 	if(allValidateModal(array_descripcion,array_cantidad,array_consumo))
 	{
+		console.log(array_cantidad[0].value);		
 		json = getJson(array_descripcion, array_id, horarios, array_cantidad,array_consumo);	
 		enviarDatosPost(json);
+		$('#exampleModal').modal('hide');		
+		cleanData();
 	}
-
 	else alert("Ingrese datos de manera correcta :)");
-	cleanData();
 }
 function cleanData()
 {
