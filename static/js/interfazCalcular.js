@@ -132,7 +132,7 @@ async function obtenerAllDateTable() {
 		$('#exampleModal').modal('hide');		
 		cleanData();
 	}
-	else alert("Ingrese datos de manera correcta :)");
+	else alert("Ingrese datos de manera correcta :(");
 }
 function cleanData()
 {
