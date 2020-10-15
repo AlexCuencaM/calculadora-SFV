@@ -66,15 +66,11 @@ function addGroup(r){
 }
 const contentRow = (equipo) => [
 	`<td><input type="text" class="form-control form-control-sm" value="${equipo.descripcion}" name="descripcion-producto[]"><input type="hidden" name="producto[]" value="${equipo.id}" id="tv"></td>`,
-	`<td><input type="number" class="form-control form-control-sm" value="${equipo.consumo}" step="0.01" name="consumo[]"></td>`,
-	`<td><input type="number" class="form-control form-control-sm" value="${equipo.cantidad}" name="cantidad[]"></td>`,	
-	// `<td><label class="form-control form-control-sm" name="consumo-total[]">${equipo.cantidad * equipo.consumo}</label></td>`,
+	`<td><input type="number" class="form-control form-control-sm" value="${equipo.consumo}" step="0.01" min="0" name="consumo[]"></td>`,
+	`<td><input type="number" class="form-control form-control-sm" value="${equipo.cantidad}" min="0" name="cantidad[]"></td>`,		
 	`<td class="text-center">${button()}</td>`,
 	`<td class="text-center"><button class="btn btn-outline-danger" name="eliminar[]" id="eliminar" onclick="eliminarFila(this)"><i class="fa fa-trash-o"></i></button></td>`
 ];
-const cerrar = () =>{
-	$('#staticBackdrop').modal('hide');
-}
 
 function getArray(){
 	let checks = document.getElementsByName("horas[]");	
@@ -85,7 +81,11 @@ function getArray(){
 	return result;
 }
 
-const guardarHoras = () =>{	
+const cerrar = () =>{
+	$('#staticBackdrop').modal('hide');
+}
+
+const guardarHoras = () =>{
 	horarios[posicion] = getArray();
 	cerrar();	
 }
@@ -107,13 +107,30 @@ async function eliminarFila(r) {
 }
 //Cambiadisimo :V
 //Llama desde el html
+function validateModal(array,type="string"){
+	floatCondition = (i) => type=="float" ? 
+		!Number.isNaN(Number(i.value)): 
+		Number.isInteger(Number(i.value)) && !Number.isNaN(Number(i.value));
+
+	condition = (i) => type == "string" ? true : floatCondition(i) 	
+	return [...array].every(i => i.value !== "" && condition(i));	
+}
+function allValidateModal(array_descripcion, array_cantidad, array_consumo){	
+	return validateModal(array_descripcion) && validateModal(array_cantidad,"int") &&
+		validateModal(array_consumo,"float")
+}
 async function obtenerAllDateTable() {
 	const array_descripcion = document.getElementsByName("descripcion-producto[]");
 	const array_id = document.getElementsByName("producto[]");			
 	const array_cantidad = document.getElementsByName("cantidad[]");
-	const array_consumo = document.getElementsByName("consumo[]");	
-	json = getJson(array_descripcion, array_id, horarios, array_cantidad,array_consumo);	
-	enviarDatosPost(json);
+	const array_consumo = document.getElementsByName("consumo[]");
+	if(allValidateModal(array_descripcion,array_cantidad,array_consumo))
+	{
+		json = getJson(array_descripcion, array_id, horarios, array_cantidad,array_consumo);	
+		enviarDatosPost(json);
+	}
+
+	else alert("Ingrese datos de manera correcta :)");
 	cleanData();
 }
 function cleanData()
