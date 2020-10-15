@@ -65,9 +65,9 @@ function addGroup(r){
 	checking(horarios[obtener_fila]);		
 }
 const contentRow = (equipo) => [
-	`<td><input type="text" class="form-control form-control-sm" value="${equipo.descripcion}" name="descripcion-producto[]"><input type="hidden" name="producto[]" value="${equipo.id}" id="tv"></td>`,
-	`<td><input type="number" class="form-control form-control-sm" value="${equipo.consumo}" step="0.01" min="0" name="consumo[]"></td>`,
 	`<td><input type="number" class="form-control form-control-sm" value="${equipo.cantidad}" min="0" name="cantidad[]"></td>`,		
+	`<td><input type="text" class="form-control form-control-sm" value="${equipo.descripcion}" name="descripcion-producto[]"><input type="hidden" name="producto[]" value="${equipo.id}" id="tv"></td>`,
+	`<td><input type="number" class="form-control form-control-sm" value="${equipo.consumo}" step="0.01" min="0" name="consumo[]"></td>`,	
 	`<td class="text-center">${button()}</td>`,
 	`<td class="text-center"><button class="btn btn-outline-danger" name="eliminar[]" id="eliminar" onclick="eliminarFila(this)"><i class="fa fa-trash-o"></i></button></td>`
 ];
