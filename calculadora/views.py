@@ -82,7 +82,6 @@ def initComponents(request,modo):
     calcular = Calcular(datos[0], request.session['token'])        
     ward = CalcularBateriaPanel(datos[1], request.session['token'])
     ward.calcularPanelYbateria()
-
     if modo:
         ward.guardar()
         calcular.guardar()
