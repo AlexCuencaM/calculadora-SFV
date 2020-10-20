@@ -27,14 +27,22 @@ class CalcularReporte:
     def __CDtoWatts(self):
         return self.__calculoBateriaPanel.getPanel().report.consumoDiario * 1000
 
-    def __numeradorCP(self):#Ojo
+    def __numeradorCP(self):
         return decimal.Decimal(self.__CDtoWatts() * decimal.Decimal(self.__calculoBateriaPanel.getPanel().tolerancia))
 
     def __denominadorCP(self):
         return decimal.Decimal(decimal.Decimal(self.__calculoBateriaPanel.getPanel().hsp) * self.__calculoBateriaPanel.getPanel().potenciaDePanel)
     
-    def __setCP(self):#OJO
-        self.__CP = self.__numeradorCP()/self.__denominadorCP()
+    def __setCP(self):
+        try:
+            self.__CP = self.__numeradorCP()/self.__denominadorCP()
+        except ZeroDivisionError:
+            self.__CP = 0
+        except decimal.InvalidOperation:
+            self.__CP = 0
+        except ValueError:
+            self.__CP = 0
+
 
     def __totalBateria(self):
         result = 0
@@ -46,7 +54,9 @@ class CalcularReporte:
         except decimal.InvalidOperation:
             return 0
         except ValueError:
-            return 0        
+            return 0     
+
+           
     def __totalPanel(self):
         return math.ceil(float(self.__CP))
 
