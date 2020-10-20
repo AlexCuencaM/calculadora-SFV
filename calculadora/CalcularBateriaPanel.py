@@ -41,8 +41,11 @@ class CalcularBateriaPanel:
         self.__bateria = BateriaModel(voltaje=int(self.__post["voltaje"]),capacidad=int(self.__post["capacidad"]))
     def __corrienteNecesaria(self):
         try:
-            return decimal.Decimal(self.__calculo.consumoDiario/self.__bateria.voltaje)
+            result = decimal.Decimal(self.__calculo.consumoDiario/self.__bateria.voltaje)
+            return result
         except ZeroDivisionError:
+            return 0
+        except decimal.InvalidOperation:
             return 0
         except ValueError:
             return 0
