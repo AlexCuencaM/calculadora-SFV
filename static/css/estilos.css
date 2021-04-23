@@ -1,29 +1,101 @@
-html{
-	padding-bottom: 10px;	
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@700&display=swap");
+
+html {
+    padding-bottom: 10px;
 }
 
-div .button_gallery{
-	background-color: gray;
+.landing__container {
+    padding: 1rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+.landing__paragraph {
+    border: 1px solid var(--gray);
+    border-radius: 5px;
+    box-shadow: 5px 5px var(--gray);
+    padding: 5px;
+}
+.landing__section {
+    padding-top: 1rem;
+}
+.landing__title, h1, .modal__subtitle {
+    font-family: "Ubuntu Mono", monospace;
+}
+.image {
+    max-width: 100%;
+    padding-bottom: 15px;
+    box-shadow: 5px 5px var(--gray);
+}
+
+.landing__image {
+    padding-top: 1rem;
+}
+
+@media screen and (min-width: 720px) {
+    .landing__title {
+        flex: 1 0 50%;
+    }
+    .landing__title h1 {
+        font-size: 6rem;
+    }
+    .landing__main-content {
+        /* flex: 1; */
+        flex: 1 0 50%;
+    }
+    .landing__main-content {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+    .landing__paragraph {
+        border: none;
+        border-radius: none;
+        box-shadow: none;
+		padding-left: 0;
+        flex: 0 0 50%;
+    }
+    .landing__image {
+        flex: 0 0 50%;
+    }
+    .image {
+        height: 250px;
+        width: 250px;
+
+        object-fit: cover;
+    }
+    .landing__section {
+        display: flex;
+        width: 100%;
+        /* flex: 0 1; */
+        /* background: var(--gray-dark); */
+        /* align-content: space-between; */
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+}
+
+div .button_gallery {
+    background-color: gray;
 }
 
 /*Mi estilo de Carousel*/
-div .carousel-item{
-	height:85vh;
+div .carousel-item {
+    height: 85vh;
 }
 
-div #carouselExampleIndicators{
-	top:10px;
+div #carouselExampleIndicators {
+    top: 10px;
 }
 
-.d-block.w-100{
-	
-	height:75vh;
+.d-block.w-100 {
+    height: 75vh;
 }
-p{
-	text-align: justify;
+p {
+    text-align: justify;
 }
 
 /*scroll*/
-.overflow-auto{	
-	max-height: 200px;
+.overflow-auto {
+    max-height: 200px;
 }
