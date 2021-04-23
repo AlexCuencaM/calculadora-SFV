@@ -1,9 +1,31 @@
 {% load static %}
-<div class="container">
-        <!--Imagenes con carousel--> 
-    <h1 class="my-5 text-center text-primary">Dimensionado de sistema fotovoltaico autónomo<br>Dirigido a centros de cómputo de la Universidad de Guayaquil<br>Caso Facultad de Ciencias Matemáticas y Físicas</h1>
+<div class="landing__container">
+        <!--Imagenes con carousel-->
+        <!-- <br><i>Caso Facultad de Ciencias Matemáticas y Físicas</i> -->
+    <div class="landing__title">
+      <h1 class="my-5 text-primary">Calculadora de sistemas fotovoltaicos</h1>
+    </div>
+    <div class="landing__main-content">
+      <div class="landing__paragraph">
+        En una herramienta complementaria dirigida a centros de cómputo de la Universidad de Guayaquil
+        Caso Facultad de Ciencias Matemáticas y Físicas
+      </div>
+      <div class="landing__image">
+        <img class="image" loading="lazy" src="{% static 'img/image1.jpeg' %}" alt="First slide">
+      </div>
+      <div class="landing__section">
 
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
+        <div class="landing__image">
+            <img class="image" loading="lazy" class="d-block w-100" src="{% static 'img/image2.jpeg' %}" alt="Second slide" >
+        </div>
+        <div class="landing__image">
+          <img class="image" loading="lazy" class="d-block w-100" src="{% static 'img/image3.jpeg' %}" alt="Third slide">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -28,6 +50,6 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
-    </div>
+    </div> -->
       <!--Termina el bloque de imagenes con carousek-->
 </div>

@@ -1,16 +1,14 @@
-<h1 class="my-5 text-center text-primary"> Ingreso de datos para el cálculo del dimensionamiento del SFV </h1>
+<h1 class="my-5 text-center text-primary"> Ingreso de datos </h1>
 <hr>
 
 <form id="impl" action="{% url 'calculadora:panel-y-bateria' %}" method="post">
 	{% csrf_token %}
 	<div class="container">		
 		<!-- Modal -->					
-		<div class="form-row">													
-			{% comment %} <label class="col-sm-6 col-md-6 col-lg-3"> Perfil de carga obtenido:</label>						 {% endcomment %}
+		<div class="form-row">																
 			<div class="col-6 col-sm-6 col-md-3 align-self-center my-2">
 				<button class="btn btn-primary preven" name ="consumo-diario" id="consumo-diario" data-toggle="modal" data-target="#exampleModal" onclick="mostrarFormularioCalcular()">Perfil de carga <i class="fa fa-calculator"></i></button>
 			</div>
-{% comment %} class="" {% endcomment %}
 			<div class="col-sm-6 col-md-6 col-md-3 col-lg-3 align-self-center">				
 				<label id="valor_consumo">Sin resultados</label>
 			</div>			
@@ -87,7 +85,7 @@
 	<div class="modal-dialog modal-xl" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title text-primary" id="exampleModalLabel"> Lista de equipo de computo</h5>
+				<h2 class="modal-title text-primary modal__subtitle" id="exampleModalLabel"> Lista de equipo de computo</h2>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				<span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
 				</button>
